@@ -4,6 +4,8 @@ import { Switch, Route } from "react-router-dom"
 import NavBar from './NavBar'
 import  SideBar  from "./SideBar";
 import Signup from './Signup'
+import Login from './Login'
+import FlyersContainer from './FlyersContainer'
 import {useState} from "react"
 
 
@@ -44,11 +46,17 @@ function App() {
       
           
       <Switch>
-        <Route path="/signup">
           <Container justifyContent='center'>
+        <Route path="/signup">
             <Signup />
-          </Container>
         </Route>
+        <Route path='/login'>
+          <Login/>
+        </Route>
+        <Route path='/flyers'>
+          <FlyersContainer/>
+        </Route>
+          </Container>
       </Switch>
       </Stack>
     </Flex>

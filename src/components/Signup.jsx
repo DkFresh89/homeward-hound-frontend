@@ -17,7 +17,6 @@ function Signup() {
     const handleClick = () => setShow(!show)
 
     const handleChange = (e) => {
-       
         setFormData({ ...formData, [e.target.name]: e.target.value})
     }
 
@@ -44,7 +43,7 @@ function Signup() {
         // })
     }
 
-    console.log(formData);
+    // console.log(formData);
 
     return(
 
@@ -66,8 +65,8 @@ function Signup() {
             <RadioGroup onChange={handleRadio}  >
                 <FormLabel >Are you a dog owner?</FormLabel>
                 <Stack direction="row">
-                    <Radio name='good_sam' value="true">Yes</Radio>
-                    <Radio name='good_sam' value="false">No</Radio>
+                    <Radio value="true">Yes</Radio>
+                    <Radio value="false">No</Radio>
                 </Stack>
             </RadioGroup>
             </Box>
