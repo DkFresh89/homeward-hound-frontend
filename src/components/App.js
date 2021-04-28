@@ -46,7 +46,7 @@ function App() {
       <Switch>
         <Route path="/signup">
           <Container justifyContent='center'>
-           <Signup />
+            <Signup />
           </Container>
         </Route>
       </Switch>

@@ -1469,7 +1469,7 @@
     "@chakra-ui/theme-tools" "1.1.6"
     "@chakra-ui/utils" "1.7.0"
 
-"@chakra-ui/radio@1.3.4":
+"@chakra-ui/radio@^1.3.4", "@chakra-ui/radio@1.3.4":
   "integrity" "sha512-OuYLs/IJIBPMGsB6Zwf5ohoWYGmZq134sBa4iI3aKjlVfBpqLUHX3dtln1dj6alRlThW8npeJC5j3nmjrZ6pfA=="
   "resolved" "https://registry.npmjs.org/@chakra-ui/radio/-/radio-1.3.4.tgz"
   "version" "1.3.4"
