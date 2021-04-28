@@ -8,13 +8,13 @@ function Login() {
     const [formData, setFormData] = useState({
         name: "",
         password_digest: "",
-      })
+    })
 
-      const handleChange = (e) => {
+    const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-     const handleLogin = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault()
 
         fetch("http://localhost:3000/login", {

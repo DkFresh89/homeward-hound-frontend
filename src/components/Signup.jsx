@@ -2,15 +2,17 @@ import { Flex, Input, Button, InputGroup, InputLeftElement, RadioGroup, Stack, F
 import { Radio } from "@chakra-ui/radio"
 import { PhoneIcon} from '@chakra-ui/icons'
 import {useState} from "react"
+import { useHistory } from "react-router-dom"
 
 function Signup() {
     
+    const history = useHistory()
     const [show, setShow] = useState(false)
     const [formData, setFormData] = useState({
         name: "",
         address: "",
         phone_number: "",
-        good_sam: null,
+        good_sam: "",
         password_digest: ""
     })
 
@@ -26,21 +28,22 @@ function Signup() {
 
     const handleSignup = (e) => {
 
-        console.log(formData);
+        console.log(formData.good_sam);
         e.preventDefault()
 
-        // fetch("http://localhost:3000/signup", {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'Application/json',
-        //         'Accept': 'Application/json'
-        //     },
-        //     body: JSON.stringify(formData)
-        // })
-        // .then(resp => resp.json())
-        // .then(data => {
-        //     console.log(data);
-        // })
+        fetch("http://localhost:3000/signup", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'Application/json',
+                'Accept': 'Application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data.good_sam);
+            {data.good_sam === true ? history.push("/flyers") : history.push("/add_dog") }
+        })
     }
 
     // console.log(formData);
@@ -62,11 +65,11 @@ function Signup() {
             </InputGroup>
 
             <Box textAlign='center'>
-            <RadioGroup onChange={handleRadio}  >
+            <RadioGroup onChange={handleRadio} name='good_sam'  >
                 <FormLabel >Are you a dog owner?</FormLabel>
                 <Stack direction="row">
-                    <Radio value="true">Yes</Radio>
-                    <Radio value="false">No</Radio>
+                    <Radio value={`${false}`}>Yes</Radio>
+                    <Radio value={`${true}`}>No</Radio>
                 </Stack>
             </RadioGroup>
             </Box>

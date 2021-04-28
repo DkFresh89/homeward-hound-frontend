@@ -7,6 +7,7 @@ import Signup from './Signup'
 import Login from './Login'
 import FlyersContainer from './FlyersContainer'
 import {useState} from "react"
+import AddDog from './AddDog';
 
 
 function App() {
@@ -48,10 +49,13 @@ function App() {
       <Switch>
           <Container justifyContent='center'>
         <Route path="/signup">
-            <Signup />
+          <Signup />
         </Route>
         <Route path='/login'>
           <Login/>
+        </Route>
+        <Route path='/add_dog'>
+          <AddDog />
         </Route>
         <Route path='/flyers'>
           <FlyersContainer/>
