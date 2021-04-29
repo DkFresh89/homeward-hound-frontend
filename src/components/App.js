@@ -8,9 +8,12 @@ import Login from './Login'
 import FlyersContainer from './FlyersContainer'
 import {useState} from "react"
 import AddDog from './AddDog';
+import CreateFlyer from './CreateFlyer';
+
 
 
 function App() {
+
 
   const [warning, setWarning] = useState(false)
   const [currentUser, setCurrentUser] = useState(null)
@@ -59,7 +62,7 @@ function App() {
           <AddDog />
         </Route>
         <Route path='/flyers'>
-          <FlyersContainer/>
+          <CreateFlyer/>
         </Route>
           </Container>
       </Switch>
