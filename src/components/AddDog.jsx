@@ -1,10 +1,12 @@
-import { Flex, Stack } from "@chakra-ui/layout";
+import { Flex, Stack, Box } from "@chakra-ui/layout";
 import {useState} from "react"
-import { Button, Input } from '@chakra-ui/react'
+import { useHistory } from "react-router-dom"
+import { Button, Input, ButtonGroup } from '@chakra-ui/react'
 
 
 function AddDog() {
 
+    const history = useHistory()
     const [formData, setFormData] = useState({
         name: "",
         breed: "",
@@ -13,6 +15,10 @@ function AddDog() {
         temperament: "",
         user_id: 1
     })
+
+    const handleSkip = () => {
+        history.push("/flyers")
+    }
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -45,7 +51,10 @@ function AddDog() {
                 <Input placeholder='Size' name='size'  onChange={handleChange}/>
                 <Input type='number' placeholder='Age' name='age'  onChange={handleChange}/>
                 <Input placeholder='Temperament' name='temperament'  onChange={handleChange}/>
-                <Button onClick={handleDog} type="submit" colorScheme="blue">Add Pooch</Button>
+                <ButtonGroup>
+                    <Button onClick={handleSkip} colorScheme="blackAlpha">Skip</Button>
+                    <Button onClick={handleDog} type="submit" colorScheme="blue">Add Pooch</Button>
+                </ButtonGroup>
             </Stack>
             </form>
         </Flex>

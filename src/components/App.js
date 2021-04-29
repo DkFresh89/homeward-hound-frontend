@@ -13,6 +13,7 @@ import AddDog from './AddDog';
 function App() {
 
   const [warning, setWarning] = useState(false)
+  const [currentUser, setCurrentUser] = useState(null)
 
   const handleWarning = () => {
     setWarning(warning => !warning)
@@ -49,10 +50,10 @@ function App() {
       <Switch>
           <Container justifyContent='center'>
         <Route path="/signup">
-          <Signup />
+          <Signup setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path='/login'>
-          <Login/>
+          <Login setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path='/add_dog'>
           <AddDog />

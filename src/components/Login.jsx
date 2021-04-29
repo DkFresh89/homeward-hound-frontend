@@ -2,7 +2,7 @@ import { Flex, Input, Button, Stack } from "@chakra-ui/react"
 import {useState} from "react"
 import { useHistory } from "react-router-dom"
 
-function Login() {
+function Login({setCurrentUser}) {
 
     const history = useHistory()
     const [formData, setFormData] = useState({
@@ -35,18 +35,20 @@ function Login() {
             }
         })
         .then(data => {
-            console.log(data)
+            console.log(data.user)
+            setCurrentUser(data.user)
+            localStorage.setItem("user", JSON.stringify(data.user))
             history.push("/flyers")
         })
     }
-
+    
     return (
         <Flex justifyContent='center'>
             <form onSubmit={handleLogin}>
                 <Stack>
                 <Input name='name' onChange={handleChange} placeholder='Name' />
                 <Input name='password_digest' onChange={handleChange} placeholder='Password' />
-                <Button  type="submit" colorScheme="blue">Login</Button>
+                <Button onClick={handleLogin} type="submit" colorScheme="blue">Login</Button>
                 </Stack>
             </form>
         </Flex>

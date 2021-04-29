@@ -4,7 +4,7 @@ import { PhoneIcon} from '@chakra-ui/icons'
 import {useState} from "react"
 import { useHistory } from "react-router-dom"
 
-function Signup() {
+function Signup({setCurrentUser}) {
     
     const history = useHistory()
     const [show, setShow] = useState(false)
@@ -42,6 +42,8 @@ function Signup() {
         .then(resp => resp.json())
         .then(data => {
             // console.log(typeof data.good_sam);
+            setCurrentUser(data.user)
+            localStorage.setItem("user", JSON.stringify(data.user))
             data.good_sam === "true" ? history.push("/flyers") : history.push("/add_dog") 
         })
     }
