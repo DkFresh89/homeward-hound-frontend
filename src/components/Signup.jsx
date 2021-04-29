@@ -41,8 +41,8 @@ function Signup() {
         })
         .then(resp => resp.json())
         .then(data => {
-            console.log(data.good_sam);
-            {data.good_sam === true ? history.push("/flyers") : history.push("/add_dog") }
+            // console.log(typeof data.good_sam);
+            data.good_sam === "true" ? history.push("/flyers") : history.push("/add_dog") 
         })
     }
 
