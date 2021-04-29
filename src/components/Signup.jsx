@@ -50,47 +50,71 @@ function Signup({setCurrentUser}) {
 
     // console.log(formData);
 
-    return(
-
-        <Flex >
-            <form onSubmit={handleSignup}>
-            <Stack >
-            <Input onChange={handleChange} type='text' name='name' placeholder="Name"></Input>
-            <Input onChange={handleChange} type='text' name='address' placeholder="Address"></Input>
+    return (
+        <Flex>
+        <form onSubmit={handleSignup}>
+            <Stack>
+            <Input
+                onChange={handleChange}
+                type="text"
+                name="name"
+                placeholder="Name"
+            ></Input>
+            <Input
+                onChange={handleChange}
+                type="text"
+                name="address"
+                placeholder="Address"
+            ></Input>
 
             <InputGroup>
                 <InputLeftElement
                 pointerEvents="none"
                 children={<PhoneIcon color="gray.300" />}
                 />
-                <Input onChange={handleChange} type='text' name='phone_number' type="tel" placeholder="Phone number" />
+                <Input
+                onChange={handleChange}
+                // type="text"
+                name="phone_number"
+                type="tel"
+                placeholder="Phone number"
+                />
             </InputGroup>
 
-            <Box textAlign='center'>
-            <RadioGroup onChange={handleRadio} name='good_sam'  >
-                <FormLabel >Are you a dog owner?</FormLabel>
+            <Box textAlign="center">
+                <RadioGroup onChange={handleRadio} name="good_sam">
+                <FormLabel>Are you a dog owner?</FormLabel>
                 <Stack direction="row">
                     <Radio value={`${false}`}>Yes</Radio>
                     <Radio value={`${true}`}>No</Radio>
                 </Stack>
-            </RadioGroup>
+                </RadioGroup>
             </Box>
 
             <InputGroup size="md">
-                <Input onChange={handleChange} type='text' name='password_digest' pr="4.5rem" type={show ? "text" : "password"} placeholder="Enter password"/>
+                <Input
+                onChange={handleChange}
+                // type="text"
+                name="password_digest"
+                pr="4.5rem"
+                type={show ? "text" : "password"}
+                placeholder="Enter password"
+                />
                 <InputRightElement width="4.5rem">
-                    <Button h="1.75rem" size="sm" onClick={handleClick}> {show ? "Hide" : "Show"} </Button>
+                <Button h="1.75rem" size="sm" onClick={handleClick}>
+                    {" "}
+                    {show ? "Hide" : "Show"}{" "}
+                </Button>
                 </InputRightElement>
             </InputGroup>
 
-            <Button  type="submit" colorScheme="blue">Submit</Button>
-
+            <Button type="submit" colorScheme="blue">
+                Submit
+            </Button>
             </Stack>
-            </form>
-            
+        </form>
         </Flex>
-
-    )
+    );
 }
 
 

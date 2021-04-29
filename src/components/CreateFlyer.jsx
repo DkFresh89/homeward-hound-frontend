@@ -1,27 +1,24 @@
-import { Flex } from "@chakra-ui/react"
+import { Flex, Textarea, Text, Button, Stack, Spacer, Box, Input } from "@chakra-ui/react"
 import {useState, useHistory, useCallback} from "react"
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import Login from "./Login";
 
 const containerStyle = {
     width: '400px',
     height: '400px'
 };
 
-const center = {
-    lat: -3.745,
-    lng: -38.523
-};
-
-const api = process.env.REACT_APP_GOOGLE_API_KEY
-
-console.log(api)
+// const center = {
+//     lat: 40,
+//     lng: -74
+// };
 
 function CreateFlyer() {
 
 //**************Google Maps API Setup*************************************/
         const { isLoaded } = useJsApiLoader({
             id: 'google-map-script',
-            googleMapsApiKey: api
+            googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
         })
         
         const [map, setMap] = useState(null)
@@ -37,6 +34,7 @@ function CreateFlyer() {
         }, [])
 /***************************************************************************/
     // const history = useHistory()
+    const [address, setAddress] = useState("")
     const [formData, setFormData] = useState({
         latitude: "",
         longitude: "",
@@ -52,6 +50,18 @@ function CreateFlyer() {
 
     const handleRadio = (e) => {
         setFormData({...formData, good_sam: e})
+    }
+    const handleAddress = (e) => {
+        console.log(e.target.value);
+        const newAddress = e.target.value
+        setAddress({newAddress})
+    }
+
+    const getLocation = () => {
+        console.log(address.newAddress);
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
+        .then(resp => resp.json())
+        .then(data => console.log(data))
     }
 
     const handleCreateFlyer = (e) => {
@@ -72,24 +82,44 @@ function CreateFlyer() {
     }
 
     return (
-      <Flex>
+    <Flex justifyContent='center'>
+        <Stack>
         <form onSubmit={handleCreateFlyer}>
+            {/* <Text mb="8px">Description: {value}</Text> */}
+            <Input onChange={handleAddress} placeholder='Address'/>
+            <Button onClick={getLocation} colorScheme="blue">
+                Set Location
+            </Button>
+        <Textarea
+            // value={value}
+            // onChange={handleInputChange}
+            placeholder="Description"
+            size="sm"
+        />
             {isLoaded ? (
+                <Flex >
             <GoogleMap
                 mapContainerStyle={containerStyle}
-                center={center}
-                zoom={10}
+                defaultCenter={{ lat: 40.713, lng: -74.015}}
+                zoom={4}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
             >
+                <Marker position={{ lat: 40.713468006091794, lng: -74.0150387326917}} />
                 {/* Child components, such as markers, info windows, etc. */}
                 <></>
-            </GoogleMap>
+            </GoogleMap></Flex>
             ) : (
             <></>
             )}
+            <Box h='2'/>
+            <Spacer/>
+            <Button type="submit" colorScheme="blue">
+                Submit
+            </Button>
         </form>
-      </Flex>
+        </Stack>
+    </Flex>
     );
 }
 
