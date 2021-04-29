@@ -1,5 +1,5 @@
 import logo from './HomewardHound.png'
-import { Flex, Box, Image, Center, AspectRatio } from "@chakra-ui/react"
+import { Flex, Box, Image } from "@chakra-ui/react"
 
 
 function NavBar() {

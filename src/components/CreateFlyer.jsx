@@ -1,6 +1,7 @@
 import { Flex, Textarea, Text, Button, Stack, Spacer, Box, Input } from "@chakra-ui/react"
 import {useState, useHistory, useCallback} from "react"
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import Geocode from "react-geocode";
 import Login from "./Login";
 
 const containerStyle = {
@@ -14,6 +15,14 @@ const containerStyle = {
 // };
 
 function CreateFlyer() {
+
+//**************Geocode****************************************/
+
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY)
+Geocode.setLanguage("en")
+Geocode.setLocationType("ROOFTOP")
+
+//*************************************************************/
 
 //**************Google Maps API Setup*************************************/
         const { isLoaded } = useJsApiLoader({
@@ -52,16 +61,30 @@ function CreateFlyer() {
         setFormData({...formData, good_sam: e})
     }
     const handleAddress = (e) => {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         const newAddress = e.target.value
         setAddress({newAddress})
     }
 
     const getLocation = () => {
-        console.log(address.newAddress);
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
-        .then(resp => resp.json())
-        .then(data => console.log(data))
+        console.log(address['newAddress']);
+        Geocode.fromAddress(address['newAddress']).then(
+            (response) => {
+                const { lat, lng } = response.results[0].geometry.location;
+                console.log(lat, lng);
+            //   console.log(response);
+                setFormData({...formData, latitude: lat,
+                longitude: lng})
+                console.log(formData);
+            },
+            (error) => {
+                console.error(error);
+            }
+            )
+        // console.log(address.newAddress);
+        // fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
+        // .then(resp => resp.json())
+        // .then(data => console.log(data))
     }
 
     const handleCreateFlyer = (e) => {
