@@ -5,7 +5,7 @@ import Geocode from "react-geocode";
 
 
 
-function CreateFlyer({currentUser}) {
+function CreateFlyer({currentUser, setFlyers}) {
 
     console.log(currentUser.dogs);
 
@@ -136,8 +136,8 @@ Geocode.setLocationType("ROOFTOP")
                 Set Location
             </Button>
         <Textarea
-            // value={value}
-            // onChange={handleInputChange}
+            name='description'
+            onChange={handleChange}
             placeholder="Description"
             size="sm"
         />

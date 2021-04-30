@@ -6,7 +6,7 @@ import  SideBar  from "./SideBar";
 import Signup from './Signup'
 import Login from './Login'
 import FlyersContainer from './FlyersContainer'
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import AddDog from './AddDog';
 import CreateFlyer from './CreateFlyer';
 
@@ -16,11 +16,20 @@ function App() {
 
 
   const [warning, setWarning] = useState(false)
+  const [flyers, setFlyers] = useState([])
   const [currentUser, setCurrentUser] = useState(null)
 
   const handleWarning = () => {
     setWarning(warning => !warning)
   }
+
+  useEffect(() => {
+    fetch('http://localhost:3000/missing_flyers')
+      .then(resp => resp.json())
+      .then(flyerArray => setFlyers(flyerArray.data))
+  }, [])
+
+  console.log(flyers);
 
   return (
     <Flex justifyContent='center'>
@@ -62,7 +71,8 @@ function App() {
           <AddDog />
         </Route>
         <Route path='/flyers'>
-          <CreateFlyer currentUser={currentUser}/>
+          {/* <CreateFlyer currentUser={currentUser} setFlyers={setFlyers}/> */}
+          <FlyersContainer flyers={flyers} />
         </Route>
           </Container>
       </Switch>
