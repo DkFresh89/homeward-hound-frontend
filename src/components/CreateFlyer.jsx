@@ -2,7 +2,6 @@ import { Flex, Textarea, Text, Button, Stack, Spacer, Box, Input, Select } from 
 import {useState, useHistory, useCallback} from "react"
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Geocode from "react-geocode";
-import Login from "./Login";
 
 
 
@@ -51,25 +50,29 @@ Geocode.setLocationType("ROOFTOP")
         }, [])
 /***************************************************************************/
     // const history = useHistory()
+    // const id = currentUser.id
+    // console.log(id);
     const [address, setAddress] = useState("")
     const [formData, setFormData] = useState({
         latitude: "",
         longitude: "",
         description: "",
-        reward: null,
+        reward: false,
         found: false,
-        dog_id: 1,
-        user_id: 1
+        dog_id: null
     })
-
+    // console.log(currentUser.id);
     const dogList = currentUser.dogs.map(dog => {
-        console.log(dog);
-       return(<option>{dog.name}</option>) 
+        // console.log(dog.id);
+        return(<option value={dog.id}>{dog.name}</option>) 
     })
 
     const handleChange = (e) => {
+        console.log(e.target.name);
         setFormData({ ...formData, [e.target.name]: e.target.value})
     }
+
+    console.log(formData.dog_id);
 
     const handleRadio = (e) => {
         setFormData({...formData, good_sam: e})
@@ -103,8 +106,9 @@ Geocode.setLocationType("ROOFTOP")
 
     const handleCreateFlyer = (e) => {
         e.preventDefault()
-
-        fetch("http://localhost:3000/signup", {
+        getLocation()
+        console.log(formData);
+        fetch("http://localhost:3000/create_flyer", {
             method: 'POST',
             headers: {
                 'Content-Type': 'Application/json',
@@ -114,6 +118,7 @@ Geocode.setLocationType("ROOFTOP")
         })
         .then(resp => resp.json())
         .then(data => {
+            console.log(data);
             // history.push("/flyers") 
         })
     }
@@ -123,7 +128,7 @@ Geocode.setLocationType("ROOFTOP")
         <Stack >
         <form onSubmit={handleCreateFlyer}>
             {/* <Text mb="8px">Description: {value}</Text> */}
-            <Select placeholder="Select Missing Dog">
+            <Select name='dog_id' onChange={handleChange} placeholder="Select Missing Dog">
                 {dogList}
             </Select>
             <Input onChange={handleAddress} placeholder='Address'/>
