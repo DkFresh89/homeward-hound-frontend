@@ -2,6 +2,7 @@ import { Flex, Stack, Box } from "@chakra-ui/layout";
 import {useState} from "react"
 import { useHistory } from "react-router-dom"
 import { Button, Input, ButtonGroup } from '@chakra-ui/react'
+import stock from './missing.png'
 
 
 function AddDog() {
@@ -13,6 +14,7 @@ function AddDog() {
         size: "",
         age: null,
         temperament: "",
+        image: 'https://images.assetsdelivery.com/compings_v2/newdesignillustrations/newdesignillustrations1902/newdesignillustrations190208953.jpg',
         user_id: 1
     })
 

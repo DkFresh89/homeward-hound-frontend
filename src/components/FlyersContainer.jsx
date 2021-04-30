@@ -8,14 +8,20 @@ function FlyersContainer({flyers}) {
 
     const flyerCards = flyers.map(flyer => {
         // console.log(flyer);
-       return ( <FlyerCard key={flyer.id} flyer={flyer} />)
+    return ( 
+        <Box borderWidth="1px" borderRadius="lg" justifyContent='center'>
+            <FlyerCard key={flyer.id} flyer={flyer} />
+        </Box> 
+    )
     })
 
     // console.log(flyerCards);
 
     return(
-        <Flex>
+        <Flex justifyContent='center'>
+            
             <Box>{flyerCards}</Box>
+            
         </Flex>
     )
 }

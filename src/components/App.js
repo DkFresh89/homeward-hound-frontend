@@ -73,8 +73,10 @@ function App() {
           <AddDog />
         </Route>
         <Route path='/flyers'>
-          {/* <CreateFlyer currentUser={currentUser} setFlyers={setFlyers}/> */}
           <FlyersContainer flyers={flyers} />
+          {/* <CreateFlyer currentUser={currentUser} setFlyers={setFlyers}/> */}
+        </Route>
+        <Route path="create_flyer">
         </Route>
           </Container>
       </Switch>
