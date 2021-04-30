@@ -26,7 +26,9 @@ function App() {
   useEffect(() => {
     fetch('http://localhost:3000/missing_flyers')
       .then(resp => resp.json())
-      .then(flyerArray => setFlyers(flyerArray.data))
+      .then(flyerArray => {
+        // console.log(flyerArray.data);
+        setFlyers(flyerArray.data)})
   }, [])
 
   console.log(flyers);

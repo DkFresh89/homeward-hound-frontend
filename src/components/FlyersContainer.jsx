@@ -1,11 +1,21 @@
-import { Flex, Text } from "@chakra-ui/react"
+import { Flex, Box } from "@chakra-ui/react"
+import FlyerCard from './FlyerCard'
 
 
-function FlyersContainer() {
+function FlyersContainer({flyers}) {
+
+    // console.log(flyers);
+
+    const flyerCards = flyers.map(flyer => {
+        // console.log(flyer);
+       return ( <FlyerCard key={flyer.id} flyer={flyer} />)
+    })
+
+    // console.log(flyerCards);
 
     return(
         <Flex>
-            <Text>Flyer Container</Text>
+            <Box>{flyerCards}</Box>
         </Flex>
     )
 }
