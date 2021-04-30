@@ -1,7 +1,20 @@
 import { Flex, Text, Box, Image, Button,Badge } from "@chakra-ui/react"
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 function FlyerCard({flyer}) {
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        variableWidth: false,
+        adaptiveHeight: false
+    }
 //  console.log(flyer.attributes.dog.image);
 
     const dog = flyer.attributes.dog
@@ -24,8 +37,8 @@ function FlyerCard({flyer}) {
                 <Badge borderRadius="full" px="2" colorScheme="red">
                     Reward
                 </Badge>
-                <Box> {pics[0] == null ? <Image src={stock}/> : <Image src={pics[0]}/> } </Box>
-                <Button colorScheme='red' margin='1'>Update</Button>
+                <Box padding='2' margin='3' w='300px'> {pics[0] == null ? <Image src={stock}/> : <Slider {...settings}>{carouselPics}</Slider> } </Box>
+                <Button colorScheme='red' margin='2'>Update</Button>
             </Box>
         </Flex>
     )
