@@ -1,4 +1,4 @@
-import { Flex, Box } from "@chakra-ui/react"
+import { Flex, Box, Wrap, WrapItem } from "@chakra-ui/react"
 import FlyerCard from './FlyerCard'
 
 
@@ -9,8 +9,9 @@ function FlyersContainer({flyers}) {
     const flyerCards = flyers.map(flyer => {
         // console.log(flyer);
     return ( 
-        <Box borderWidth="1px" borderRadius="lg" justifyContent='center'>
+        <Box margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'>
             <FlyerCard key={flyer.id} flyer={flyer} />
+            
         </Box> 
     )
     })
@@ -18,11 +19,13 @@ function FlyersContainer({flyers}) {
     // console.log(flyerCards);
 
     return(
-        <Flex justifyContent='center'>
+        <Wrap spacing='30px'  marginTop='100px'>
             
-            <Box>{flyerCards}</Box>
+                <WrapItem >
+                {flyerCards}
+                </WrapItem>
             
-        </Flex>
+        </Wrap>
     )
 }
 

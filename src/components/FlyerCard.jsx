@@ -1,4 +1,4 @@
-import { Flex, Text, Box, Image } from "@chakra-ui/react"
+import { Flex, Text, Box, Image, Button,Badge } from "@chakra-ui/react"
 
 
 function FlyerCard({flyer}) {
@@ -14,10 +14,14 @@ function FlyerCard({flyer}) {
     return(
         <Flex>
             <Box textAlign='center'>
-                <Box>{dog.name}</Box>
-                <Box>{dog.breed}</Box>
-                <Box>{dog.temperament}</Box>
+                <Box>Name: {dog.name}</Box>
+                <Box>Breed: {dog.breed}</Box>
+                <Box>Temperament: {dog.temperament}</Box>
+                <Badge borderRadius="full" px="2" colorScheme="red">
+                    Reward
+                </Badge>
                 <Box> {pics[0] == null ? <Image src={stock}/> : <Image src={pics[0]}/> } </Box>
+                <Button colorScheme='red' margin='1'>Update</Button>
             </Box>
         </Flex>
     )

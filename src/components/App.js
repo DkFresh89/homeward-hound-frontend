@@ -34,11 +34,11 @@ function App() {
   console.log(flyers);
 
   return (
-    <Flex justifyContent='center'>
+    <Flex direction='column' justifyContent='center'>
       <Stack w='100%' >
       <Flex w='100%'>
         {/* <SideBar /> */}
-        <NavBar/>
+        <NavBar setCurrentUser={setCurrentUser} setWarning={setWarning}/>
         {/* <Container>
           <Text>Container</Text>
         </Container> */}
@@ -60,6 +60,7 @@ function App() {
                 <CloseButton onClick={handleWarning} position="absolute" right="8px" top="8px" />
             </Alert></Flex> : null}
       
+          </Stack>
           
       <Switch>
           <Container w='100%'>
@@ -80,7 +81,7 @@ function App() {
         </Route>
           </Container>
       </Switch>
-      </Stack>
+      
     </Flex>
   );
 }
