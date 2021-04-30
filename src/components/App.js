@@ -1,5 +1,5 @@
 import '../App.css';
-import { Flex, Text, Box, Container, Stack, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton} from "@chakra-ui/react"
+import { Flex, Text, Box, Container, Stack, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton, Center, ScaleFade} from "@chakra-ui/react"
 import { Switch, Route } from "react-router-dom"
 import NavBar from './NavBar'
 import  SideBar  from "./SideBar";
@@ -38,12 +38,13 @@ function App() {
       <Stack w='100%' >
       <Flex w='100%'>
         {/* <SideBar /> */}
-        <NavBar setCurrentUser={setCurrentUser} setWarning={setWarning}/>
+        <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} setWarning={setWarning}/>
         {/* <Container>
           <Text>Container</Text>
         </Container> */}
       </Flex>
-                {!warning ? <Flex><Alert         status="warning" 
+                {!warning ? <ScaleFade in={!warning}><Flex><Alert         
+                    status="warning" 
                     variant="subtle"
                     flexDirection="column"
                     alignItems="center"
@@ -58,7 +59,7 @@ function App() {
                   Please exercise extreme caution! Dogs are our best friends but they may not be friendly if they do not know you. Please report from a safe distance. Approach/Interact with dogs at your own risk!
                 </AlertDescription>
                 <CloseButton onClick={handleWarning} position="absolute" right="8px" top="8px" />
-            </Alert></Flex> : null}
+            </Alert></Flex></ScaleFade>  : null}
       
           </Stack>
           

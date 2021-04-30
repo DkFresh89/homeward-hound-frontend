@@ -8,6 +8,10 @@ function FlyerCard({flyer}) {
     const pics = flyer.attributes.dog.image
     const stock = 'https://st2.depositphotos.com/thumbs/32032774/vector/46237/462377004/api_thumb_450.jpg'
 
+    const carouselPics = pics.map(pic => {
+        return(<Box><Image src={pic}/></Box>)
+    })
+
     // console.log(pics);
 
 

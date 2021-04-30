@@ -3,7 +3,7 @@ import { Flex, Box, Image, Button, Center } from "@chakra-ui/react"
 import { useHistory } from "react-router-dom"
 
 
-function NavBar({setCurrentUser, setWarning}) {
+function NavBar({setCurrentUser, setWarning, currentUser}) {
 
     const history = useHistory()
 
@@ -12,6 +12,10 @@ function NavBar({setCurrentUser, setWarning}) {
         setCurrentUser(null)
         setWarning(false)
         history.push("/")
+    }
+
+    const handleLogin = () => {
+        history.push('/login')
     }
 
     return(
@@ -27,9 +31,11 @@ function NavBar({setCurrentUser, setWarning}) {
                 {/* </AspectRatio> */}
             </Center>
             <Center w='100%' margin='3' justifyContent='center'> 
-                <Button onClick={handleLogout} colorScheme="teal" variant="outline">
+                {currentUser ? <Button onClick={handleLogout} colorScheme="teal" variant="outline">
                     Logout
-                </Button>
+                </Button> : <Button onClick={handleLogin} colorScheme="teal" variant="outline">
+                    Login
+                </Button> } 
             </Center>
         </Flex>
     )
