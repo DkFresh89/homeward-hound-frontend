@@ -1,20 +1,14 @@
-import { Flex, Textarea, Text, Button, Stack, Spacer, Box, Input } from "@chakra-ui/react"
+import { Flex, Textarea, Text, Button, Stack, Spacer, Box, Input, Select } from "@chakra-ui/react"
 import {useState, useHistory, useCallback} from "react"
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Geocode from "react-geocode";
 import Login from "./Login";
 
-const containerStyle = {
-    width: '400px',
-    height: '400px'
-};
 
-// const center = {
-//     lat: 40,
-//     lng: -74
-// };
 
-function CreateFlyer() {
+function CreateFlyer({currentUser}) {
+
+    console.log(currentUser.dogs);
 
 //**************Geocode****************************************/
 
@@ -25,6 +19,17 @@ Geocode.setLocationType("ROOFTOP")
 //*************************************************************/
 
 //**************Google Maps API Setup*************************************/
+
+        const containerStyle = {
+            width: '400px',
+            height: '400px'
+        };
+
+        const center = {
+            lat: 40.713, lng: -74.015
+        };
+
+
         const { isLoaded } = useJsApiLoader({
             id: 'google-map-script',
             googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
@@ -35,8 +40,11 @@ Geocode.setLocationType("ROOFTOP")
         const onLoad = useCallback(function callback(map) {
             const bounds = new window.google.maps.LatLngBounds();
             map.fitBounds(bounds);
+            console.log(map);
             setMap(map)
         }, [])
+
+        
         
         const onUnmount = useCallback(function callback(map) {
             setMap(null)
@@ -50,7 +58,13 @@ Geocode.setLocationType("ROOFTOP")
         description: "",
         reward: null,
         found: false,
-        dog_id: 1
+        dog_id: 1,
+        user_id: 1
+    })
+
+    const dogList = currentUser.dogs.map(dog => {
+        console.log(dog);
+       return(<option>{dog.name}</option>) 
     })
 
     const handleChange = (e) => {
@@ -106,9 +120,12 @@ Geocode.setLocationType("ROOFTOP")
 
     return (
     <Flex justifyContent='center'>
-        <Stack>
+        <Stack >
         <form onSubmit={handleCreateFlyer}>
             {/* <Text mb="8px">Description: {value}</Text> */}
+            <Select placeholder="Select Missing Dog">
+                {dogList}
+            </Select>
             <Input onChange={handleAddress} placeholder='Address'/>
             <Button onClick={getLocation} colorScheme="blue">
                 Set Location
@@ -123,13 +140,14 @@ Geocode.setLocationType("ROOFTOP")
                 <Flex >
             <GoogleMap
                 mapContainerStyle={containerStyle}
-                defaultCenter={{ lat: 40.713, lng: -74.015}}
+                center={center}
+                // panTo={{ lat: 40.713, lng: -74.015}}
                 zoom={4}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
             >
                 <Marker position={{ lat: 40.713468006091794, lng: -74.0150387326917}} />
-                {/* Child components, such as markers, info windows, etc. */}
+                
                 <></>
             </GoogleMap></Flex>
             ) : (

@@ -8,7 +8,7 @@ function NavBar() {
         <Flex justifyContent='center' w='100%' bg='red' h='56px'>
             <Box >
                 {/* <AspectRatio ratio={16 / 9}> */}
-                <Image src={logo} />
+                <Image src={logo} fit='contain'/>
                 {/* </AspectRatio> */}
             </Box>
         </Flex>

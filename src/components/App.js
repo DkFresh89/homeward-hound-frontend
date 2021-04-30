@@ -23,10 +23,10 @@ function App() {
   }
 
   return (
-    <Flex>
-      <Stack w='100%'>
+    <Flex justifyContent='center'>
+      <Stack w='100%' >
       <Flex w='100%'>
-        <SideBar />
+        {/* <SideBar /> */}
         <NavBar/>
         {/* <Container>
           <Text>Container</Text>
@@ -51,7 +51,7 @@ function App() {
       
           
       <Switch>
-          <Container justifyContent='center'>
+          <Container w='100%'>
         <Route path="/signup">
           <Signup setCurrentUser={setCurrentUser}/>
         </Route>
@@ -62,7 +62,7 @@ function App() {
           <AddDog />
         </Route>
         <Route path='/flyers'>
-          <CreateFlyer/>
+          <CreateFlyer currentUser={currentUser}/>
         </Route>
           </Container>
       </Switch>

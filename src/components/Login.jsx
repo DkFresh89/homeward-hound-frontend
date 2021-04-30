@@ -35,9 +35,9 @@ function Login({setCurrentUser}) {
             }
         })
         .then(data => {
-            console.log(data.user)
-            setCurrentUser(data.user)
-            localStorage.setItem("user", JSON.stringify(data.user))
+            console.log(data.data.attributes)
+            setCurrentUser(data.data.attributes)
+            localStorage.setItem("user", JSON.stringify(data.data.attributes))
             history.push("/flyers")
         })
     }
