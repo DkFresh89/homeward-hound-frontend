@@ -21,9 +21,14 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
     return(
         <Flex borderWidth='medium' borderRadius='sm'  w='100%' bg='red' h='100%' >
             <Center w='100%' margin='3' alignContent='center'> 
-                <Button onClick={() => history.push("/flyers")} colorScheme="blackAlpha" variant="outline">
-                    Missing Flyers
-                </Button>
+                <ButtonGroup>
+                    <Button onClick={() => history.push("/flyers")} colorScheme="blackAlpha" variant="outline">
+                        Missing Flyers
+                    </Button>
+                    <Button onClick={() => history.push("/sighting")} colorScheme="blackAlpha" variant="outline">
+                        Sighting
+                    </Button>
+                </ButtonGroup>
             </Center>
             <Center w='100%' >
                 {/* <AspectRatio > */}

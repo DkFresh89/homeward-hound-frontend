@@ -1,4 +1,4 @@
-import { Flex, Input, Button, InputGroup, InputLeftElement, RadioGroup, Stack, FormLabel, InputRightElement, Box} from "@chakra-ui/react"
+import { Flex, Input, Button, InputGroup, InputLeftElement, RadioGroup, Stack, FormLabel, InputRightElement, Box, Text} from "@chakra-ui/react"
 import { Radio } from "@chakra-ui/radio"
 import { PhoneIcon} from '@chakra-ui/icons'
 import {useState} from "react"
@@ -51,9 +51,10 @@ function Signup({setCurrentUser}) {
     // console.log(formData);
 
     return (
-        <Flex justifyContent='center'>
+        <Flex justifyContent='center' marginTop='100px'>
         <form onSubmit={handleSignup}>
-            <Stack>
+            <Stack textAlign='center'>
+            <Text>Signup</Text>
             <Input
                 onChange={handleChange}
                 type="text"

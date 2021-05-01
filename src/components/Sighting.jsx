@@ -1,4 +1,4 @@
-import { Flex } from "@chakra-ui/react"
+import { Flex, Text } from "@chakra-ui/react"
 import {useState} from "react"
 import { useHistory } from "react-router-dom"
 
@@ -16,7 +16,7 @@ function Sighting() {
 
     return(
         <Flex>
-
+            <h1>Sighting</h1>
         </Flex>
     )
 }

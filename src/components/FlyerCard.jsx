@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
+
 function FlyerCard({flyer, handleUpdate}) {
 
     const settings = {
@@ -15,12 +16,13 @@ function FlyerCard({flyer, handleUpdate}) {
         variableWidth: false,
         adaptiveHeight: true
     }
-    console.log(flyer);
+    // console.log(id);
 
     const dog = flyer.attributes.dog
     const pics = flyer.attributes.dog.image
     const stock = 'https://st2.depositphotos.com/thumbs/32032774/vector/46237/462377004/api_thumb_450.jpg'
 
+    // console.log(dog.id);
     const carouselPics = pics.map(pic => {
         return(<Box><Image src={pic}/></Box>)
     })

@@ -1,6 +1,6 @@
 import '../App.css';
 import { Flex, Text, Box, Container, Stack, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton, Center, ScaleFade} from "@chakra-ui/react"
-import { Switch, Route } from "react-router-dom"
+import { Switch, Route, useHistory } from "react-router-dom"
 import NavBar from './NavBar'
 import  SideBar  from "./SideBar";
 import Signup from './Signup'
@@ -9,15 +9,28 @@ import FlyersContainer from './FlyersContainer'
 import {useState, useEffect} from "react"
 import AddDog from './AddDog';
 import CreateFlyer from './CreateFlyer';
+import Sighting from './Sighting';
+import EditFlyer from './EditFlyer';
 
 
 
 function App() {
 
 
+  const history = useHistory()
   const [warning, setWarning] = useState(false)
   const [flyers, setFlyers] = useState([])
   const [currentUser, setCurrentUser] = useState(null)
+  const [flyerId, setFlyerId] = useState(null)
+  const [editFormData, setEditFormData] = useState({
+                                        latitude: "",
+                                        longitude: "",
+                                        description: "",
+                                        reward: false,
+                                        found: false,
+                                        dog_id: null
+                                    })
+ 
 
   const handleWarning = () => {
     setWarning(warning => !warning)
@@ -31,7 +44,17 @@ function App() {
         setFlyers(flyerArray.data)})
   }, [])
 
-  console.log(flyers);
+  const handleUpdate = (e) => {
+    // console.log(parseInt(e.target.name));
+    // setDogId(parseInt(e.target.name))
+    // setFlyerId(e.target.id)
+    fetch(`http://localhost:3000/missing_flyers/${e.target.id}`)
+    .then(resp => resp.json())
+    .then(flyer => setEditFormData(flyer.data.attributes))
+    history.push('/edit_flyer')
+}
+
+  // console.log(flyers);
 
   return (
     <Flex direction='column' justifyContent='center'>
@@ -75,8 +98,14 @@ function App() {
           <AddDog />
         </Route>
         <Route path='/flyers'>
-          <FlyersContainer flyers={flyers} />
+          <FlyersContainer handleUpdate={handleUpdate} flyers={flyers} setFlyerId={setFlyerId} />
           {/* <CreateFlyer currentUser={currentUser} setFlyers={setFlyers}/> */}
+        </Route>
+        <Route path='/sighting'>
+          <Sighting />
+        </Route>
+        <Route path='/edit_flyer'>
+          <EditFlyer editFormData={editFormData} setEditFormData={setEditFormData}/>
         </Route>
         <Route path="create_flyer">
         </Route>

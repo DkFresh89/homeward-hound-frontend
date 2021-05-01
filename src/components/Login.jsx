@@ -1,4 +1,4 @@
-import { Flex, Input, Button, Stack } from "@chakra-ui/react"
+import { Flex, Input, Button, Stack, Text } from "@chakra-ui/react"
 import {useState} from "react"
 import { useHistory } from "react-router-dom"
 
@@ -43,9 +43,11 @@ function Login({setCurrentUser}) {
     }
     
     return (
-        <Flex justifyContent='center'>
+        <Flex justifyContent='center' marginTop='100px'>
+            
             <form onSubmit={handleLogin}>
-                <Stack>
+                <Stack textAlign='center'>
+                <Text>Login</Text>
                 <Input name='name' onChange={handleChange} placeholder='Name' />
                 <Input name='password_digest' onChange={handleChange} placeholder='Password' />
                 <Button onClick={handleLogin} type="submit" colorScheme="blue">Login</Button>
