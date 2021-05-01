@@ -10,7 +10,8 @@ import {useState, useEffect} from "react"
 import AddDog from './AddDog';
 import CreateFlyer from './CreateFlyer';
 import Sighting from './Sighting';
-import EditFlyer from './EditFlyer';
+import Dogs from './Dogs'
+
 
 
 
@@ -44,15 +45,7 @@ function App() {
         setFlyers(flyerArray.data)})
   }, [])
 
-  const handleUpdate = (e) => {
-    // console.log(parseInt(e.target.name));
-    // setDogId(parseInt(e.target.name))
-    // setFlyerId(e.target.id)
-    fetch(`http://localhost:3000/missing_flyers/${e.target.id}`)
-    .then(resp => resp.json())
-    .then(flyer => setEditFormData(flyer.data.attributes))
-    history.push('/edit_flyer')
-}
+ 
 
   // console.log(flyers);
 
@@ -98,16 +91,16 @@ function App() {
           <AddDog />
         </Route>
         <Route path='/flyers'>
-          <FlyersContainer handleUpdate={handleUpdate} flyers={flyers} setFlyerId={setFlyerId} />
-          {/* <CreateFlyer currentUser={currentUser} setFlyers={setFlyers}/> */}
+          <FlyersContainer flyers={flyers} setFlyerId={setFlyerId} />
         </Route>
         <Route path='/sighting'>
           <Sighting />
         </Route>
-        <Route path='/edit_flyer'>
-          <EditFlyer editFormData={editFormData} setEditFormData={setEditFormData}/>
+        <Route path='/dogs'>
+          <Dogs currentUser={currentUser} />
         </Route>
         <Route path="create_flyer">
+          <CreateFlyer currentUser={currentUser} setFlyers={setFlyers}/>
         </Route>
           </Container>
       </Switch>

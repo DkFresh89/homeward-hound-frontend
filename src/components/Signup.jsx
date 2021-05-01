@@ -82,7 +82,7 @@ function Signup({setCurrentUser}) {
                 />
             </InputGroup>
 
-            <Box textAlign="center">
+            <Box>
                 <RadioGroup onChange={handleRadio} name="good_sam">
                 <FormLabel>Are you a dog owner?</FormLabel>
                 <Stack direction="row">

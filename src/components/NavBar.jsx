@@ -19,39 +19,74 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
         history.push('/login')
     }
 
-    return(
-        <Flex borderWidth='medium' borderRadius='sm'  w='100%' bg='red' h='100%' >
-            <Center w='100%' margin='3' alignContent='center'> 
-                <ButtonGroup>
-                    <Button onClick={() => history.push("/flyers")} colorScheme="blackAlpha" variant="outline">
-                        Missing Flyers
-                    </Button>
-                    <Button onClick={() => history.push("/sighting")} colorScheme="blackAlpha" variant="outline">
-                        Sighting
-                    </Button>
-                </ButtonGroup>
-            </Center>
-            <Center w='100%' >
-                {/* <AspectRatio > */}
-                <Image borderRadius="full" boxSize='150px' src={logo} fit='contain'/>
-                {/* </AspectRatio> */}
-            </Center>
-            <Center w='100%' margin='3' justifyContent='center'> 
-                {currentUser ? <Button onClick={handleLogout} colorScheme="red" variant="solid">
-                    Logout
-                </Button> : <ButtonGroup> <Button onClick={() => history.push('/signup')} colorScheme="whiteAlpha" variant="outline">
-                    Signup
-                </Button> <Button onClick={handleLogin} colorScheme="blackAlpha" variant="outline">
-                    Login
+    return (
+        <Flex borderWidth="medium" borderRadius="sm" w="100%" bg="red" h="100%">
+        <Center w="100%" margin="3" alignContent="center">
+            <ButtonGroup>
+            <Button
+                onClick={() => history.push("/flyers")}
+                colorScheme="blackAlpha"
+                variant="outline"
+            >
+                Missing Flyers
+            </Button>
+            <Button
+                onClick={() => history.push("/sighting")}
+                colorScheme="blackAlpha"
+                variant="outline"
+            >
+                Sighting
+            </Button>
+            {currentUser ?  <Button
+                onClick={() => history.push("/dogs")}
+                colorScheme="blackAlpha"
+                variant="outline"
+            >
+                Your Dogs
+            </Button> : null }
+            </ButtonGroup>
+        </Center>
+        <Center w="100%">
+            {/* <AspectRatio > */}
+            <Image borderRadius="full" boxSize="150px" src={logo} fit="contain" />
+            {/* </AspectRatio> */}
+        </Center>
+        <Center w="100%" margin="3" justifyContent="center">
+            {currentUser ? (
+            <ButtonGroup>
+                {" "}
+                <Button onClick={handleLogout} colorScheme="red" variant="solid">
+                Logout
+                </Button>{" "}
+                <Button onClick={toggleColorMode}>
+                Toggle {colorMode === "light" ? "Dark" : "Light"}
+                </Button>{" "}
+            </ButtonGroup>
+            ) : (
+            <ButtonGroup>
+                {" "}
+                <Button
+                onClick={() => history.push("/signup")}
+                colorScheme="whiteAlpha"
+                variant="outline"
+                >
+                Signup
+                </Button>{" "}
+                <Button
+                onClick={handleLogin}
+                colorScheme="blackAlpha"
+                variant="outline"
+                >
+                Login
                 </Button>
                 <Button onClick={toggleColorMode}>
-                    Toggle {colorMode === "light" ? "Dark" : "Light"}
+                Toggle {colorMode === "light" ? "Dark" : "Light"}
                 </Button>
-
-                 </ButtonGroup>} 
-            </Center>
+            </ButtonGroup>
+            )}
+        </Center>
         </Flex>
-    )
+    );
 }
 
 export default NavBar
