@@ -51,7 +51,7 @@ function Signup({setCurrentUser}) {
     // console.log(formData);
 
     return (
-        <Flex>
+        <Flex justifyContent='center'>
         <form onSubmit={handleSignup}>
             <Stack>
             <Input
@@ -101,7 +101,7 @@ function Signup({setCurrentUser}) {
                 placeholder="Enter password"
                 />
                 <InputRightElement width="4.5rem">
-                <Button h="1.75rem" size="sm" onClick={handleClick}>
+                <Button variant='solid' h="1.75rem" size="sm" onClick={handleClick}>
                     {" "}
                     {show ? "Hide" : "Show"}{" "}
                 </Button>

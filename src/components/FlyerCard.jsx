@@ -1,10 +1,10 @@
-import { Flex, Text, Box, Image, Button,Badge } from "@chakra-ui/react"
+import { Flex, Text, Box, Image, Button,Badge, ButtonGroup } from "@chakra-ui/react"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
-function FlyerCard({flyer}) {
+function FlyerCard({flyer, handleUpdate}) {
 
     const settings = {
         dots: true,
@@ -13,9 +13,9 @@ function FlyerCard({flyer}) {
         slidesToShow: 1,
         slidesToScroll: 1,
         variableWidth: false,
-        adaptiveHeight: false
+        adaptiveHeight: true
     }
-//  console.log(flyer.attributes.dog.image);
+    console.log(flyer);
 
     const dog = flyer.attributes.dog
     const pics = flyer.attributes.dog.image
@@ -27,7 +27,6 @@ function FlyerCard({flyer}) {
 
     // console.log(pics);
 
-
     return(
         <Flex>
             <Box textAlign='center'>
@@ -38,7 +37,7 @@ function FlyerCard({flyer}) {
                     Reward
                 </Badge>
                 <Box padding='2' margin='3' w='300px'> {pics[0] == null ? <Image src={stock}/> : <Slider {...settings}>{carouselPics}</Slider> } </Box>
-                <Button colorScheme='red' margin='2'>Update</Button>
+                <Button id={flyer.id} onClick={handleUpdate} colorScheme='red' margin='2'>Update</Button>
             </Box>
         </Flex>
     )

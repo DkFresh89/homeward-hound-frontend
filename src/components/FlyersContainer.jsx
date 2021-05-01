@@ -6,15 +6,21 @@ function FlyersContainer({flyers}) {
 
     // console.log(flyers);
 
+    const handleUpdate = (e) => {
+        console.log(e.target);
+    }
+
     const flyerCards = flyers.map(flyer => {
         // console.log(flyer);
     return ( 
         <Box margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'>
-            <FlyerCard key={flyer.id} flyer={flyer} />
+            <FlyerCard handleUpdate={handleUpdate} key={flyer.id} flyer={flyer} />
             
         </Box> 
     )
     })
+
+    
 
     // console.log(flyerCards);
 
