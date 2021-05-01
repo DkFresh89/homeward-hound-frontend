@@ -1,9 +1,9 @@
-import { Flex, Input, Text, Textarea, Stack, RadioGroup, Radio, FormLabel } from "@chakra-ui/react"
+import { Flex, Input, Text, Textarea, Stack, RadioGroup, Radio, FormLabel, Button } from "@chakra-ui/react"
 import { useState, useEffect } from 'react'
 
 function EditFlyer({editFormData, setEditFormData}) {
 
-    console.log(editFormData);
+    // console.log(editFormData);
 
     // const [formData, setFormData] = useState({
     //     latitude: "",
@@ -25,12 +25,13 @@ function EditFlyer({editFormData, setEditFormData}) {
         setEditFormData({...editFormData, found: e})
     }
 
+    const dog = editFormData.dog
     console.log(editFormData);
 
     return (
-        <Flex justifyContent='center' textAlign='center'>
+        <Flex justifyContent='center' textAlign='center' marginTop='100px'>
             <Stack>
-                <Text>Name: {editFormData.dog.name}</Text>
+                <Text>Name: {dog.name}</Text>
             <form>
                 <Textarea
                     name='description'
@@ -52,6 +53,9 @@ function EditFlyer({editFormData, setEditFormData}) {
                     <Radio value={`${false}`}>No</Radio>
                 </Stack>
                 </RadioGroup>
+                <Button type="submit" colorScheme="blue">
+                Submit
+            </Button>
             </form>
             </Stack>
         </Flex>
