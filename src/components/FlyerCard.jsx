@@ -2,10 +2,13 @@ import { Flex, Text, Box, Image, Button,Badge, ButtonGroup } from "@chakra-ui/re
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import {useState} from "react"
 
 
 
 function FlyerCard({flyer, handleUpdate}) {
+
+    const [updateToggle, setUpdateToggle] = useState(false)
 
     const settings = {
         dots: true,

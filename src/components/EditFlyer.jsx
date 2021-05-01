@@ -27,11 +27,12 @@ function EditFlyer({editFormData, setEditFormData}) {
 
     const dog = editFormData.dog
     console.log(editFormData);
+    // console.log(dog);
 
     return (
         <Flex justifyContent='center' textAlign='center' marginTop='100px'>
             <Stack>
-                <Text>Name: {dog.name}</Text>
+                {/* <Text>Name: {dog.name}</Text> */}
             <form>
                 <Textarea
                     name='description'

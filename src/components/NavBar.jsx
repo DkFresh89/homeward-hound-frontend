@@ -1,11 +1,12 @@
 import logo from './HomewardHound.png'
-import { Flex, Box, Image, Button, Center, ButtonGroup } from "@chakra-ui/react"
+import { Flex, Box, Image, Button, Center, ButtonGroup, useColorMode } from "@chakra-ui/react"
 import { useHistory } from "react-router-dom"
 
 
 function NavBar({setCurrentUser, setWarning, currentUser}) {
 
     const history = useHistory()
+    const { colorMode, toggleColorMode } = useColorMode()
 
     const handleLogout = () => {
         localStorage.clear()
@@ -43,7 +44,9 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
                 </Button> <Button onClick={handleLogin} colorScheme="blackAlpha" variant="outline">
                     Login
                 </Button>
-                
+                <Button onClick={toggleColorMode}>
+                    Toggle {colorMode === "light" ? "Dark" : "Light"}
+                </Button>
 
                  </ButtonGroup>} 
             </Center>
