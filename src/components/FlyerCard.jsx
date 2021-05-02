@@ -9,6 +9,12 @@ import { useHistory } from "react-router-dom"
 
 function FlyerCard({flyer, setFlyers, flyers}) {
 
+    // console.log(flyer.attributes.dog.user_id);
+    const id = localStorage.getItem("user")
+    const userId = (JSON.parse(id).id)
+    const flyerUserId = flyer.attributes.dog.user_id
+    // console.log(flyerUserId);
+
     const [updateToggle, setUpdateToggle] = useState(false)
     const [toggleReward, setToggleReward] = useState(flyer.attributes.reward)
     const history = useHistory()
@@ -124,7 +130,7 @@ function FlyerCard({flyer, setFlyers, flyers}) {
                 </>}
             </form>
             
-            {!updateToggle && <Button onClick={handleUpdate} colorScheme='red' margin='2'>Update</Button>}
+            {!updateToggle && flyerUserId === userId ? <Button onClick={handleUpdate} colorScheme='red' margin='2'>Update</Button> : null }
             </Box>
         </Flex>
     )

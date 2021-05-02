@@ -33,7 +33,7 @@ function App() {
                                         dog_id: null
                                     })
  
-  console.log(flyers);
+  // console.log(flyers);
 
   const handleWarning = () => {
     setWarning(warning => !warning)
@@ -44,13 +44,22 @@ function App() {
   }
 
   useEffect(() => {
-    let isMounted = true; // note this flag denote mount status
+    // let isMounted = true; // note this flag denote mount status
     fetch('http://localhost:3000/missing_flyers')
       .then(resp => resp.json())
       .then(flyerArray => {
         // console.log(flyerArray.data);
-        if (isMounted) setFlyers(flyerArray.data)})
-        return () => { isMounted = false }
+        // if (isMounted) 
+        setFlyers(flyerArray.data)})
+        // return () => { isMounted = false }
+  }, [])
+
+  useEffect(() => {
+    const getUser = localStorage.getItem("user")
+
+    if (getUser) {
+      setCurrentUser(JSON.parse(getUser))
+    }
   }, [])
 
  

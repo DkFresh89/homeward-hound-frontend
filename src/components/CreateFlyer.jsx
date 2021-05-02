@@ -122,7 +122,7 @@ Geocode.setLocationType("ROOFTOP")
         })
         .then(resp => resp.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             updateFlyers(data.data)
             history.push("/flyers") 
         })
