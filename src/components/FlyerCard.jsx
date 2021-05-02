@@ -41,7 +41,7 @@ function FlyerCard({flyer, setFlyers, flyers}) {
     const stock = 'https://st2.depositphotos.com/thumbs/32032774/vector/46237/462377004/api_thumb_450.jpg'
 
     const carouselPics = pics.map(pic => {
-        return(<Box><Image src={pic}/></Box>)
+        return(<Box><Image key={pic} src={pic}/></Box>)
     })
     
     const handleUpdate = () => {
@@ -130,7 +130,7 @@ function FlyerCard({flyer, setFlyers, flyers}) {
                 </>}
             </form>
             
-            {!updateToggle && flyerUserId === userId ? <Button onClick={handleUpdate} colorScheme='red' margin='2'>Update</Button> : null }
+            {!updateToggle && flyerUserId === userId ? <Button onClick={handleUpdate} colorScheme='red' margin='2'>Update Your Flyer</Button> : null }
             </Box>
         </Flex>
     )
