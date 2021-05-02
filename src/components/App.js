@@ -33,17 +33,24 @@ function App() {
                                         dog_id: null
                                     })
  
+  console.log(flyers);
 
   const handleWarning = () => {
     setWarning(warning => !warning)
   }
 
+  const updateFlyers = (data) => {
+    setFlyers([...flyers, data])
+  }
+
   useEffect(() => {
+    let isMounted = true; // note this flag denote mount status
     fetch('http://localhost:3000/missing_flyers')
       .then(resp => resp.json())
       .then(flyerArray => {
         // console.log(flyerArray.data);
-        setFlyers(flyerArray.data)})
+        if (isMounted) setFlyers(flyerArray.data)})
+        return () => { isMounted = false }
   }, [])
 
  
@@ -101,7 +108,7 @@ function App() {
           <NewSighting currentUser={currentUser}/>
         </Route>
         <Route path="/new_flyer">
-          <CreateFlyer currentUser={currentUser} setFlyers={setFlyers}/>
+          <CreateFlyer currentUser={currentUser} updateFlyers={updateFlyers}/>
         </Route>
         <Route path='/dogs'>
           <Dogs currentUser={currentUser} />

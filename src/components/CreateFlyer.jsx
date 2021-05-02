@@ -1,13 +1,17 @@
 import { Flex, Textarea, Text, Button, VStack, Spacer, Box, Input, Select } from "@chakra-ui/react"
-import {useState, useHistory, useCallback} from "react"
+import {useState, useCallback} from "react"
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Geocode from "react-geocode";
+import { useHistory } from "react-router-dom"
 
 
 
-function CreateFlyer({currentUser, setFlyers}) {
+function CreateFlyer({currentUser, updateFlyers}) {
 
-    console.log(currentUser.dogs);
+    // console.log(currentUser.dogs);
+    const history = useHistory()
+   
+
 
 //**************Geocode****************************************/
 
@@ -119,7 +123,8 @@ Geocode.setLocationType("ROOFTOP")
         .then(resp => resp.json())
         .then(data => {
             console.log(data);
-            // history.push("/flyers") 
+            updateFlyers(data.data)
+            history.push("/flyers") 
         })
     }
 

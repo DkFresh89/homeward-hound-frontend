@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 
 function FlyersContainer({flyers, handleUpdate, currentUser, setFlyers}) {
 
-    // console.log(flyers);
+    console.log(flyers);
     const history = useHistory()
 
     
