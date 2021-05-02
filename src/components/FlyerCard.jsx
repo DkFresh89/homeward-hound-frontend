@@ -97,7 +97,7 @@ function FlyerCard({flyer, setFlyers, flyers}) {
                 <Divider />
                 <Box padding='1'>Temperament: {dog.temperament}</Box>
                 <Divider />
-                {toggleReward == true ? <Badge borderRadius="full" px="2" colorScheme="red">
+                {toggleReward === true ? <Badge borderRadius="full" px="2" colorScheme="red">
                     Reward
                 </Badge> : null }
                 <Box padding='2' margin='3' w='300px'> {pics[0] == null ? <Image src={stock}/> : <Slider {...settings}>{carouselPics}</Slider> } </Box>

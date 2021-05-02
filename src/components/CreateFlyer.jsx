@@ -7,7 +7,8 @@ import { useHistory } from "react-router-dom"
 
 
 function CreateFlyer({currentUser, updateFlyers}) {
-
+    
+    const [map, setMap] = useState(null)
     // console.log(currentUser.dogs);
     const history = useHistory()
    
@@ -46,7 +47,6 @@ Geocode.setLocationType("ROOFTOP")
             googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
         })
         
-        const [map, setMap] = useState(null)
         
         const onLoad = useCallback(function callback(map) {
             const bounds = new window.google.maps.LatLngBounds();
@@ -162,7 +162,7 @@ Geocode.setLocationType("ROOFTOP")
                 center={{
                     lat: 40.713468006091794,
                     lng: -74.0150387326917
-                  }}
+                }}
                 zoom={1}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
