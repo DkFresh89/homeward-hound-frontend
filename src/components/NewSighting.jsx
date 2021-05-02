@@ -21,7 +21,6 @@ function NewSighting({currentUser}) {
     
     return(
         <Flex justifyContent='center' marginTop='100px'>
-            {currentUser ? setFormData(...formData, user_id => currentUser.id) : null }
             <h1>Sighting</h1>
         </Flex>
     )

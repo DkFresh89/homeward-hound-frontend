@@ -92,7 +92,7 @@ function App() {
           <AddDog />
         </Route>
         <Route path='/flyers'>
-          <FlyersContainer flyers={flyers} setFlyerId={setFlyerId} />
+          <FlyersContainer currentUser={currentUser} flyers={flyers} setFlyerId={setFlyerId} />
         </Route>
         <Route path='/sighting'>
           <Sighting />

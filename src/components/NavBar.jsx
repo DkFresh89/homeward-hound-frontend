@@ -26,21 +26,21 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
             <Button
                 onClick={() => history.push("/flyers")}
                 colorScheme="blackAlpha"
-                variant="outline"
+                variant="solid"
             >
                 Missing Flyers
             </Button>
             <Button
                 onClick={() => history.push("/sighting")}
                 colorScheme="blackAlpha"
-                variant="outline"
+                variant="solid"
             >
                 Sighting
             </Button>
             {currentUser ?  <Button
                 onClick={() => history.push("/dogs")}
                 colorScheme="blackAlpha"
-                variant="outline"
+                variant="solid"
             >
                 Your Dogs
             </Button> : null }
@@ -58,8 +58,8 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
                 <Button onClick={handleLogout} colorScheme="red" variant="solid">
                 Logout
                 </Button>{" "}
-                <Button onClick={toggleColorMode}>
-                Toggle {colorMode === "light" ? "Dark" : "Light"}
+                <Button colorScheme='blackAlpha' onClick={toggleColorMode}>
+                {colorMode === "light" ? "Dark Mode" : "Light Mode"}
                 </Button>{" "}
             </ButtonGroup>
             ) : (
@@ -67,20 +67,20 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
                 {" "}
                 <Button
                 onClick={() => history.push("/signup")}
-                colorScheme="whiteAlpha"
-                variant="outline"
+                colorScheme="purple"
+                variant="solid"
                 >
                 Signup
                 </Button>{" "}
                 <Button
                 onClick={handleLogin}
-                colorScheme="blackAlpha"
-                variant="outline"
+                colorScheme="blue"
+                variant="solid"
                 >
                 Login
                 </Button>
-                <Button onClick={toggleColorMode}>
-                Toggle {colorMode === "light" ? "Dark" : "Light"}
+                <Button colorScheme='blackAlpha' onClick={toggleColorMode}>
+                {colorMode === "light" ? "Dark Mode" : "Light Mode"}
                 </Button>
             </ButtonGroup>
             )}

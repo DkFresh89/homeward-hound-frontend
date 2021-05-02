@@ -1,9 +1,9 @@
-import { Flex, Box, Wrap, WrapItem } from "@chakra-ui/react"
+import { Flex, Box, Wrap, WrapItem, Button, Stack } from "@chakra-ui/react"
 import FlyerCard from './FlyerCard'
 import { useHistory } from "react-router-dom"
 
 
-function FlyersContainer({flyers, handleUpdate}) {
+function FlyersContainer({flyers, handleUpdate, currentUser}) {
 
     // console.log(flyers);
     const history = useHistory()
@@ -26,13 +26,18 @@ function FlyersContainer({flyers, handleUpdate}) {
     // console.log(flyerCards);
 
     return(
+        <Flex justifyContent='center' marginTop='100px'>
+            <Stack>
+            {currentUser ? <Flex justifyContent='center'><Button onClick={() => history.push('/create_flyer')}>Create New Flyer</Button></Flex> : null}
         <Wrap spacing='30px'  marginTop='100px'>
             
                 <WrapItem >
                 {flyerCards}
                 </WrapItem>
-            
         </Wrap>
+                </Stack>
+       
+        </Flex>
     )
 }
 
