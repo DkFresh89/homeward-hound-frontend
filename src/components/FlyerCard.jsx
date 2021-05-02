@@ -7,9 +7,10 @@ import { useHistory } from "react-router-dom"
 
 
 
-function FlyerCard({flyer}) {
+function FlyerCard({flyer, setFlyers, flyers}) {
 
     const [updateToggle, setUpdateToggle] = useState(false)
+    const [toggleReward, setToggleReward] = useState(flyer.attributes.reward)
     const history = useHistory()
 
     const settings = {
@@ -67,11 +68,15 @@ function FlyerCard({flyer}) {
             body: JSON.stringify(formData)
         })
         .then(resp => resp.json())
-        .then(flyer => console.log(flyer))
+        .then(flyer => {
+            
+            // console.log(flyer.data.attributes.reward)
+            setToggleReward(flyer.data.attributes.reward)
+        })
         
     }
     
-    console.log(flyer);
+    // console.log(flyer);
     // console.log(pics);
 
     return(
@@ -86,9 +91,9 @@ function FlyerCard({flyer}) {
                 <Divider />
                 <Box padding='1'>Temperament: {dog.temperament}</Box>
                 <Divider />
-                <Badge borderRadius="full" px="2" colorScheme="red">
+                {toggleReward == true ? <Badge borderRadius="full" px="2" colorScheme="red">
                     Reward
-                </Badge>
+                </Badge> : null }
                 <Box padding='2' margin='3' w='300px'> {pics[0] == null ? <Image src={stock}/> : <Slider {...settings}>{carouselPics}</Slider> } </Box>
 
 

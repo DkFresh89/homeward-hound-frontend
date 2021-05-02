@@ -1,4 +1,4 @@
-import { Flex, Textarea, Text, Button, Stack, Spacer, Box, Input, Select } from "@chakra-ui/react"
+import { Flex, Textarea, Text, Button, VStack, Spacer, Box, Input, Select } from "@chakra-ui/react"
 import {useState, useHistory, useCallback} from "react"
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Geocode from "react-geocode";
@@ -124,17 +124,17 @@ Geocode.setLocationType("ROOFTOP")
     }
 
     return (
-    <Flex justifyContent='center'>
-        <Stack >
+    <Flex justifyContent='center' marginTop='100px'>
+        <VStack spacing='240px'>
         <form onSubmit={handleCreateFlyer}>
             {/* <Text mb="8px">Description: {value}</Text> */}
             <Select name='dog_id' onChange={handleChange} placeholder="Select Missing Dog">
                 {dogList}
             </Select>
             <Input onChange={handleAddress} placeholder='Address'/>
-            <Button onClick={getLocation} colorScheme="blue">
+            <Flex justifyContent='center'><Button onClick={getLocation} colorScheme="blue">
                 Set Location
-            </Button>
+            </Button></Flex>
         <Textarea
             name='description'
             onChange={handleChange}
@@ -142,7 +142,7 @@ Geocode.setLocationType("ROOFTOP")
             size="sm"
         />
             {isLoaded ? (
-                <Flex >
+                <Flex justifyContent='center' >
             <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
@@ -160,11 +160,11 @@ Geocode.setLocationType("ROOFTOP")
             )}
             <Box h='2'/>
             <Spacer/>
-            <Button type="submit" colorScheme="blue">
+            <Flex justifyContent='center'><Button type="submit" colorScheme="blue">
                 Submit
-            </Button>
+            </Button></Flex>
         </form>
-        </Stack>
+        </VStack>
     </Flex>
     );
 }

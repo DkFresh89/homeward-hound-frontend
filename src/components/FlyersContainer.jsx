@@ -3,7 +3,7 @@ import FlyerCard from './FlyerCard'
 import { useHistory } from "react-router-dom"
 
 
-function FlyersContainer({flyers, handleUpdate, currentUser}) {
+function FlyersContainer({flyers, handleUpdate, currentUser, setFlyers}) {
 
     // console.log(flyers);
     const history = useHistory()
@@ -15,7 +15,7 @@ function FlyersContainer({flyers, handleUpdate, currentUser}) {
     return ( 
         
         <Box margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'> 
-            <FlyerCard handleUpdate={handleUpdate} key={flyer.id} flyer={flyer} />
+            <FlyerCard flyers={flyers} setFlyers={setFlyers} handleUpdate={handleUpdate} key={flyer.id} flyer={flyer} />
             
         </Box> 
     )
@@ -28,7 +28,7 @@ function FlyersContainer({flyers, handleUpdate, currentUser}) {
     return(
         <Flex justifyContent='center' marginTop='100px'>
             <Stack>
-            {currentUser ? <Flex justifyContent='center'><Button onClick={() => history.push('/create_flyer')}>Create New Flyer</Button></Flex> : null}
+            {currentUser ? <Flex justifyContent='center'><Button colorScheme='red' onClick={() => history.push("/new_flyer")}>Create New Flyer</Button></Flex> : null}
         <Wrap spacing='30px'  marginTop='100px'>
             
                 <WrapItem >
@@ -36,7 +36,6 @@ function FlyersContainer({flyers, handleUpdate, currentUser}) {
                 </WrapItem>
         </Wrap>
                 </Stack>
-       
         </Flex>
     )
 }
