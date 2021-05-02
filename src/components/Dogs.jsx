@@ -1,7 +1,10 @@
-import { Flex } from "@chakra-ui/layout";
+import { Flex, Button } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom"
 
 
 function Dogs({currentUser}) {
+
+    const history = useHistory()
 
     console.log(currentUser.dogs);
 
@@ -14,6 +17,7 @@ function Dogs({currentUser}) {
     return(
 
         <Flex>
+            <Button onClick={() => history.push('/add_dog')}>Add Dog</Button>
             {dog}
         </Flex>
 

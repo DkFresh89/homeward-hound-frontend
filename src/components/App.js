@@ -9,6 +9,7 @@ import FlyersContainer from './FlyersContainer'
 import {useState, useEffect} from "react"
 import AddDog from './AddDog';
 import CreateFlyer from './CreateFlyer';
+import NewSighting from './NewSighting';
 import Sighting from './Sighting';
 import Dogs from './Dogs'
 
@@ -95,6 +96,9 @@ function App() {
         </Route>
         <Route path='/sighting'>
           <Sighting />
+        </Route>
+        <Route path='/new_sighting'>
+          <NewSighting currentUser={currentUser}/>
         </Route>
         <Route path='/dogs'>
           <Dogs currentUser={currentUser} />

@@ -45,7 +45,7 @@ function AddDog() {
     }
 
     return(
-        <Flex>
+        <Flex justifyContent='center' marginTop='100px'>
             <form>
             <Stack>
                 <Input placeholder='Name' name='name'  onChange={handleChange}/>
@@ -54,8 +54,8 @@ function AddDog() {
                 <Input type='number' placeholder='Age' name='age'  onChange={handleChange}/>
                 <Input placeholder='Temperament' name='temperament'  onChange={handleChange}/>
                 <ButtonGroup>
-                    <Button onClick={handleSkip} colorScheme="blackAlpha">Skip</Button>
-                    <Button onClick={handleDog} type="submit" colorScheme="blue">Add Pooch</Button>
+                    <Button onClick={handleSkip} colorScheme="gray">Skip</Button>
+                    <Button onClick={handleDog} type="submit" colorScheme="green">Add Pooch</Button>
                 </ButtonGroup>
             </Stack>
             </form>

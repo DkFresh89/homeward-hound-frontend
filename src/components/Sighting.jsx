@@ -1,22 +1,15 @@
-import { Flex, Text } from "@chakra-ui/react"
-import {useState} from "react"
+import { Button } from "@chakra-ui/button";
+import { Flex } from "@chakra-ui/layout";
 import { useHistory } from "react-router-dom"
 
-function Sighting() {
 
-    const [formData, setFormData] = useState({
-        name: "",
-        breed: "",
-        size: "",
-        age: null,
-        temperament: "",
-        user_id: 1
-    })
+function Sighting(){
 
+    const history = useHistory()
 
     return(
-        <Flex>
-            <h1>Sighting</h1>
+        <Flex justifyContent='center' marginTop='100px'>
+            <Button onClick={() => history.push('/new_sighting')}>New Sighting</Button>
         </Flex>
     )
 }
