@@ -12,6 +12,7 @@ import CreateFlyer from './CreateFlyer';
 import NewSighting from './NewSighting';
 import Sighting from './Sighting';
 import Dogs from './Dogs'
+import LandingPage from './LandingPage'
 
 
 
@@ -43,7 +44,7 @@ function App() {
     setFlyers([...flyers, data])
   }
 
-  console.log(currentUser);
+  // console.log(currentUser);
 
   useEffect(() => {
     // let isMounted = true; // note this flag denote mount status
@@ -78,16 +79,19 @@ function App() {
           <Text>Container</Text>
         </Container> */}
       </Flex>
-       
+      
       </Stack>
       
+        <Flex marginTop='150'>
       <Switch>
-          <Container w='100%'>
+          <Container w='100%' >
 
           {!warning ?<Box  justifyContent='center'> <ScaleFade in={!warning}><Flex
+                marginTop='150'
                 position='fixed'
                 zIndex='overlay'
                 ><Alert   
+                    
                     borderRadius="lg"       
                     status="warning" 
                     variant="solid"
@@ -106,6 +110,7 @@ function App() {
                 <CloseButton onClick={handleWarning} position="absolute" right="8px" top="8px" />
             </Alert></Flex></ScaleFade> </Box> : null}
 
+        
         <Route path="/signup">
           <Signup setCurrentUser={setCurrentUser}/>
         </Route>
@@ -130,9 +135,12 @@ function App() {
         <Route path='/dogs'>
           <Dogs currentUser={currentUser} />
         </Route>
+        <Route path='/'>
+          <LandingPage />
+        </Route>
           </Container>
       </Switch>
-      
+      </Flex>
     </Flex>
   );
 }

@@ -35,7 +35,7 @@ function Login({setCurrentUser}) {
             }
         })
         .then(data => {
-            console.log(data.data.attributes)
+            // console.log(data.data.attributes)
             setCurrentUser(data.data.attributes)
             localStorage.setItem("user", JSON.stringify(data.data.attributes))
             history.push("/flyers")

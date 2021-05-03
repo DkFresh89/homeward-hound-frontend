@@ -22,7 +22,7 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
     }
 
     return (
-        <Flex borderWidth="medium" borderRadius="sm" w="100%" bg="red" h="100%">
+        <Flex borderWidth="medium" borderRadius="sm" w="100%" bg="red" h="150" position='fixed' top='0' zIndex='overlay'>
         <Center w="100%" margin="3" alignContent="center">
             <ButtonGroup>
             <Button leftIcon={<GiPin/>} 
@@ -50,7 +50,7 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
         </Center>
         <Center w="100%">
             {/* <AspectRatio > */}
-            <Image onClick={() => history.push('/')} borderRadius="full" boxSize="150px" src={logo} fit="contain" />
+            <Image onClick={() => history.push('/')} borderRadius="full"  src={logo} fit="contain" />
             {/* </AspectRatio> */}
         </Center>
         <Center w="100%" margin="3" justifyContent="center">
