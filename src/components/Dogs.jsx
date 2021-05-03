@@ -12,7 +12,7 @@ function Dogs({currentUser}) {
     const dog = currentUser.dogs.map (dog => {
         return(
             <Box margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'> 
-            <DogCard dog={dog} />
+            <DogCard key={dog.name} dog={dog} />
             </Box>
         )
     })

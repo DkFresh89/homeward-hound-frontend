@@ -50,7 +50,7 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
         </Center>
         <Center w="100%">
             {/* <AspectRatio > */}
-            <Image borderRadius="full" boxSize="150px" src={logo} fit="contain" />
+            <Image onClick={() => history.push('/')} borderRadius="full" boxSize="150px" src={logo} fit="contain" />
             {/* </AspectRatio> */}
         </Center>
         <Center w="100%" margin="3" justifyContent="center">

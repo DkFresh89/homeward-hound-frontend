@@ -43,12 +43,14 @@ function App() {
     setFlyers([...flyers, data])
   }
 
+  console.log(currentUser);
+
   useEffect(() => {
     // let isMounted = true; // note this flag denote mount status
     fetch('http://localhost:3000/missing_flyers')
       .then(resp => resp.json())
       .then(flyerArray => {
-        // console.log(flyerArray.data);
+        console.log(flyerArray.data);
         // if (isMounted) 
         setFlyers(flyerArray.data)})
         // return () => { isMounted = false }
@@ -68,7 +70,7 @@ function App() {
 
   return (
     <Flex direction='column' justifyContent='center'>
-      <Stack w='100%' >
+      <Stack w='100%' justifyContent='center' >
       <Flex w='100%'>
         {/* <SideBar /> */}
         <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} setWarning={setWarning}/>
@@ -76,29 +78,34 @@ function App() {
           <Text>Container</Text>
         </Container> */}
       </Flex>
-       </Stack>
-                {!warning ? <ScaleFade in={!warning}><Box><Alert         
+       
+      </Stack>
+      
+      <Switch>
+          <Container w='100%'>
+
+          {!warning ?<Box  justifyContent='center'> <ScaleFade in={!warning}><Flex
+                position='fixed'
+                zIndex='overlay'
+                ><Alert   
+                    borderRadius="lg"       
                     status="warning" 
-                    variant="subtle"
+                    variant="solid"
                     flexDirection="column"
                     alignItems="center"
                     justifyContent="center"
                     textAlign="center"
-                    height="200px">
+                    height="275px">
                 <AlertIcon boxSize="40px" mr={0}/>
                   <AlertTitle mt={4} mb={1} fontSize="lg">
                     CAUTION!
                   </AlertTitle>
-                <AlertDescription maxWidth="sm">
+                <AlertDescription maxWidth="md">
                   Please exercise extreme caution! Dogs are our best friends but they may not be friendly if they do not know you. Please report from a safe distance. Approach/Interact with dogs at your own risk!
                 </AlertDescription>
                 <CloseButton onClick={handleWarning} position="absolute" right="8px" top="8px" />
-            </Alert></Box></ScaleFade>  : null}
-      
-         
-          
-      <Switch>
-          <Container w='100%'>
+            </Alert></Flex></ScaleFade> </Box> : null}
+
         <Route path="/signup">
           <Signup setCurrentUser={setCurrentUser}/>
         </Route>
@@ -108,7 +115,7 @@ function App() {
         <Route path='/add_dog'>
           <AddDog />
         </Route>
-        <Route path='/flyers'>
+        <Route  path='/flyers'>
           <FlyersContainer setFlyers={setFlyers} currentUser={currentUser} flyers={flyers} setFlyerId={setFlyerId} />
         </Route>
         <Route path='/sighting'>

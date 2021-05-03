@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 
 function FlyersContainer({flyers, handleUpdate, currentUser, setFlyers}) {
 
-    // console.log(flyers);
+    console.log(flyers);
     const history = useHistory()
 
     
@@ -26,7 +26,7 @@ function FlyersContainer({flyers, handleUpdate, currentUser, setFlyers}) {
     // console.log(flyerCards);
 
     return(
-        <Flex justifyContent='center' marginTop='100px'>
+        <Flex justifyContent='center' margin='10' padding='2'>
             <Stack>
             {currentUser ? <Flex justifyContent='center'><Button colorScheme='red' onClick={() => history.push("/new_flyer")}>Create New Flyer</Button></Flex> : null}
         <Wrap spacing='30px'  marginTop='100px'>

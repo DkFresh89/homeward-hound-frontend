@@ -12,16 +12,18 @@ function FlyerCard({flyer, currentUser}) {
     // console.log(flyer.attributes.dog.user_id);
     
     // console.log(flyerUserId);
-
+    const initialState = currentUser ? currentUser.id : null
     const [updateToggle, setUpdateToggle] = useState(false)
     const [toggleReward, setToggleReward] = useState(flyer.attributes.reward)
-    const [userId, setUserId] = useState(null)
+    const [userId] = useState(initialState)
     const history = useHistory()
 
-    if (currentUser){
-        const id = localStorage.getItem("user")
-        setUserId(JSON.parse(id).id)
-}
+    // console.log(userId.id);
+
+//     if (currentUser){
+//         const id = localStorage.getItem("user")
+//         setUserId(JSON.parse(id).id)
+// }
 const flyerUserId = flyer.attributes.dog.user_id
 
     const settings = {

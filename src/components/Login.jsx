@@ -41,6 +41,7 @@ function Login({setCurrentUser}) {
             history.push("/flyers")
         })
     }
+   
     
     return (
         <Flex justifyContent='center' marginTop='100px'>
