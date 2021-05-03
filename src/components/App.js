@@ -76,7 +76,8 @@ function App() {
           <Text>Container</Text>
         </Container> */}
       </Flex>
-                {!warning ? <ScaleFade in={!warning}><Flex><Alert         
+       </Stack>
+                {!warning ? <ScaleFade in={!warning}><Box><Alert         
                     status="warning" 
                     variant="subtle"
                     flexDirection="column"
@@ -92,9 +93,9 @@ function App() {
                   Please exercise extreme caution! Dogs are our best friends but they may not be friendly if they do not know you. Please report from a safe distance. Approach/Interact with dogs at your own risk!
                 </AlertDescription>
                 <CloseButton onClick={handleWarning} position="absolute" right="8px" top="8px" />
-            </Alert></Flex></ScaleFade>  : null}
+            </Alert></Box></ScaleFade>  : null}
       
-          </Stack>
+         
           
       <Switch>
           <Container w='100%'>

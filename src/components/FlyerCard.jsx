@@ -7,17 +7,22 @@ import { useHistory } from "react-router-dom"
 
 
 
-function FlyerCard({flyer, setFlyers, flyers}) {
+function FlyerCard({flyer, currentUser}) {
 
     // console.log(flyer.attributes.dog.user_id);
-    const id = localStorage.getItem("user")
-    const userId = (JSON.parse(id).id)
-    const flyerUserId = flyer.attributes.dog.user_id
+    
     // console.log(flyerUserId);
 
     const [updateToggle, setUpdateToggle] = useState(false)
     const [toggleReward, setToggleReward] = useState(flyer.attributes.reward)
+    const [userId, setUserId] = useState(null)
     const history = useHistory()
+
+    if (currentUser){
+        const id = localStorage.getItem("user")
+        setUserId(JSON.parse(id).id)
+}
+const flyerUserId = flyer.attributes.dog.user_id
 
     const settings = {
         dots: true,

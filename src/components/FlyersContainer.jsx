@@ -15,7 +15,7 @@ function FlyersContainer({flyers, handleUpdate, currentUser, setFlyers}) {
     return ( 
         
         <Box margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'> 
-            <FlyerCard flyers={flyers} setFlyers={setFlyers} handleUpdate={handleUpdate} key={flyer.id} flyer={flyer} />
+            <FlyerCard currentUser={currentUser} flyers={flyers} setFlyers={setFlyers} handleUpdate={handleUpdate} key={flyer.id} flyer={flyer} />
             
         </Box> 
     )
