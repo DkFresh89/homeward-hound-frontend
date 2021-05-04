@@ -9,10 +9,10 @@ import {
     VisuallyHidden,
     Image,
     Flex
-  } from '@chakra-ui/react';
-  import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-  import { ReactNode } from 'react';
-  import logo from './HomewardHound.png'
+} from '@chakra-ui/react';
+import { FaInstagram, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { ReactNode } from 'react';
+import logo from './HomewardHound.png'
 
 
 function Footer() {
@@ -76,11 +76,11 @@ function Footer() {
                 <Logo />
                 <Text>© 2021 DK Designs - All rights reserved</Text>
                 <Stack direction={'row'} spacing={6}>
-                    <SocialButton label={'Twitter'} href={'#'}>
-                    <FaTwitter />
+                    <SocialButton label={'Github'} href={'https://github.com/dkfresh89'}>
+                    <FaGithub />
                     </SocialButton>
-                    <SocialButton label={'YouTube'} href={'#'}>
-                    <FaYoutube />
+                    <SocialButton label={'Linkedin'} href={'www.linkedin.com/in/doug-kerzner'}>
+                    <FaLinkedin />
                     </SocialButton>
                     <SocialButton label={'Instagram'} href={'https://www.instagram.com/dogsofinstagram/?hl=en'} isExternal>
                     <FaInstagram />
