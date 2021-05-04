@@ -10,8 +10,8 @@ function SightingCard({sighting,currentUser}) {
             <Box>
             <Box>Sighting ID: {sighting.id}</Box>
             <Divider />
-            {sighting.attributes.user != null ? <Box>Owner: {sighting.attributes.user["name"]}</Box> : null}
-            <Divider />
+            {sighting.attributes.user != null &&<> <Box>Owner: {sighting.attributes.user["name"]}</Box><Divider /> </>}
+            
             <Box>Description: {sighting.attributes.description}</Box>
             <Divider />
             </Box>

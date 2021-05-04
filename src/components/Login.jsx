@@ -2,7 +2,7 @@ import { Flex, Input, Button, Stack, Text } from "@chakra-ui/react"
 import {useState} from "react"
 import { useHistory } from "react-router-dom"
 
-function Login({setCurrentUser}) {
+function Login({setCurrentUser, setUserDogs}) {
 
     const history = useHistory()
     const [formData, setFormData] = useState({
@@ -35,8 +35,9 @@ function Login({setCurrentUser}) {
             }
         })
         .then(data => {
-            // console.log(data.data.attributes)
+            console.log(data.data.attributes.dogs)
             setCurrentUser(data.data.attributes)
+            // setUserDogs(data.data.attributes.dogs)
             localStorage.setItem("user", JSON.stringify(data.data.attributes))
             history.push("/flyers")
         })

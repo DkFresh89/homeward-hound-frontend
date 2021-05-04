@@ -26,6 +26,7 @@ function App() {
   const [flyers, setFlyers] = useState([])
   const [sightings, setSightings] = useState([])
   const [currentUser, setCurrentUser] = useState(null)
+  const [userDogs, setUserDogs] = useState([])
   const [flyerId, setFlyerId] = useState(null)
   const [editFormData, setEditFormData] = useState({
                                         latitude: "",
@@ -36,7 +37,8 @@ function App() {
                                         dog_id: null
                                     })
 
-  console.log(currentUser);
+  console.log(userDogs);
+  
 
   const handleWarning = () => {
     setWarning(warning => !warning)
@@ -128,10 +130,10 @@ function App() {
           <Signup setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path='/login'>
-          <Login setCurrentUser={setCurrentUser}/>
+          <Login setCurrentUser={setCurrentUser} setUserDogs={setUserDogs}/>
         </Route>
         <Route path='/add_dog'>
-          <AddDog currentUser={currentUser}/>
+          <AddDog currentUser={currentUser} userDogs={userDogs} setUserDogs={setUserDogs}/>
         </Route>
         <Route  path='/flyers'>
           <FlyersContainer setFlyers={setFlyers} currentUser={currentUser} flyers={flyers} setFlyerId={setFlyerId} />
@@ -146,7 +148,7 @@ function App() {
           <CreateFlyer currentUser={currentUser} updateFlyers={updateFlyers}/>
         </Route>
         <Route path='/dogs'>
-          <Dogs currentUser={currentUser} />
+          <Dogs currentUser={currentUser} userDogs={userDogs} />
         </Route>
         <Route exact path='/'>
           <LandingPage />

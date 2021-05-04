@@ -24,7 +24,8 @@ function SightingContainer({sightings, setSightings, currentUser}){
     return(
         <Flex justifyContent='center' marginTop='100px'>
             <Stack>
-            <Button onClick={() => history.push('/new_sighting')}>New Sighting</Button>
+            <Flex justifyContent='content'> <Button onClick={() => history.push('/new_sighting')}>New Sighting</Button></Flex>
+            
             <Flex>{sightingsArray}</Flex>
             </Stack>
         </Flex>

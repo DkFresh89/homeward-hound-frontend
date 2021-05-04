@@ -3,13 +3,14 @@ import { useHistory } from "react-router-dom"
 import DogCard from './DogCard'
 
 
-function Dogs({currentUser}) {
+function Dogs({currentUser, userDogs}) {
 
     const history = useHistory()
 
-    console.log(currentUser.dogs);
+    console.log(userDogs);
+    console.log(currentUser);
 
-    const dog = currentUser.dogs.map (dog => {
+    const dog = userDogs.map (dog => {
         return(
             <Box margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'> 
             <DogCard key={dog.name} dog={dog} />

@@ -5,7 +5,7 @@ import { Button, Input, ButtonGroup } from '@chakra-ui/react'
 import stock from './missing.png'
 
 
-function AddDog({currentUser}) {
+function AddDog({currentUser, userDogs, setUserDogs}) {
 
     const history = useHistory()
     const [formData, setFormData] = useState({
@@ -40,7 +40,10 @@ function AddDog({currentUser}) {
         })
         .then(resp => resp.json())
         .then(data => {
-         console.log(data)
+         console.log(data.data.attributes)
+         console.log(currentUser);
+        setUserDogs([...userDogs, data.data.attributes])
+         history.push('/dogs')
         })
     }
 
