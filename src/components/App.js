@@ -59,16 +59,16 @@ function App() {
         // return () => { isMounted = false }
   }, [])
 
-  // useEffect(() => {
-  //   // let isMounted = true; // note this flag denote mount status
-  //   fetch('http://localhost:3000/sightings')
-  //     .then(resp => resp.json())
-  //     .then(sightingArray => {
-  //       console.log(sightingArray.data);
-  //       // if (isMounted) 
-  //       setFlyers(sightingArray.data)})
-  //       // return () => { isMounted = false }
-  // }, [])
+  useEffect(() => {
+    // let isMounted = true; // note this flag denote mount status
+    fetch('http://localhost:3000/sightings')
+      .then(resp => resp.json())
+      .then(sightingArray => {
+        // console.log(sightingArray.data);
+        // if (isMounted) 
+        setSightings(sightingArray.data)})
+        // return () => { isMounted = false }
+  }, [])
 
   useEffect(() => {
     const getUser = localStorage.getItem("user")
@@ -137,7 +137,7 @@ function App() {
           <FlyersContainer setFlyers={setFlyers} currentUser={currentUser} flyers={flyers} setFlyerId={setFlyerId} />
         </Route>
         <Route path='/sighting'>
-          <SightingContainer sightings={sightings} setSightings={setSightings} />
+          <SightingContainer currentUser={currentUser} sightings={sightings} setSightings={setSightings} />
         </Route>
         <Route path='/new_sighting'>
           <NewSighting currentUser={currentUser}/>
