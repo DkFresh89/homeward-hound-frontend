@@ -13,6 +13,7 @@ import NewSighting from './NewSighting';
 import Sighting from './Sighting';
 import Dogs from './Dogs'
 import LandingPage from './LandingPage'
+import Footer from './Footer'
 
 
 
@@ -141,6 +142,7 @@ function App() {
           </Container>
       </Switch>
       </Flex>
+      <Footer />
     </Flex>
   );
 }
