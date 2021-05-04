@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 function DogCard({dog}) {
 
-    console.log(dog);
+    // console.log(dog);
 
     const settings = {
         dots: true,

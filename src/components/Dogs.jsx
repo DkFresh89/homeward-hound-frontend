@@ -7,8 +7,8 @@ function Dogs({currentUser, userDogs}) {
 
     const history = useHistory()
 
-    console.log(userDogs);
-    console.log(currentUser);
+    // console.log(userDogs);
+    // console.log(currentUser);
 
     const dog = userDogs.map (dog => {
         return(
