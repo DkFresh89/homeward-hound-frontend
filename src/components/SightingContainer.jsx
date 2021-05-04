@@ -3,7 +3,7 @@ import { Flex } from "@chakra-ui/layout";
 import { useHistory } from "react-router-dom"
 
 
-function Sighting(){
+function SightingContainer(){
 
     const history = useHistory()
 
@@ -14,4 +14,4 @@ function Sighting(){
     )
 }
 
-export default Sighting
+export default SightingContainer

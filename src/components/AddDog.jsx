@@ -5,7 +5,7 @@ import { Button, Input, ButtonGroup } from '@chakra-ui/react'
 import stock from './missing.png'
 
 
-function AddDog() {
+function AddDog({currentUser}) {
 
     const history = useHistory()
     const [formData, setFormData] = useState({
@@ -15,7 +15,7 @@ function AddDog() {
         age: null,
         temperament: "",
         image: 'https://images.assetsdelivery.com/compings_v2/newdesignillustrations/newdesignillustrations1902/newdesignillustrations190208953.jpg',
-        user_id: 1
+        user_id: currentUser.id
     })
 
     const handleSkip = () => {

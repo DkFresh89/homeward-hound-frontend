@@ -10,7 +10,7 @@ import {useState, useEffect} from "react"
 import AddDog from './AddDog';
 import CreateFlyer from './CreateFlyer';
 import NewSighting from './NewSighting';
-import Sighting from './Sighting';
+import SightingContainer from './SightingContainer';
 import Dogs from './Dogs'
 import LandingPage from './LandingPage'
 import Footer from './Footer'
@@ -24,6 +24,7 @@ function App() {
   const history = useHistory()
   const [warning, setWarning] = useState(false)
   const [flyers, setFlyers] = useState([])
+  const [sightings, setSightings] = useState([])
   const [currentUser, setCurrentUser] = useState(null)
   const [flyerId, setFlyerId] = useState(null)
   const [editFormData, setEditFormData] = useState({
@@ -34,8 +35,8 @@ function App() {
                                         found: false,
                                         dog_id: null
                                     })
- 
-  // console.log(flyers);
+
+  console.log(currentUser);
 
   const handleWarning = () => {
     setWarning(warning => !warning)
@@ -52,11 +53,22 @@ function App() {
     fetch('http://localhost:3000/missing_flyers')
       .then(resp => resp.json())
       .then(flyerArray => {
-        console.log(flyerArray.data);
+        // console.log(flyerArray.data);
         // if (isMounted) 
         setFlyers(flyerArray.data)})
         // return () => { isMounted = false }
   }, [])
+
+  // useEffect(() => {
+  //   // let isMounted = true; // note this flag denote mount status
+  //   fetch('http://localhost:3000/sightings')
+  //     .then(resp => resp.json())
+  //     .then(sightingArray => {
+  //       console.log(sightingArray.data);
+  //       // if (isMounted) 
+  //       setFlyers(sightingArray.data)})
+  //       // return () => { isMounted = false }
+  // }, [])
 
   useEffect(() => {
     const getUser = localStorage.getItem("user")
@@ -66,7 +78,7 @@ function App() {
     }
   }, [])
 
- 
+
 
   // console.log(flyers);
 
@@ -119,13 +131,13 @@ function App() {
           <Login setCurrentUser={setCurrentUser}/>
         </Route>
         <Route path='/add_dog'>
-          <AddDog />
+          <AddDog currentUser={currentUser}/>
         </Route>
         <Route  path='/flyers'>
           <FlyersContainer setFlyers={setFlyers} currentUser={currentUser} flyers={flyers} setFlyerId={setFlyerId} />
         </Route>
         <Route path='/sighting'>
-          <Sighting />
+          <SightingContainer sightings={sightings} setSightings={setSightings} />
         </Route>
         <Route path='/new_sighting'>
           <NewSighting currentUser={currentUser}/>
@@ -142,7 +154,7 @@ function App() {
           </Container>
       </Switch>
       </Flex>
-      <Footer />
+      {/* <Footer /> */}
     </Flex>
   );
 }
