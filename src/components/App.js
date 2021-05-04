@@ -135,7 +135,7 @@ function App() {
         <Route path='/dogs'>
           <Dogs currentUser={currentUser} />
         </Route>
-        <Route path='/'>
+        <Route exact path='/'>
           <LandingPage />
         </Route>
           </Container>
