@@ -1,10 +1,10 @@
-import { Flex, Text, Box, Image, Stack, Divider } from "@chakra-ui/react";
+import { Flex, Text, Box, Image, Stack, Divider, Button } from "@chakra-ui/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
-function DogCard({dog}) {
+function DogCard({dog, handleConfirm}) {
 
     // console.log(dog);
 
@@ -26,6 +26,8 @@ function DogCard({dog}) {
         return(<Box><Image key={pic} src={pic}/></Box>)
     })
 
+    
+
     return(
         <Flex justifyContent='center' textAlign='center' padding='2'>
             <Box>
@@ -38,6 +40,9 @@ function DogCard({dog}) {
             <Box>Temperament: {dog.temperament}</Box>
             <Divider/>
             <Box padding='2' margin='3' w='300px'> {pics[0] == null ? <Image src={stock}/> : <Slider  {...settings}>{carouselPics}</Slider> } </Box>
+            <Flex justifyContent='center'>
+                <Button name={dog.id} onClick={handleConfirm}>Delete</Button>
+            </Flex>
         </Box>
         </Flex>
     )

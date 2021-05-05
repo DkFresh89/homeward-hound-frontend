@@ -148,7 +148,7 @@ function App() {
           <CreateFlyer currentUser={currentUser} updateFlyers={updateFlyers}/>
         </Route>
         <Route path='/dogs'>
-          <Dogs currentUser={currentUser} userDogs={userDogs} />
+          <Dogs currentUser={currentUser} userDogs={userDogs} setUserDogs={setUserDogs} />
         </Route>
         <Route exact path='/'>
           <LandingPage />
