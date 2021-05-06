@@ -3,12 +3,17 @@ import {useState, useEffect, useCallback} from "react"
 import { useHistory } from "react-router-dom"
 import { GoogleMap, StreetViewService, useJsApiLoader } from '@react-google-maps/api';
 import TimePicker from 'react-time-picker';
-// import 'react-clock/dist/Clock.css';
+import DatePicker from 'react-date-picker'
 
 function NewSighting({currentUser}) {
 
-    const [time, setTime] = useState('12:00')
+    let today = new Date()
 
+    let dateVar = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear() 
+    
+    const [time, setTime] = useState('12:00')
+    const [date, setDate] = useState(dateVar)
+    
     const [formData, setFormData] = useState({
         latitude: "",
         longitude: "",
@@ -26,7 +31,7 @@ function NewSighting({currentUser}) {
         }
     }, [])
 
-    console.log(time);
+    console.log(typeof date);
     
     const handleChange = (e) => {
         // console.log(e.target.name);
@@ -90,6 +95,13 @@ function NewSighting({currentUser}) {
                 value={time}
                 format='h:mm a'
                 disableClock
+            />
+            </Box>
+            <Box>
+            <DatePicker
+                onChange={setDate}
+                value={date}
+                // format= 'MM-d-y'
             />
             </Box>
             <Box >

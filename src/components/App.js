@@ -37,7 +37,7 @@ function App() {
                                         dog_id: null
                                     })
 
-  console.log(userDogs);
+  // console.log(userDogs);
   
 
   const handleWarning = () => {
