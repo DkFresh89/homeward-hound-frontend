@@ -2,8 +2,12 @@ import { Flex, Text, Textarea, Input, Box, Button } from "@chakra-ui/react"
 import {useState, useEffect, useCallback} from "react"
 import { useHistory } from "react-router-dom"
 import { GoogleMap, StreetViewService, useJsApiLoader } from '@react-google-maps/api';
+import TimePicker from 'react-time-picker';
+// import 'react-clock/dist/Clock.css';
 
 function NewSighting({currentUser}) {
+
+    const [time, setTime] = useState('12:00')
 
     const [formData, setFormData] = useState({
         latitude: "",
@@ -22,7 +26,7 @@ function NewSighting({currentUser}) {
         }
     }, [])
 
-    console.log(formData);
+    console.log(time);
     
     const handleChange = (e) => {
         // console.log(e.target.name);
@@ -79,8 +83,16 @@ function NewSighting({currentUser}) {
     return(
         <Flex justifyContent='center' marginTop='100px' textAlign='center'>
             <form onClick={handleCreateSighting}>
+                <Text margin='2'>Sighting</Text>
+            <Box margin='2'>
+            <TimePicker 
+                onChange={setTime}
+                value={time}
+                format='h:mm a'
+                disableClock
+            />
+            </Box>
             <Box >
-            <Text margin='2'>Sighting</Text>
             <Textarea 
                 name='description'
                 onChange={handleChange}
