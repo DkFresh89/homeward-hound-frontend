@@ -7,19 +7,21 @@ import DatePicker from 'react-date-picker'
 
 function NewSighting({currentUser}) {
 
-    let today = new Date()
+    // let today = new Date()
 
-    let dateVar = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear() 
     
-    const [time, setTime] = useState('12:00')
-    const [date, setDate] = useState(dateVar)
+    
+    const [time, setTime] = useState('')
+    const [date, setDate] = useState(new Date())
     
     const [formData, setFormData] = useState({
         latitude: "",
         longitude: "",
         description: "",
         user_id: null,
-        missing_flyer_id: null
+        missing_flyer_id: null,
+        time_stamp: time,
+        date: date
     })
 
     
@@ -31,11 +33,21 @@ function NewSighting({currentUser}) {
         }
     }, [])
 
-    console.log(typeof date);
+    console.log( formData);
     
     const handleChange = (e) => {
         // console.log(e.target.name);
         setFormData({ ...formData, [e.target.name]: e.target.value})
+    }
+    
+    const handleTime = (e) => {
+        // console.log(e.target.name);
+        setFormData({ ...formData, time_stamp: e})
+    }
+
+    const handleDate = (e) => {
+        let dateVar = (e.getMonth() + 1) + '-' + e.getDate() + '-' + e.getFullYear() 
+        setFormData({ ...formData, date: dateVar})
     }
 
     const handleCreateSighting = (e) => {
@@ -82,6 +94,8 @@ function NewSighting({currentUser}) {
     const onUnmount = useCallback(function callback(map) {
         setMap(null)
     }, [])
+
+
     
     
     
@@ -91,17 +105,20 @@ function NewSighting({currentUser}) {
                 <Text margin='2'>Sighting</Text>
             <Box margin='2'>
             <TimePicker 
-                onChange={setTime}
+                name='time'
+                onChange={handleTime}
                 value={time}
                 format='h:mm a'
                 disableClock
             />
             </Box>
-            <Box>
+            <Box margin='2'>
             <DatePicker
-                onChange={setDate}
+                name='date'
+                onChange={handleDate}
                 value={date}
-                // format= 'MM-d-y'
+                disableCalendar
+                // maxDetail='year'
             />
             </Box>
             <Box >
