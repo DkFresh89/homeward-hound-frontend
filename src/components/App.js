@@ -141,7 +141,7 @@ function App() {
           <SightingContainer currentUser={currentUser} sightings={sightings} setSightings={setSightings} />
         </Route>
         <Route path='/new_sighting'>
-          <NewSighting currentUser={currentUser}/>
+          <NewSighting sightings={sightings} setSightings={setSightings} currentUser={currentUser}/>
         </Route>
         <Route path="/new_flyer">
           <CreateFlyer currentUser={currentUser} updateFlyers={updateFlyers}/>

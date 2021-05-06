@@ -1,11 +1,10 @@
-import { Flex, Text, Textarea, Input, Box, Button } from "@chakra-ui/react"
+import { Flex, Text, Textarea, Input, Box, Button, Stack } from "@chakra-ui/react"
 import {useState, useEffect, useCallback} from "react"
 import { useHistory } from "react-router-dom"
 import { GoogleMap, StreetViewService, useJsApiLoader } from '@react-google-maps/api';
-import TimePicker from 'react-time-picker';
-import DatePicker from 'react-date-picker'
 
-function NewSighting({currentUser}) {
+
+function NewSighting({currentUser, setSightings, sightings}) {
 
     // let today = new Date()
 
@@ -13,6 +12,8 @@ function NewSighting({currentUser}) {
     
     const [time, setTime] = useState('')
     const [date, setDate] = useState(new Date())
+    const history = useHistory()
+
     
     const [formData, setFormData] = useState({
         latitude: "",
@@ -33,27 +34,29 @@ function NewSighting({currentUser}) {
         }
     }, [])
 
-    console.log( formData);
+    // console.log( formData);
     
     const handleChange = (e) => {
+        
         // console.log(e.target.name);
         setFormData({ ...formData, [e.target.name]: e.target.value})
     }
     
     const handleTime = (e) => {
+        
         // console.log(e.target.name);
-        setFormData({ ...formData, time_stamp: e})
+        setFormData({ ...formData, time_stamp: e.target.value})
     }
 
     const handleDate = (e) => {
-        let dateVar = (e.getMonth() + 1) + '-' + e.getDate() + '-' + e.getFullYear() 
-        setFormData({ ...formData, date: dateVar})
+       setFormData({...formData, date: e.target.value})
     }
+    console.log(formData);
 
     const handleCreateSighting = (e) => {
         e.preventDefault()
         // getLocation()
-        console.log(formData);
+        // console.log(formData);
         fetch("http://localhost:3000/create_sighting", {
             method: 'POST',
             headers: {
@@ -64,9 +67,9 @@ function NewSighting({currentUser}) {
         })
         .then(resp => resp.json())
         .then(data => {
-            console.log(data);
-            // updateFlyers(data.data)
-            // history.push("/flyers") 
+            // console.log(data.data);
+            setSightings([...sightings, data.data])
+            history.push("/sighting") 
         })
     }
 
@@ -101,41 +104,24 @@ function NewSighting({currentUser}) {
     
     return(
         <Flex justifyContent='center' marginTop='100px' textAlign='center'>
-            <form onClick={handleCreateSighting}>
+            <Stack>
                 <Text margin='2'>Sighting</Text>
-            <Box margin='2'>
-            <TimePicker 
-                name='time'
-                onChange={handleTime}
-                value={time}
-                format='h:mm a'
-                disableClock
-            />
-            </Box>
-            <Box margin='2'>
-            <DatePicker
-                name='date'
-                onChange={handleDate}
-                value={date}
-                disableCalendar
-                // maxDetail='year'
-            />
-            </Box>
-            <Box >
+                
+            
+            {/* <Box>
+                <iframe src={`https://maps.googleapis.com/maps/api/geocode/json?address=22+Orchard+Drive,
+                +East Williston,+NY&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}/>
+            </Box> */}
+<Input onChange={handleDate} type='date' format='MM/d/y'/>
+<Input onChange={handleTime} type='time'/>
             <Textarea 
                 name='description'
                 onChange={handleChange}
                 placeholder="Description"
                 size="lg"
             />
-            </Box>
-            {/* <Box>
-                <iframe src={`https://maps.googleapis.com/maps/api/geocode/json?address=22+Orchard+Drive,
-+East Williston,+NY&key=${process.env.REACT_APP_GOOGLE_API_KEY}`}/>
-            </Box> */}
 
-
-
+{/* <form > */}
 
             {/* {isLoaded ? <GoogleMap
                 mapContainerStyle={containerStyle}
@@ -155,10 +141,11 @@ function NewSighting({currentUser}) {
             </GoogleMap> : null} */}
 
 
-            <Flex justifyContent='center'><Button type="submit" colorScheme="blue">
+            <Flex justifyContent='center'><Button onClick={handleCreateSighting} colorScheme="blue">
                 Submit
             </Button></Flex>
-            </form>
+            {/* </form> */}
+            </Stack>
         </Flex>
     )
 }

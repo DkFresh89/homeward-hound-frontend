@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom"
 import SightingCard from './SightingCard'
 
 
-function SightingContainer({sightings, setSightings, currentUser}){
+function SightingContainer({sightings, currentUser}){
 
     const history = useHistory()
 
@@ -22,9 +22,9 @@ function SightingContainer({sightings, setSightings, currentUser}){
     console.log(sightingsArray);
 
     return(
-        <Flex justifyContent='center' marginTop='100px'>
-            <Stack>
-            <Flex justifyContent='content'> <Button onClick={() => history.push('/new_sighting')}>New Sighting</Button></Flex>
+        <Flex  marginTop='100px' >
+            <Stack >
+            <Flex > <Button boxShadow="dark-lg"colorScheme='yellow' onClick={() => history.push('/new_sighting')}>New Sighting</Button></Flex>
             
             <Flex>{sightingsArray}</Flex>
             </Stack>
