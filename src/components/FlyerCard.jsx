@@ -7,6 +7,8 @@ import { useHistory } from "react-router-dom"
 
 
 
+
+
 function FlyerCard({flyer, currentUser}) {
 
     // console.log(flyer.attributes.dog.user_id);

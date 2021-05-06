@@ -94,10 +94,9 @@ function App() {
           <Text>Container</Text>
         </Container> */}
       </Flex>
-      
       </Stack>
       
-        <Flex marginTop='150'>
+        <Flex marginTop='150'  >
       <Switch>
           <Container w='100%' >
 
@@ -155,6 +154,9 @@ function App() {
         </Route>
           </Container>
       </Switch>
+
+
+
       </Flex>
       {/* <Footer /> */}
     </Flex>
