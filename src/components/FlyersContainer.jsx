@@ -1,4 +1,4 @@
-import { Flex, Box, Wrap, WrapItem, Button, Stack } from "@chakra-ui/react"
+import { Flex, Box, Wrap, WrapItem, Button, Stack, Heading } from "@chakra-ui/react"
 import FlyerCard from './FlyerCard'
 import { useHistory } from "react-router-dom"
 
@@ -14,7 +14,7 @@ function FlyersContainer({flyers, handleUpdate, currentUser, setFlyers}) {
         // console.log(flyer);
     return ( 
         
-        <Box margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'> 
+        <Box boxShadow="dark-lg" margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'> 
             <FlyerCard currentUser={currentUser} flyers={flyers} setFlyers={setFlyers} handleUpdate={handleUpdate} key={flyer.id} flyer={flyer} />
             
         </Box> 
@@ -28,7 +28,8 @@ function FlyersContainer({flyers, handleUpdate, currentUser, setFlyers}) {
     return(
         <Flex justifyContent='center' margin='10' padding='2'>
             <Stack>
-            {currentUser ? <Flex justifyContent='center'><Button colorScheme='red' onClick={() => history.push("/new_flyer")}>Create New Flyer</Button></Flex> : null}
+                <Flex justifyContent='center'><Heading size='4xl' fontFamily='Fjalla One'>Missing Flyers</Heading></Flex>
+            {currentUser ? <Flex justifyContent='center'><Button margin='3' colorScheme='red' onClick={() => history.push("/new_flyer")}>Create New Flyer</Button></Flex> : null}
         <Wrap spacing='30px'  marginTop='100px'>
             
                 <WrapItem >

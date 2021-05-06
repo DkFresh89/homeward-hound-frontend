@@ -41,7 +41,7 @@ function DogCard({dog, handleConfirm}) {
             <Divider/>
             <Box padding='2' margin='3' w='300px'> {pics[0] == null ? <Image src={stock}/> : <Slider  {...settings}>{carouselPics}</Slider> } </Box>
             <Flex justifyContent='center'>
-                <Button name={dog.id} onClick={handleConfirm}>Delete</Button>
+                <Button colorScheme='red' margin='2' boxShadow="dark-lg" name={dog.id} onClick={handleConfirm}>Delete</Button>
             </Flex>
         </Box>
         </Flex>

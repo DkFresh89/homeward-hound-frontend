@@ -25,21 +25,21 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
         <Flex borderWidth="medium" borderRadius="sm" w="100%" bg="red" h="150" position='fixed' top='0' zIndex='overlay'>
         <Center w="100%" margin="3" alignContent="center">
             <ButtonGroup>
-            <Button leftIcon={<GiPin/>} 
+            <Button fontFamily='Playfair Display' leftIcon={<GiPin/>} 
                 onClick={() => history.push("/flyers")}
                 colorScheme="blackAlpha"
                 variant="solid"
             >
                 Missing Flyers
             </Button>
-            <Button leftIcon={<GiBinoculars/>} 
+            <Button fontFamily='Fjalla One' leftIcon={<GiBinoculars/>} 
                 onClick={() => history.push("/sighting")}
                 colorScheme="blackAlpha"
                 variant="solid"
             >
                 Sighting
             </Button>
-            {currentUser ?  <Button leftIcon={<GiSittingDog/>} 
+            {currentUser ?  <Button fontFamily='Fjalla One' leftIcon={<GiSittingDog/>} 
                 onClick={() => history.push("/dogs")}
                 colorScheme="blackAlpha"
                 variant="solid"
@@ -66,7 +66,7 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
                 >
                     Dark Mode
                 </Button> :
-                <Button colorScheme='blackAlpha' onClick={toggleColorMode}
+                <Button  colorScheme='blackAlpha' onClick={toggleColorMode}
                 rightIcon={<GiSun/>}
                 >
                     Light Mode

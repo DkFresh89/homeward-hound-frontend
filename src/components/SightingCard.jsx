@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Divider, Badge } from "@chakra-ui/react";
+import { Box, Flex, Text, Divider, Badge, Stack } from "@chakra-ui/react";
 import { GoogleMap, StreetViewService, useJsApiLoader, Marker } from '@react-google-maps/api';
 import {useState, useCallback} from "react"
 import logo from './paw.svg'
@@ -41,7 +41,8 @@ function SightingCard({sighting,currentUser}) {
 
     return (
         <Flex >
-            <Box w='300px' h='100%'>
+            <Flex w='300px' h='100%'>
+                <Stack>
                 { dog != null ?<Flex padding='3' justifyContent='center'> <Badge
                     colorScheme='yellow'
                     variant='solid'
@@ -67,6 +68,8 @@ function SightingCard({sighting,currentUser}) {
                 </Box>
             }
             {isLoaded ?
+            <Flex bottom='0' padding='2'>
+                
             <GoogleMap
                 bottom='0'
                 mapContainerStyle={containerStyle}
@@ -89,9 +92,10 @@ function SightingCard({sighting,currentUser}) {
             { <Marker icon={logo} position={{ lat: sighting.attributes.latitude, lng: sighting.attributes.longitude }} />}
 
                 <></>
-            </GoogleMap>
+            </GoogleMap></Flex>
             : null}
-            </Box>
+            </Stack>
+            </Flex>
         </Flex>
     )
 }
