@@ -7,7 +7,7 @@ import TimePicker from 'react-time-picker';
 
 function NewSighting({currentUser}) {
 
-    const [time, setTime] = useState(null)
+    const [time, setTime] = useState('12:00')
 
     const [formData, setFormData] = useState({
         latitude: "",
