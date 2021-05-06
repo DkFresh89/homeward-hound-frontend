@@ -40,8 +40,8 @@ function SightingCard({sighting,currentUser}) {
     console.log(dog);
 
     return (
-        <Flex >
-            <Flex w='300px' h='100%'>
+        <Flex w='300px' >
+            <Flex >
                 <Stack>
                 { dog != null ?<Flex padding='3' justifyContent='center'> <Badge
                     colorScheme='yellow'

@@ -57,7 +57,7 @@ function Dogs({currentUser, userDogs, setUserDogs}) {
 
     const dog = userDogs.map (dog => {
         return(
-            <Box boxShadow="dark-lg" margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'> 
+            <Box  boxShadow="dark-lg" margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'> 
             <DogCard key={dog.name} dog={dog} userDogs={userDogs} handleConfirm={handleConfirm} />
             </Box>
         )

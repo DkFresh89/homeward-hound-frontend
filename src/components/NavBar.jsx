@@ -25,21 +25,21 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
         <Flex borderWidth="medium" borderRadius="sm" w="100%" bg="red" h="150" position='fixed' top='0' zIndex='overlay'>
         <Center w="100%" margin="3" alignContent="center">
             <ButtonGroup>
-            <Button fontFamily='Playfair Display' leftIcon={<GiPin/>} 
+            <Button boxShadow="xl" fontFamily='Playfair Display' leftIcon={<GiPin/>} 
                 onClick={() => history.push("/flyers")}
                 colorScheme="blackAlpha"
                 variant="solid"
             >
                 Missing Flyers
             </Button>
-            <Button fontFamily='Fjalla One' leftIcon={<GiBinoculars/>} 
+            <Button boxShadow="xl"  fontFamily='Fjalla One' leftIcon={<GiBinoculars/>} 
                 onClick={() => history.push("/sighting")}
                 colorScheme="blackAlpha"
                 variant="solid"
             >
                 Sighting
             </Button>
-            {currentUser ?  <Button fontFamily='Fjalla One' leftIcon={<GiSittingDog/>} 
+            {currentUser ?  <Button  boxShadow="xl"  fontFamily='Fjalla One' leftIcon={<GiSittingDog/>} 
                 onClick={() => history.push("/dogs")}
                 colorScheme="blackAlpha"
                 variant="solid"
@@ -57,16 +57,16 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
             {currentUser ? (
             <ButtonGroup>
                 {" "}
-                <Button onClick={handleLogout} colorScheme="red" variant="solid" rightIcon={<IoLogOutOutline/>}>
+                <Button boxShadow="xl"  onClick={handleLogout} colorScheme="red" variant="solid" rightIcon={<IoLogOutOutline/>}>
                 Logout
                 </Button>{" "}
                 {colorMode === "light" ? 
-                <Button colorScheme='blackAlpha' onClick={toggleColorMode}
+                <Button boxShadow="xl"  colorScheme='blackAlpha' onClick={toggleColorMode}
                 rightIcon={<IoMoon/>}
                 >
                     Dark Mode
                 </Button> :
-                <Button  colorScheme='blackAlpha' onClick={toggleColorMode}
+                <Button boxShadow="xl"  colorScheme='blackAlpha' onClick={toggleColorMode}
                 rightIcon={<GiSun/>}
                 >
                     Light Mode
@@ -76,6 +76,7 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
             <ButtonGroup>
                 {" "}
                 <Button
+                boxShadow="xl" 
                 onClick={() => history.push("/signup")}
                 colorScheme="purple"
                 variant="solid"
@@ -84,6 +85,7 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
                 Signup
                 </Button>{" "}
                 <Button
+                boxShadow="xl" 
                 onClick={handleLogin}
                 colorScheme="blue"
                 variant="solid"
@@ -92,12 +94,12 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
                 Login
                 </Button>
                 {colorMode === "light" ? 
-                <Button colorScheme='blackAlpha' onClick={toggleColorMode}
+                <Button boxShadow="xl"  colorScheme='blackAlpha' onClick={toggleColorMode}
                 rightIcon={<IoMoon/>}
                 >
                     Dark Mode
                 </Button> :
-                <Button colorScheme='blackAlpha' onClick={toggleColorMode}
+                <Button boxShadow="xl"  colorScheme='blackAlpha' onClick={toggleColorMode}
                 rightIcon={<GiSun/>}
                 >
                     Light Mode

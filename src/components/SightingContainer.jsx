@@ -13,7 +13,7 @@ function SightingContainer({sightings, setSightings, currentUser}){
     const sightingsArray = sightings.map(sighting => {
         console.log(sighting);
         return(
-        <Box boxShadow="dark-lg" margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'>
+        <Box flexShrink='initial' boxShadow="dark-lg" margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'>
         <SightingCard currentUser={currentUser} sighting={sighting} />
         </Box>
         )
