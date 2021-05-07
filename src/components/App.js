@@ -1,8 +1,8 @@
 import '../App.css';
-import { Flex, Text, Box, Container, Stack, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton, Center, ScaleFade} from "@chakra-ui/react"
-import { Switch, Route, useHistory } from "react-router-dom"
+import { Flex, Box, Container, Stack, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton, ScaleFade} from "@chakra-ui/react"
+import { Switch, Route } from "react-router-dom"
 import NavBar from './NavBar'
-import  SideBar  from "./SideBar";
+// import  SideBar  from "./SideBar";
 import Signup from './Signup'
 import Login from './Login'
 import FlyersContainer from './FlyersContainer'
@@ -21,21 +21,21 @@ import Footer from './Footer'
 function App() {
 
 
-  const history = useHistory()
+  // const history = useHistory()
   const [warning, setWarning] = useState(false)
   const [flyers, setFlyers] = useState([])
   const [sightings, setSightings] = useState([])
   const [currentUser, setCurrentUser] = useState(null)
   const [userDogs, setUserDogs] = useState([])
-  const [flyerId, setFlyerId] = useState(null)
-  const [editFormData, setEditFormData] = useState({
-                                        latitude: "",
-                                        longitude: "",
-                                        description: "",
-                                        reward: false,
-                                        found: false,
-                                        dog_id: null
-                                    })
+  // const [flyerId, setFlyerId] = useState(null)
+  // const [editFormData, setEditFormData] = useState({
+  //                                       latitude: "",
+  //                                       longitude: "",
+  //                                       description: "",
+  //                                       reward: false,
+  //                                       found: false,
+  //                                       dog_id: null
+  //                                   })
 
   // console.log(userDogs);
   
@@ -98,7 +98,7 @@ function App() {
       
         <Flex marginTop='150'  >
       <Switch>
-          <Container w='100%' >
+          <Flex w='100%' justifyContent='center'>
 
           {!warning ?<Box  justifyContent='center'> <ScaleFade in={!warning}><Flex
                 marginTop='150'
@@ -135,7 +135,7 @@ function App() {
           <AddDog currentUser={currentUser} userDogs={userDogs} setUserDogs={setUserDogs}/>
         </Route>
         <Route  path='/flyers'>
-          <FlyersContainer setFlyers={setFlyers} currentUser={currentUser} flyers={flyers} setFlyerId={setFlyerId} />
+          <FlyersContainer setFlyers={setFlyers} currentUser={currentUser} flyers={flyers} />
         </Route>
         <Route path='/sighting'>
           <SightingContainer currentUser={currentUser} sightings={sightings} setSightings={setSightings} />
@@ -152,7 +152,7 @@ function App() {
         <Route exact path='/'>
           <LandingPage />
         </Route>
-          </Container>
+          </Flex>
       </Switch>
 
 

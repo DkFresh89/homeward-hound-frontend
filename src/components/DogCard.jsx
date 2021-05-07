@@ -1,10 +1,21 @@
-import { Flex, Text, Box, Image, Stack, Divider, Button } from "@chakra-ui/react";
+import { Flex, Box, Image, Divider, Button,
+    AlertDialog,
+    AlertDialogBody,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogContent,
+    AlertDialogOverlay } from "@chakra-ui/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import {useRef, useState} from 'react'
 
 
 function DogCard({dog, handleConfirm}) {
+
+    const [isOpen, setIsOpen] = useState(false)
+    const onClose = () => setIsOpen(false)
+    const cancelRef = useRef()
 
     // console.log(dog);
 
@@ -29,7 +40,7 @@ function DogCard({dog, handleConfirm}) {
     
 
     return(
-        <Flex justifyContent='center' textAlign='center' padding='2'>
+        <Flex fontFamily='Fjalla One' fontWeight='bold' justifyContent='center' textAlign='center' padding='2'>
             <Box>
             <Box>Name: {dog.name}</Box>
             <Divider />
@@ -41,7 +52,38 @@ function DogCard({dog, handleConfirm}) {
             <Divider/>
             <Box padding='2' margin='3' w='300px'> {pics[0] == null ? <Image src={stock}/> : <Slider  {...settings}>{carouselPics}</Slider> } </Box>
             <Flex justifyContent='center'>
-                <Button colorScheme='red' margin='2' boxShadow="dark-lg" name={dog.id} onClick={handleConfirm}>Delete</Button>
+
+                    <Button colorScheme="red" onClick={() => setIsOpen(true)}>
+                Delete Dog
+            </Button>
+
+            <AlertDialog
+                isOpen={isOpen}
+                leastDestructiveRef={cancelRef}
+                onClose={onClose}
+            >
+                <AlertDialogOverlay>
+                <AlertDialogContent>
+                    <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                    Delete Dog
+                    </AlertDialogHeader>
+
+                    <AlertDialogBody>
+                    Are you sure? You can't undo this action afterwards.
+                    </AlertDialogBody>
+
+                    <AlertDialogFooter>
+                    <Button ref={cancelRef} onClick={onClose}>
+                        Cancel
+                    </Button>
+                    <Button colorScheme="red" onClick={handleConfirm} ml={3}>
+                        Delete
+                    </Button>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+                </AlertDialogOverlay>
+            </AlertDialog>
+
             </Flex>
         </Box>
         </Flex>

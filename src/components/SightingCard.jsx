@@ -4,9 +4,9 @@ import {useState, useCallback} from "react"
 import logo from './paw.svg'
 
 
-function SightingCard({sighting,currentUser}) {
+function SightingCard({sighting, currentUser}) {
 
-    console.log(sighting);
+    // console.log(sighting);
 
     let dog = null
 
@@ -40,7 +40,7 @@ function SightingCard({sighting,currentUser}) {
     console.log(dog);
 
     return (
-        <Flex w='300px' >
+        <Flex w='300px'  >
             <Flex >
                 <Stack>
                 { dog != null ?<Flex padding='3' justifyContent='center'> <Badge

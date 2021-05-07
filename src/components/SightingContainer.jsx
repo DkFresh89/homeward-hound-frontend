@@ -22,9 +22,9 @@ function SightingContainer({sightings, currentUser}){
     console.log(sightingsArray);
 
     return(
-        <Flex  marginTop='100px' >
-            <Stack >
-            <Flex > <Button boxShadow="dark-lg"colorScheme='yellow' onClick={() => history.push('/new_sighting')}>New Sighting</Button></Flex>
+        <Flex  marginTop='100px' w='500px'>
+            <Stack  >
+            <Flex justifyContent='center' > <Button boxShadow="dark-lg"colorScheme='yellow' onClick={() => history.push('/new_sighting')}>New Sighting</Button></Flex>
             
             <Flex>{sightingsArray}</Flex>
             </Stack>

@@ -37,7 +37,7 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
                 colorScheme="blackAlpha"
                 variant="solid"
             >
-                Sighting
+                Sightings
             </Button>
             {currentUser ?  <Button  boxShadow="xl"  fontFamily='Fjalla One' leftIcon={<GiSittingDog/>} 
                 onClick={() => history.push("/dogs")}

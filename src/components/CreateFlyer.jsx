@@ -1,4 +1,4 @@
-import { Flex, Textarea, Text, Button, VStack, Spacer, Box, Input, Select } from "@chakra-ui/react"
+import { Flex, Textarea, Button, VStack, Spacer, Box, Input, Select } from "@chakra-ui/react"
 import {useState, useCallback} from "react"
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Geocode from "react-geocode";
@@ -11,7 +11,7 @@ function CreateFlyer({currentUser, updateFlyers}) {
     const [map, setMap] = useState(null)
     // console.log(currentUser.dogs);
     const history = useHistory()
-   
+
 
 
 //**************Geocode****************************************/
