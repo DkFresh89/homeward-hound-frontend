@@ -78,7 +78,7 @@ function DogCard({dog, handleConfirm}) {
                     <Button boxShadow="xl" ref={cancelRef} onClick={onClose}>
                         Cancel
                     </Button>
-                    <Button   boxShadow="xl" colorScheme="red" onClick={handleConfirm} ml={3}>
+                    <Button name={dog.id}   boxShadow="xl" colorScheme="red" onClick={handleConfirm} ml={3}>
                         Delete
                     </Button>
                     </AlertDialogFooter>

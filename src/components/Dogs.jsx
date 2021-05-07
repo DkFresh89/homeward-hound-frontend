@@ -20,9 +20,9 @@ function Dogs({currentUser, userDogs, setUserDogs}) {
     })
     .then(resp => resp.json())
     .then(data => {
-    console.log(data)
-    const filteredDogs = userDogs.filter((dog) => ( dog.id != data.id))
-    setUserDogs(filteredDogs);
+        const filteredDogs = userDogs.filter((dog) => ( dog.id != data.id))
+        // console.log(filteredDogs)
+        setUserDogs(filteredDogs)
         // setUserDogs([...userDogs, data])
     //  history.push('/dogs')
     })
