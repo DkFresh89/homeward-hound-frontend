@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom"
 
 
 
-function CreateFlyer({currentUser, updateFlyers}) {
+function CreateFlyer({currentUser, updateFlyers, userDogs}) {
     
     const [map, setMap] = useState(null)
     // console.log(currentUser.dogs);
@@ -74,7 +74,7 @@ Geocode.setLocationType("ROOFTOP")
         dog_id: null
     })
     // console.log(currentUser.id);
-    const dogList = currentUser.dogs.map(dog => {
+    const dogList = userDogs.map(dog => {
         // console.log(dog.id);
         return(<option key={dog.id} value={dog.id}>{dog.name}</option>) 
     })

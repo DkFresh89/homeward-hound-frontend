@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/button";
-import { Flex, Box, Stack } from "@chakra-ui/layout";
+import { Flex, Box, Stack, Heading } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom"
 import SightingCard from './SightingCard'
 
@@ -24,6 +24,7 @@ function SightingContainer({sightings, currentUser}){
     return(
         <Flex  marginTop='100px' w='500px'>
             <Stack  >
+            <Flex justifyContent='center'><Heading size='4xl' fontFamily='Fjalla One'>Sightings</Heading></Flex>
             <Flex justifyContent='center' > <Button boxShadow="dark-lg"colorScheme='yellow' onClick={() => history.push('/new_sighting')}>New Sighting</Button></Flex>
             
             <Flex>{sightingsArray}</Flex>

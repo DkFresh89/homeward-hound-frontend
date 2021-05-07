@@ -35,18 +35,15 @@ function Login({setCurrentUser, setUserDogs}) {
             }
         })
         .then(data => {
-            // console.log(data.data.attributes.dogs)
             setCurrentUser(data.data.attributes)
             setUserDogs(data.data.attributes.dogs)
             localStorage.setItem("user", JSON.stringify(data.data.attributes))
             history.push("/flyers")
         })
     }
-   
     
     return (
         <Flex justifyContent='center' marginTop='100px'>
-            
             <form onSubmit={handleLogin}>
                 <Stack textAlign='center'>
                 <Text>Login</Text>

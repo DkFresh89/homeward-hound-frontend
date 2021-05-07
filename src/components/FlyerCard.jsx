@@ -95,7 +95,7 @@ const flyerUserId = flyer.attributes.dog.user_id
     // console.log(pics);
 
     return(
-        <Flex padding='2'>
+        <Flex padding='2' w='100%'>
             <Box textAlign='center'>
             <form onSubmit={handleSubmit}>
                 <Box padding='1'>Name: {dog.name}</Box>
@@ -106,6 +106,9 @@ const flyerUserId = flyer.attributes.dog.user_id
                 <Divider />
                 <Box padding='1'>Temperament: {dog.temperament}</Box>
                 <Divider />
+                <Box w='300px' padding='1'>
+                Description: {flyer.attributes.description}
+                </Box>
                 {toggleReward === true ? <Badge borderRadius="full" px="2" colorScheme="red">
                     Reward
                 </Badge> : null }

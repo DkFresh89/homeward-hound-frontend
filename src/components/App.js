@@ -85,8 +85,8 @@ function App() {
   // console.log(flyers);
 
   return (
-    <Flex direction='column' justifyContent='center'>
-      <Stack w='100%' justifyContent='center' >
+    <Box   >
+      <Stack   >
       <Flex w='100%'>
         {/* <SideBar /> */}
         <NavBar currentUser={currentUser} setCurrentUser={setCurrentUser} setWarning={setWarning}/>
@@ -96,9 +96,9 @@ function App() {
       </Flex>
       </Stack>
       
-        <Flex marginTop='150'  >
+        {/* <Flex marginTop='150'  > */}
       <Switch>
-          <Flex w='100%' justifyContent='center'>
+          <Box marginTop='200px' >
 
           {!warning ?<Box  justifyContent='center'> <ScaleFade in={!warning}><Flex
                 marginTop='150'
@@ -144,7 +144,7 @@ function App() {
           <NewSighting sightings={sightings} setSightings={setSightings} currentUser={currentUser}/>
         </Route>
         <Route path="/new_flyer">
-          <CreateFlyer currentUser={currentUser} updateFlyers={updateFlyers}/>
+          <CreateFlyer userDogs={userDogs} currentUser={currentUser} updateFlyers={updateFlyers}/>
         </Route>
         <Route path='/dogs'>
           <Dogs currentUser={currentUser} userDogs={userDogs} setUserDogs={setUserDogs} />
@@ -152,14 +152,14 @@ function App() {
         <Route exact path='/'>
           <LandingPage />
         </Route>
-          </Flex>
+          </Box>
       </Switch>
 
 
 
-      </Flex>
+      {/* </Flex> */}
       {/* <Footer /> */}
-    </Flex>
+    </Box>
   );
 }
 
