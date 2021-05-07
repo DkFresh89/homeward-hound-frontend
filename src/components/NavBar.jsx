@@ -76,6 +76,7 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
             <ButtonGroup>
                 {" "}
                 <Button
+                fontFamily='Fjalla One' letterSpacing='1px' 
                 boxShadow="xl" 
                 onClick={() => history.push("/signup")}
                 colorScheme="purple"
@@ -85,6 +86,7 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
                 Signup
                 </Button>{" "}
                 <Button
+                fontFamily='Fjalla One' letterSpacing='1px' 
                 boxShadow="xl" 
                 onClick={handleLogin}
                 colorScheme="blue"
@@ -94,12 +96,12 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
                 Login
                 </Button>
                 {colorMode === "light" ? 
-                <Button boxShadow="xl"  colorScheme='blackAlpha' onClick={toggleColorMode}
+                <Button fontFamily='Fjalla One' letterSpacing='1px'  boxShadow="xl"  colorScheme='blackAlpha' onClick={toggleColorMode}
                 rightIcon={<IoMoon/>}
                 >
                     Dark Mode
                 </Button> :
-                <Button boxShadow="xl"  colorScheme='blackAlpha' onClick={toggleColorMode}
+                <Button fontFamily='Fjalla One' letterSpacing='1px'  boxShadow="xl"  colorScheme='blackAlpha' onClick={toggleColorMode}
                 rightIcon={<GiSun/>}
                 >
                     Light Mode
