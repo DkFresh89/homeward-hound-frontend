@@ -48,7 +48,7 @@ function Dogs({currentUser, userDogs, setUserDogs}) {
 
         <Flex justifyContent='center' marginTop='100'>
             <Stack >
-            <Flex  justifyContent='center'><Button boxShadow="dark-lg" onClick={() => history.push('/add_dog')}>Add Dog</Button></Flex>
+            <Flex  justifyContent='center'><Button letterSpacing='1px' fontFamily='Fjalla One' fontWeight='light' colorScheme='green' boxShadow="dark-lg" onClick={() => history.push('/add_dog')}>Add Dog</Button></Flex>
             <Flex >{dog}</Flex>
             </Stack>
         </Flex>

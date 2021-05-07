@@ -17,13 +17,13 @@ function SightingCard({sighting, currentUser}) {
     const containerStyle = {
         width: '100%',
         height: '200px'
-      };
+    };
 
-      const { isLoaded } = useJsApiLoader({
+    const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
     })
-      
+    
     const onLoad = useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds();
         map.fitBounds(bounds);
@@ -77,8 +77,9 @@ function SightingCard({sighting, currentUser}) {
                 onUnmount={onUnmount}
                 zoom={15}
                 center={{
-                    lat: sighting.attributes.latitude,
-                    lng: sighting.attributes.longitude
+                    lat: sighting.attributes.latitude != null ? sighting.attributes.latitude : 40.71353978313557,
+                    
+                    lng: sighting.attributes.longitude != null ? sighting.attributes.longitude : -74.00097315030722
                 }}
                 options={
                     {streetViewControl: false,

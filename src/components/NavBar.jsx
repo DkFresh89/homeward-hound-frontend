@@ -25,21 +25,21 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
         <Flex borderWidth="medium" borderRadius="sm" w="100%" bg="red" h="150" position='fixed' top='0' zIndex='overlay'>
         <Center w="100%" margin="3" alignContent="center">
             <ButtonGroup>
-            <Button boxShadow="xl" fontFamily='Playfair Display' leftIcon={<GiPin/>} 
+            <Button fontFamily='Fjalla One' letterSpacing='1px' boxShadow="xl"  leftIcon={<GiPin/>} 
                 onClick={() => history.push("/flyers")}
                 colorScheme="blackAlpha"
                 variant="solid"
             >
                 Missing Flyers
             </Button>
-            <Button boxShadow="xl"  fontFamily='Fjalla One' leftIcon={<GiBinoculars/>} 
+            <Button letterSpacing='1px' boxShadow="xl"  fontFamily='Fjalla One' leftIcon={<GiBinoculars/>} 
                 onClick={() => history.push("/sighting")}
                 colorScheme="blackAlpha"
                 variant="solid"
             >
                 Sightings
             </Button>
-            {currentUser ?  <Button  boxShadow="xl"  fontFamily='Fjalla One' leftIcon={<GiSittingDog/>} 
+            {currentUser ?  <Button letterSpacing='1px'  boxShadow="xl"  fontFamily='Fjalla One' leftIcon={<GiSittingDog/>} 
                 onClick={() => history.push("/dogs")}
                 colorScheme="blackAlpha"
                 variant="solid"
@@ -57,16 +57,16 @@ function NavBar({setCurrentUser, setWarning, currentUser}) {
             {currentUser ? (
             <ButtonGroup>
                 {" "}
-                <Button boxShadow="xl"  onClick={handleLogout} colorScheme="red" variant="solid" rightIcon={<IoLogOutOutline/>}>
+                <Button fontFamily='Fjalla One' letterSpacing='1px'  boxShadow="xl"  onClick={handleLogout} colorScheme="red" variant="solid" rightIcon={<IoLogOutOutline/>}>
                 Logout
                 </Button>{" "}
                 {colorMode === "light" ? 
-                <Button boxShadow="xl"  colorScheme='blackAlpha' onClick={toggleColorMode}
+                <Button fontFamily='Fjalla One' letterSpacing='1px'  boxShadow="xl"  colorScheme='blackAlpha' onClick={toggleColorMode}
                 rightIcon={<IoMoon/>}
                 >
                     Dark Mode
                 </Button> :
-                <Button boxShadow="xl"  colorScheme='blackAlpha' onClick={toggleColorMode}
+                <Button fontFamily='Fjalla One' letterSpacing='1px'  boxShadow="xl"  colorScheme='blackAlpha' onClick={toggleColorMode}
                 rightIcon={<GiSun/>}
                 >
                     Light Mode

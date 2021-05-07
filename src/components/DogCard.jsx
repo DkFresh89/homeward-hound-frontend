@@ -42,7 +42,7 @@ function DogCard({dog, handleConfirm}) {
     return(
         <Flex fontFamily='Fjalla One' fontWeight='bold' justifyContent='center' textAlign='center' padding='2'>
             <Box>
-            <Box>Name: {dog.name}</Box>
+            <Box letterSpacing='.5px'>Name: {dog.name}</Box>
             <Divider />
             <Box>Breed: {dog.breed}</Box>
             <Divider />
@@ -50,14 +50,16 @@ function DogCard({dog, handleConfirm}) {
             <Divider/>
             <Box>Temperament: {dog.temperament}</Box>
             <Divider/>
-            <Box padding='2' margin='3' w='300px'> {pics[0] == null ? <Image src={stock}/> : <Slider  {...settings}>{carouselPics}</Slider> } </Box>
-            <Flex justifyContent='center'>
+            <Box  padding='2' margin='3' w='300px'> {pics[0] == null ? <Image  src={stock}/> : <Slider  {...settings}>{carouselPics}</Slider> } </Box>
+            <Flex justifyContent='center' padding='3'>
 
-                    <Button colorScheme="red" onClick={() => setIsOpen(true)}>
+                    <Button letterSpacing='1px' boxShadow='dark-lg' colorScheme="red" onClick={() => setIsOpen(true)}>
                 Delete Dog
             </Button>
 
             <AlertDialog
+                motionPreset="slideInBottom"
+                isCentered
                 isOpen={isOpen}
                 leastDestructiveRef={cancelRef}
                 onClose={onClose}
@@ -68,15 +70,15 @@ function DogCard({dog, handleConfirm}) {
                     Delete Dog
                     </AlertDialogHeader>
 
-                    <AlertDialogBody>
-                    Are you sure? You can't undo this action afterwards.
+                    <AlertDialogBody >
+                    Are you sure? You can't undo this action afterwards, but you can always add a new dog.
                     </AlertDialogBody>
 
                     <AlertDialogFooter>
-                    <Button ref={cancelRef} onClick={onClose}>
+                    <Button boxShadow="xl" ref={cancelRef} onClick={onClose}>
                         Cancel
                     </Button>
-                    <Button colorScheme="red" onClick={handleConfirm} ml={3}>
+                    <Button   boxShadow="xl" colorScheme="red" onClick={handleConfirm} ml={3}>
                         Delete
                     </Button>
                     </AlertDialogFooter>
