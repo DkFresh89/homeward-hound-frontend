@@ -39,7 +39,7 @@ Geocode.setLocationType("ROOFTOP")
             mapTypeControl: false
         }
 
-        console.log(center);
+        // console.log(center);
 
 
         const { isLoaded } = useJsApiLoader({

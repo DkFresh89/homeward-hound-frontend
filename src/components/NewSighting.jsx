@@ -2,6 +2,7 @@ import { Flex, Text, Textarea, Input, Box, Button, Stack } from "@chakra-ui/reac
 import {useState, useEffect, useCallback, useRef} from "react"
 import { useHistory } from "react-router-dom"
 import { GoogleMap, Marker, useLoadScript, InfoWindow } from '@react-google-maps/api';
+import Geocode from "react-geocode";
 import logo from './paw.svg'
 const libraries = ['places']
 
@@ -23,7 +24,7 @@ const options = {
 
 function NewSighting({currentUser, setSightings, sightings}) {
    
-   
+    const [address, setAddress] = useState("")
     const [time, setTime] = useState('')
     const [date, setDate] = useState(new Date())
     
@@ -57,8 +58,9 @@ function NewSighting({currentUser, setSightings, sightings}) {
     const setLoc = () => {
         
         setFormData({...formData, latitude: markers[0].lat, longitude: markers[0].lng})
-        console.log( markers[0].lat);
-        // markers[0].lng != null ? setFormData({...formData, longitude: markers[0].lng}) : null
+        console.log(markers[0].lat);
+        console.log(markers[0].lng);
+       
     }
     
 
@@ -100,12 +102,40 @@ function NewSighting({currentUser, setSightings, sightings}) {
     const handleDate = (e) => {
        setFormData({...formData, date: e.target.value})
     }
-    console.log(formData);
+    // console.log(formData);
+
+    const handleAddress = (e) => {
+        // console.log(e.target.value);
+        const newAddress = e.target.value
+        setAddress({newAddress})
+    }
+
+    const getLocation = () => {
+        console.log(address['newAddress']);
+        Geocode.fromAddress(address['newAddress']).then(
+            (response) => {
+                const { lat, lng } = response.results[0].geometry.location;
+                console.log(lat, lng);
+            //   console.log(response);
+                setFormData({...formData, latitude: lat,
+                longitude: lng})
+                console.log(formData);
+            },
+            (error) => {
+                console.error(error);
+            }
+            )
+        // console.log(address.newAddress);
+        // fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
+        // .then(resp => resp.json())
+        // .then(data => console.log(data))
+    }
+
+    
 
     const handleCreateSighting = (e) => {
         e.preventDefault()
-        setLoc()
-        console.log(formData);
+        // console.log(formData);
         fetch("http://localhost:3000/create_sighting", {
             method: 'POST',
             headers: {
@@ -121,6 +151,7 @@ function NewSighting({currentUser, setSightings, sightings}) {
             history.push("/sighting") 
         })
     }
+
     
     return(
         <Flex justifyContent='center' marginTop='100px' textAlign='center'>
@@ -129,6 +160,10 @@ function NewSighting({currentUser, setSightings, sightings}) {
                 
 <Input onChange={handleDate} type='date' format='MM/d/y'/>
 <Input onChange={handleTime} type='time'/>
+<Input onChange={handleAddress} placeholder='Address'/>
+            <Flex justifyContent='center'><Button onClick={getLocation} colorScheme="blue">
+                Set Location
+            </Button></Flex>
             <Textarea 
                 name='description'
                 onChange={handleChange}
