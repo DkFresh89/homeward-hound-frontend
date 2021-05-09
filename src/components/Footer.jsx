@@ -77,12 +77,12 @@ function Footer() {
                 justify={{ base: 'center', md: 'space-between' }}
                 align={{ base: 'center', md: 'center' }}>
                 <Logo />
-                <Text>© 2021 DK Designs - All rights reserved</Text>
+                <Text fontFamily='Fjalla One' >© 2021 DK Designs - All rights reserved</Text>
                 <Stack direction={'row'} spacing={6}>
                     <SocialButton label={'Github'} href={'https://github.com/dkfresh89'}>
                     <FaGithub />
                     </SocialButton>
-                    <SocialButton label={'Linkedin'} href={'www.linkedin.com/in/doug-kerzner'}>
+                    <SocialButton label={'Linkedin'} href={'https://www.linkedin.com/in/doug-kerzner'}>
                     <FaLinkedin />
                     </SocialButton>
                     <SocialButton label={'Instagram'} href={'https://www.instagram.com/dogsofinstagram/?hl=en'} isExternal>

@@ -1,5 +1,5 @@
 import '../App.css';
-import { Flex, Box, Container, Stack, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton, ScaleFade} from "@chakra-ui/react"
+import { Flex, Box, Container, Stack, Alert, AlertIcon, AlertTitle, AlertDescription, CloseButton, ScaleFade, Center} from "@chakra-ui/react"
 import { Switch, Route } from "react-router-dom"
 import NavBar from './NavBar'
 // import  SideBar  from "./SideBar";
@@ -79,7 +79,7 @@ function App() {
   // console.log(flyers);
 
   return (
-    <Box >
+    <Box  >
       <Stack   >
       <Flex w='100%'>
         {/* <SideBar /> */}
@@ -94,11 +94,11 @@ function App() {
       <Switch>
           <Box justifyContent='center' marginTop='200px' >
 
-          {!warning ?<Flex  justifyContent='inherit'> <ScaleFade in={!warning}><Flex
-                marginTop='150'
+          {!warning ?<Center alignContent='center' > <ScaleFade in={!warning}><Flex
+                // marginTop='150'
                 position='fixed'
                 zIndex='overlay'
-                
+                justifySelf='center'
                 ><Alert   
                     
                     borderRadius="lg"       
@@ -117,7 +117,7 @@ function App() {
                   Please exercise extreme caution! Dogs are our best friends but they may not be friendly if they do not know you. Please report from a safe distance. Approach/Interact with dogs at your own risk!
                 </AlertDescription>
                 <CloseButton onClick={handleWarning} position="absolute" right="8px" top="8px" />
-            </Alert></Flex></ScaleFade> </Flex> : null}
+            </Alert></Flex></ScaleFade> </Center> : null}
 
         
         <Route path="/signup">

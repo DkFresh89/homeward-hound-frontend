@@ -22,6 +22,20 @@ const options = {
 
 
 function NewSighting({currentUser, setSightings, sightings}) {
+   
+   
+    const [time, setTime] = useState('')
+    const [date, setDate] = useState(new Date())
+    
+    const [formData, setFormData] = useState({
+        latitude: '',
+        longitude: '',
+        description: "",
+        user_id: null,
+        missing_flyer_id: null,
+        time_stamp: time,
+        date: date
+    })
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
@@ -29,7 +43,7 @@ function NewSighting({currentUser, setSightings, sightings}) {
     })
 
     const [markers, setMarkers] = useState([])
-    const [selected, setSelected] = useState(null)
+    // const [selected, setSelected] = useState(null)
 
     const onMapClick = useCallback((e) => {
         setMarkers(markers => [...markers, {
@@ -37,11 +51,20 @@ function NewSighting({currentUser, setSightings, sightings}) {
             lng: e.latLng.lng(),
             time: new Date()
         }])
+        
     }, [])
     
+    const setLoc = () => {
+        
+        setFormData({...formData, latitude: markers[0].lat, longitude: markers[0].lng})
+        console.log( markers[0].lat);
+        // markers[0].lng != null ? setFormData({...formData, longitude: markers[0].lng}) : null
+    }
     
-    const [time, setTime] = useState('')
-    const [date, setDate] = useState(new Date())
+
+       
+    
+    
     const history = useHistory()
 
     const mapRef = useRef()
@@ -50,15 +73,6 @@ function NewSighting({currentUser, setSightings, sightings}) {
     }, [])
 
     
-    const [formData, setFormData] = useState({
-        latitude: "",
-        longitude: "",
-        description: "",
-        user_id: null,
-        missing_flyer_id: null,
-        time_stamp: time,
-        date: date
-    })
 
     
     // {currentUser ? console.log(currentUser.id) : null}
@@ -90,8 +104,8 @@ function NewSighting({currentUser, setSightings, sightings}) {
 
     const handleCreateSighting = (e) => {
         e.preventDefault()
-        // getLocation()
-        // console.log(formData);
+        setLoc()
+        console.log(formData);
         fetch("http://localhost:3000/create_sighting", {
             method: 'POST',
             headers: {
@@ -143,18 +157,18 @@ function NewSighting({currentUser, setSightings, sightings}) {
                     origin: new window.google.maps.Point(0,0),
                     anchor: new window.google.maps.Point(15,15)
                 }}
-                onClick={() => {
-                    setSelected(marker)
-                }}
+                // onClick={() => {
+                //     setSelected(marker)
+                // }}
                 />
                 )}
             {/* { <Marker icon={logo} position={{ lat: sighting.attributes.latitude, lng: sighting.attributes.longitude }} />} */}
 
-            {selected ? (<InfoWindow position={{ lat: selected.lat, lng :selected.lng}} onCloseClick={() => {setSelected(null)}}>
+            {/* {selected ? (<InfoWindow position={{ lat: selected.lat, lng :selected.lng}} onCloseClick={() => {setSelected(null)}}>
                 <Box>
                     <Text color='black'>Spotted!</Text>
                 </Box>
-            </InfoWindow>) : null}
+            </InfoWindow>) : null} */}
 
             </GoogleMap> : null}
 
