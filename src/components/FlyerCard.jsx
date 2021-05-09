@@ -117,7 +117,7 @@ const flyerUserId = flyer.attributes.dog.user_id
 
                 
                 {updateToggle && 
-                <>
+                <Box bg='gray.500' borderRadius='md' justifyContent='center'>
                 <RadioGroup onChange={handleReward} padding='1' >
                 <FormLabel>Reward Offered?</FormLabel>
                 <Stack direction="row">
@@ -139,7 +139,7 @@ const flyerUserId = flyer.attributes.dog.user_id
                     size="md"
                 />
                 <Button type='submit' colorScheme='red' margin='2'>Submit</Button>
-                </>}
+                </Box>}
             </form>
             
             {!updateToggle && flyerUserId === userId ? <Button onClick={handleUpdate} colorScheme='red' margin='2'>Update Your Flyer</Button> : null }

@@ -6,7 +6,7 @@ import NavBar from './NavBar'
 import Signup from './Signup'
 import Login from './Login'
 import FlyersContainer from './FlyersContainer'
-import {useState, useEffect} from "react"
+import {useState, useEffect, useHistory} from "react"
 import AddDog from './AddDog';
 import CreateFlyer from './CreateFlyer';
 import NewSighting from './NewSighting';
@@ -27,17 +27,11 @@ function App() {
   const [sightings, setSightings] = useState([])
   const [currentUser, setCurrentUser] = useState(null)
   const [userDogs, setUserDogs] = useState([])
-  // const [flyerId, setFlyerId] = useState(null)
-  // const [editFormData, setEditFormData] = useState({
-  //                                       latitude: "",
-  //                                       longitude: "",
-  //                                       description: "",
-  //                                       reward: false,
-  //                                       found: false,
-  //                                       dog_id: null
-  //                                   })
+  
 
-  // console.log(userDogs);
+
+
+
   
 
   const handleWarning = () => {
@@ -85,7 +79,7 @@ function App() {
   // console.log(flyers);
 
   return (
-    <Box   >
+    <Box >
       <Stack   >
       <Flex w='100%'>
         {/* <SideBar /> */}
@@ -98,12 +92,13 @@ function App() {
       
         {/* <Flex marginTop='150'  > */}
       <Switch>
-          <Box marginTop='200px' >
+          <Box justifyContent='center' marginTop='200px' >
 
-          {!warning ?<Box  justifyContent='center'> <ScaleFade in={!warning}><Flex
+          {!warning ?<Flex  justifyContent='inherit'> <ScaleFade in={!warning}><Flex
                 marginTop='150'
                 position='fixed'
                 zIndex='overlay'
+                
                 ><Alert   
                     
                     borderRadius="lg"       
@@ -122,7 +117,7 @@ function App() {
                   Please exercise extreme caution! Dogs are our best friends but they may not be friendly if they do not know you. Please report from a safe distance. Approach/Interact with dogs at your own risk!
                 </AlertDescription>
                 <CloseButton onClick={handleWarning} position="absolute" right="8px" top="8px" />
-            </Alert></Flex></ScaleFade> </Box> : null}
+            </Alert></Flex></ScaleFade> </Flex> : null}
 
         
         <Route path="/signup">
@@ -158,7 +153,7 @@ function App() {
 
 
       {/* </Flex> */}
-      {/* <Footer /> */}
+      <Footer />
     </Box>
   );
 }

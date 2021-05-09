@@ -1,44 +1,75 @@
 import { Box, Flex, Text, Divider, Badge, Stack } from "@chakra-ui/react";
-import { GoogleMap, StreetViewService, useJsApiLoader, Marker } from '@react-google-maps/api';
-import {useState, useCallback} from "react"
+import { GoogleMap, Marker, useLoadScript, InfoWindow } from '@react-google-maps/api';
+import {useState, useCallback, useRef} from "react"
 import logo from './paw.svg'
+const libraries = ['places']
 
+const mapContainerStyle = {
+    width: '300px',
+    height: '200px'
+};
+
+
+const options = {
+    disableDefaultUI: true,
+    zoomControl: true
+}
 
 function SightingCard({sighting, currentUser}) {
+    
+    const center = {
+        lat: sighting.attributes.latitude !== null ? sighting.attributes.latitude : 40.712776,
+        lng: sighting.attributes.longitude !== null ? sighting.attributes.longitude : -74.005974
+    }
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+        libraries
+    })
 
-    // console.log(sighting);
+    const [markers, setMarkers] = useState([])
+    const [selected, setSelected] = useState(null)
+
+    const onMapClick = useCallback((e) => {
+        setMarkers(markers => [...markers, {
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng(),
+            time: new Date()
+        }])
+    }, [])
+
+    const mapRef = useRef()
+    const onMapLoad = useCallback((map) => {
+        mapRef.current = map
+    }, [])
+
 
     let dog = null
-
     sighting.attributes.dog != null ? dog=sighting.attributes.dog : dog=null
-
-    const [map, setMap] = useState(null)
-
-    const containerStyle = {
-        width: '100%',
-        height: '200px'
-    };
-
-    const { isLoaded } = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
-    })
     
-    const onLoad = useCallback(function callback(map) {
-        const bounds = new window.google.maps.LatLngBounds();
-        map.fitBounds(bounds);
-        // console.log(map);
-        setMap(map)
-    }, [])
-
+    // const [map, setMap] = useState(null)
     
     
-    const onUnmount = useCallback(function callback(map) {
-        setMap(null)
-    }, [])
-
-    console.log(dog);
-
+    
+    // const { isLoaded } = useJsApiLoader({
+        //     id: 'google-map-script',
+        //     googleMapsApiKey: 
+        // })
+        
+        // const onLoad = useCallback(function callback(map) {
+            //     const bounds = new window.google.maps.LatLngBounds();
+            //     map.fitBounds(bounds);
+            //     // console.log(map);
+            //     setMap(map)
+            // }, [])
+            
+            
+            
+            // const onUnmount = useCallback(function callback(map) {
+                //     setMap(null)
+                // }, [])
+                
+                // console.log(dog);
+                
     return (
         <Flex w='300px'  >
             <Flex >
@@ -67,34 +98,38 @@ function SightingCard({sighting, currentUser}) {
                 <Box padding='1'>Temperament: {dog.temperament}</Box>
                 </Box>
             }
-            {isLoaded ?
-            <Flex bottom='0' padding='2'>
-                
-            <GoogleMap
-                bottom='0'
-                mapContainerStyle={containerStyle}
-                onLoad={onLoad}
-                onUnmount={onUnmount}
-                zoom={15}
-                center={{
-                    lat: sighting.attributes.latitude != null ? sighting.attributes.latitude : 40.71353978313557,
-                    
-                    lng: sighting.attributes.longitude != null ? sighting.attributes.longitude : -74.00097315030722
-                }}
-                options={
-                    {streetViewControl: false,
-                        mapTypeControl: false,
-                        overviewMapControl: false
-                        
-                    }
-                }
             
+            {/* <Flex bottom='0' padding='2'> */}
+                
+            { isLoaded ? <GoogleMap
+                bottom='0'
+                mapContainerStyle={mapContainerStyle}
+                zoom={10}
+                center={center}
+                options={options}
+                // onClick={onMapClick}
+                onLoad={onMapLoad}
             >
-            { <Marker icon={logo} position={{ lat: sighting.attributes.latitude, lng: sighting.attributes.longitude }} />}
 
-                <></>
-            </GoogleMap></Flex>
-            : null}
+            { <Marker  icon={{
+                    url: logo,
+                    scaledSize: new window.google.maps.Size(30,30),
+                    origin: new window.google.maps.Point(0,0),
+                    anchor: new window.google.maps.Point(15,15)
+                }} position={{ lat: sighting.attributes.latitude, lng: sighting.attributes.longitude }} />}
+
+            {selected ? (<InfoWindow position={{ lat: selected.lat, lng :selected.lng}} onCloseClick={() => {setSelected(null)}}>
+                <Box>
+                    <Text color='black'>Spotted!</Text>
+                </Box>
+            </InfoWindow>) : null}
+
+            </GoogleMap> : null}
+            
+            {/* </Flex> */}
+            
+
+
             </Stack>
             </Flex>
         </Flex>
@@ -102,3 +137,4 @@ function SightingCard({sighting, currentUser}) {
 }
 
 export default SightingCard
+

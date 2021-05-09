@@ -62,8 +62,11 @@ function Footer() {
                 bg='red'
                 color={useColorModeValue('gray.700', 'gray.200')}
                 bottom='0'
-                position='fixed'
+                position='sticky'
                 w='100%'
+                h='75px'
+                marginTop='10'
+                
                 >
                 <Container
                 as={Stack}

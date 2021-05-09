@@ -5,25 +5,26 @@ import { useHistory } from "react-router-dom"
 function Login({setCurrentUser, setUserDogs}) {
 
     const history = useHistory()
-    const [formData, setFormData] = useState({
+
+    const [loginData, setLoginData] = useState({
         name: "",
         password_digest: "",
     })
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value })
-    }
+    const handleLoginChange = (e) => {
+        setLoginData({ ...loginData, [e.target.name]: e.target.value })
+      }
 
-    const handleLogin = (e) => {
+      const handleLogin = (e) => {
         e.preventDefault()
-
+    
         fetch("http://localhost:3000/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'Application/json',
                 'Accept': 'Application/json'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(loginData)
         })
         .then(resp => {
             if (resp.ok) {
@@ -42,13 +43,14 @@ function Login({setCurrentUser, setUserDogs}) {
         })
     }
     
+    
     return (
         <Flex justifyContent='center' marginTop='100px'>
             <form onSubmit={handleLogin}>
                 <Stack textAlign='center'>
                 <Text>Login</Text>
-                <Input name='name' onChange={handleChange} placeholder='Name' />
-                <Input name='password_digest' onChange={handleChange} placeholder='Password' />
+                <Input name='name' onChange={handleLoginChange} placeholder='Name' />
+                <Input name='password_digest' onChange={handleLoginChange} placeholder='Password' />
                 <Button onClick={handleLogin} type="submit" colorScheme="blue">Login</Button>
                 </Stack>
             </form>

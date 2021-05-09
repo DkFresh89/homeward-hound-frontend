@@ -1,4 +1,4 @@
-import { Flex, Button, Stack, Box } from "@chakra-ui/react";
+import { Flex, Button, Stack, Box, Heading } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom"
 import DogCard from './DogCard'
 import {useState} from 'react'
@@ -48,6 +48,9 @@ function Dogs({currentUser, userDogs, setUserDogs}) {
 
         <Flex justifyContent='center' marginTop='100'>
             <Stack >
+            <Heading textAlign='center'  size='4xl' fontFamily='Fjalla One'>
+                        Your Dogs
+                    </Heading>
             <Flex  justifyContent='center'><Button letterSpacing='1px' fontFamily='Fjalla One' fontWeight='light' colorScheme='green' boxShadow="dark-lg" onClick={() => history.push('/add_dog')}>Add Dog</Button></Flex>
             <Flex >{dog}</Flex>
             </Stack>
