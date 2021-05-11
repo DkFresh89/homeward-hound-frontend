@@ -15,7 +15,7 @@ import logo from './paw.svg'
 const libraries = ['places']
 
 const mapContainerStyle = {
-    width: '300px',
+    width: '400px',
     height: '200px'
 };
 
@@ -29,10 +29,10 @@ const options = {
 
 function FlyerCard({flyer, currentUser}) {
 
- 
+
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [selected, setSelected] = useState(null)
-   
+    
     const initialState = currentUser ? currentUser.id : null
     const [updateToggle, setUpdateToggle] = useState(false)
     const [toggleReward, setToggleReward] = useState(flyer.attributes.reward)
@@ -55,10 +55,6 @@ function FlyerCard({flyer, currentUser}) {
 
     console.log(flyer.attributes.dog.user_id);
 
-//     if (currentUser){
-//         const id = localStorage.getItem("user")
-//         setUserId(JSON.parse(id).id)
-// }
 const flyerUserId = flyer.attributes.dog.user_id
 
     const settings = {
@@ -70,7 +66,7 @@ const flyerUserId = flyer.attributes.dog.user_id
         variableWidth: false,
         adaptiveHeight: true
     }
-    // console.log(id);
+  
 
     const [formData, setFormData] = useState({
         description: flyer.attributes.description,
@@ -128,7 +124,8 @@ const flyerUserId = flyer.attributes.dog.user_id
         const { isOpen, onOpen, onClose } = useDisclosure()
         return (
                 <>
-                    <Button onClick={onOpen}>Map</Button>
+                    <Divider/>
+                    <Button margin='3' onClick={onOpen}>Map</Button>
             
                     <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
@@ -162,75 +159,92 @@ const flyerUserId = flyer.attributes.dog.user_id
             </GoogleMap> : null}
                         </ModalBody>
             
-                        <ModalFooter>
+                        <ModalFooter justifyContent='center'>
                         <Button colorScheme="blue" mr={3} onClick={onClose}>
                             Close
                         </Button>
                         </ModalFooter>
                     </ModalContent>
                     </Modal>
+                <Divider/>
                 </>
             )
         }
     
-    // console.log(flyer);
-    // console.log(pics);
+ 
 
-    return(
-        <Flex padding='2' w='100%'>
-            <Box textAlign='center'>
-            <form onSubmit={handleSubmit}>
-                <Box padding='1'>Name: {dog.name}</Box>
-                <Divider />
-                <Box padding='1'>Breed: {dog.breed}</Box>
-                <Divider />
-                <Box padding='1'>Age: {dog.age}</Box>
-                <Divider />
-                <Box padding='1'>Temperament: {dog.temperament}</Box>
-                <Divider />
-                <Box w='300px' padding='1'>
-                Description: {flyer.attributes.description}
-                </Box>
-                {toggleReward === true ? <Badge borderRadius="full" px="2" colorScheme="red">
-                    Reward
-                </Badge> : null }
-                <Box margin='3'>
-              <LastSeen/>
-              </Box>
-                <Box padding='2' margin='3' w='300px'> {pics[0] == null ? <Image src={stock}/> : <Slider {...settings}>{carouselPics}</Slider> } </Box>
+    return (
+        <Flex padding="2" w="100%">
+            <Box textAlign="center">
+                <form onSubmit={handleSubmit}>
+                    <Box padding="1">Name: {dog.name}</Box>
+                    <Divider />
+                    <Box padding="1">Breed: {dog.breed}</Box>
+                    <Divider />
+                    <Box padding="1">Age: {dog.age}</Box>
+                    <Divider />
+                    <Box padding="1">Temperament: {dog.temperament}</Box>
+                    <Divider />
+                    <Box w="300px" padding="1">
+                        Description: {flyer.attributes.description}
+                    </Box>
+                    {toggleReward === true ? (
+                        <>
+                        <Divider/>
+                        <Badge marginTop='2' borderRadius="full" px="2" colorScheme="red">
+                            Reward
+                        </Badge>
+                        </>
+                    ) : null}
+                    <Box margin="3">
+                        <LastSeen />
+                    </Box>
+                    <Box padding="2" margin="3" w="300px">
+                        {" "}
+                        {pics[0] == null ? (
+                            <Image src={stock} />
+                        ) : (
+                            <Slider {...settings}>{carouselPics}</Slider>
+                        )}{" "}
+                    </Box>
 
+                    {updateToggle && ( 
+                        <Box bg="gray.500" borderRadius="md" justifyContent="center">
+                            <RadioGroup onChange={handleReward} padding="1">
+                                <FormLabel>Reward Offered?</FormLabel>
+                                <Stack direction="row">
+                                    <Radio value={`${true}`}>Yes</Radio>
+                                    <Radio value={`${false}`}>No</Radio>
+                                </Stack>
+                            </RadioGroup>
+                            <RadioGroup onChange={handleFound} padding="1">
+                                <FormLabel>Has the dog been found?</FormLabel>
+                                <Stack direction="row">
+                                    <Radio value={`${true}`}>Yes</Radio>
+                                    <Radio value={`${false}`}>No</Radio>
+                                </Stack>
+                            </RadioGroup>
+                            <Textarea
+                                name="description"
+                                onChange={handleChange}
+                                placeholder={flyer.attributes.description}
+                                size="md"
+                            />
+                            <Button type="submit" colorScheme="red" margin="2">
+                                Submit
+                </Button>
+                        </Box>
+                    )}
+                </form>
 
-                
-                {updateToggle && 
-                <Box bg='gray.500' borderRadius='md' justifyContent='center'>
-                <RadioGroup onChange={handleReward} padding='1' >
-                <FormLabel>Reward Offered?</FormLabel>
-                <Stack direction="row">
-                    <Radio value={`${true}`}>Yes</Radio>
-                    <Radio value={`${false}`}>No</Radio>
-                </Stack>
-                </RadioGroup>
-                <RadioGroup onChange={handleFound} padding='1'>
-                <FormLabel>Has the dog been found?</FormLabel>
-                <Stack direction="row">
-                    <Radio value={`${true}`}>Yes</Radio>
-                    <Radio value={`${false}`}>No</Radio>
-                </Stack>
-                </RadioGroup>
-                <Textarea
-                    name='description'
-                    onChange={handleChange}
-                    placeholder={flyer.attributes.description}
-                    size="md"
-                />
-                <Button type='submit' colorScheme='red' margin='2'>Submit</Button>
-                </Box>}
-            </form>
-            
-            {!updateToggle && flyerUserId === userId ? <Button onClick={handleUpdate} colorScheme='red' margin='2'>Update Your Flyer</Button> : null }
+                {!updateToggle && flyerUserId === userId ? (
+                    <Button onClick={handleUpdate} colorScheme="red" margin="2">
+                        Update Your Flyer
+                    </Button>
+                ) : null}
             </Box>
         </Flex>
-    )
+    );
 }
 
 export default FlyerCard
