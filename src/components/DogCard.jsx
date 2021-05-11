@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 import {useRef, useState} from 'react'
 
 
+
 function DogCard({dog, handleConfirm}) {
 
     const [isOpen, setIsOpen] = useState(false)
@@ -41,6 +42,7 @@ function DogCard({dog, handleConfirm}) {
 
     return(
         <Flex fontFamily='Fjalla One' fontWeight='bold' justifyContent='center' textAlign='center' padding='2'>
+           
             <Box>
             <Box letterSpacing='.5px'>Name: {dog.name}</Box>
             <Divider />

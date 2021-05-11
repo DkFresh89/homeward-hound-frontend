@@ -28,7 +28,7 @@ function FlyersContainer({flyers, handleUpdate, currentUser, setFlyers}) {
     return(
         <Flex direction='column'>
                 <Box >
-                    <Heading textAlign='center'  size='4xl' fontFamily='Fjalla One'>
+                    <Heading textAlign='center'  size='4xl' fontFamily='Fjalla One' padding='5'>
                         Missing Flyers
                     </Heading>
             {currentUser ? <Flex justifyContent='center'><Button margin='3' colorScheme='red' onClick={() => history.push("/new_flyer")}>Create New Flyer</Button></Flex> : null}

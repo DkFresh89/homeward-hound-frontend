@@ -1,4 +1,10 @@
-import { Box, Flex, Text, Divider, Badge, Stack } from "@chakra-ui/react";
+import { Box, Flex, Text, Divider, Badge, Stack, Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton, useDisclosure } from "@chakra-ui/react";
 import { GoogleMap, Marker, useLoadScript, InfoWindow } from '@react-google-maps/api';
 import {useState, useCallback, useRef} from "react"
 import logo from './paw.svg'
@@ -16,6 +22,8 @@ const options = {
 }
 
 function SightingCard({sighting, currentUser}) {
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
     
     const center = {
         lat: sighting.attributes.latitude !== null ? sighting.attributes.latitude : 40.712776,
@@ -46,32 +54,9 @@ function SightingCard({sighting, currentUser}) {
     let dog = null
     sighting.attributes.dog != null ? dog=sighting.attributes.dog : dog=null
     
-    // const [map, setMap] = useState(null)
-    
-    
-    
-    // const { isLoaded } = useJsApiLoader({
-        //     id: 'google-map-script',
-        //     googleMapsApiKey: 
-        // })
-        
-        // const onLoad = useCallback(function callback(map) {
-            //     const bounds = new window.google.maps.LatLngBounds();
-            //     map.fitBounds(bounds);
-            //     // console.log(map);
-            //     setMap(map)
-            // }, [])
-            
-            
-            
-            // const onUnmount = useCallback(function callback(map) {
-                //     setMap(null)
-                // }, [])
-                
-                // console.log(dog);
                 
     return (
-        <Flex w='300px'  >
+        <Flex w='300px' h='100%'  >
             <Flex >
                 <Stack>
                 { dog != null ?<Flex padding='3' justifyContent='center'> <Badge
@@ -99,7 +84,7 @@ function SightingCard({sighting, currentUser}) {
                 </Box>
             }
             
-            {/* <Flex bottom='0' padding='2'> */}
+            {/* <Flex bottom='0' padding='2' w='100%'> */}
                 
             { isLoaded ? <GoogleMap
                 bottom='0'
