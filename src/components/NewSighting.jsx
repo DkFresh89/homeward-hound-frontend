@@ -1,4 +1,4 @@
-import { Flex, Text, Textarea, Input, Box, Button, Stack } from "@chakra-ui/react"
+import { Flex, Text, Textarea, Input, Box, Button, Stack, Select } from "@chakra-ui/react"
 import {useState, useEffect, useCallback, useRef} from "react"
 import { useHistory } from "react-router-dom"
 import { GoogleMap, Marker, useLoadScript, InfoWindow } from '@react-google-maps/api';
@@ -22,7 +22,9 @@ const options = {
 }
 
 
-function NewSighting({currentUser, setSightings, sightings}) {
+function NewSighting({currentUser, setSightings, sightings, flyers}) {
+
+    
    
     const [address, setAddress] = useState("")
     const [time, setTime] = useState('')
@@ -131,7 +133,17 @@ function NewSighting({currentUser, setSightings, sightings}) {
         // .then(data => console.log(data))
     }
 
-    
+    console.log(flyers);
+
+    const dogList = flyers.map(flyer => {
+        console.log(flyer.attributes.dog.name);
+        return(<option key={flyer.id} value={flyer.id}>{flyer.attributes.dog.name}</option>) 
+    })
+
+    const handleDogs = (e) => {
+        console.log(e.target.name);
+        setFormData({ ...formData, [e.target.name]: e.target.value})
+    }
 
     const handleCreateSighting = (e) => {
         e.preventDefault()
@@ -157,6 +169,9 @@ function NewSighting({currentUser, setSightings, sightings}) {
         <Flex justifyContent='center' marginTop='100px' textAlign='center'>
             <Stack>
                 <Text margin='2'>Sighting</Text>
+                <Select name='missing_flyer_id' onChange={handleDogs} placeholder="Select Missing Dog">
+                {dogList}
+            </Select>
                 
 <Input onChange={handleDate} type='date' format='MM/d/y'/>
 <Input onChange={handleTime} type='time'/>

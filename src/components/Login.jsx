@@ -45,7 +45,7 @@ function Login({setCurrentUser, setUserDogs}) {
     
     
     return (
-        <Flex justifyContent='center' marginTop='100px'>
+        <Flex justifyContent='center' marginTop='200px' h='50em'>
             <form onSubmit={handleLogin}>
                 <Stack textAlign='center'>
                 <Text>Login</Text>

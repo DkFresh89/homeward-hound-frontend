@@ -20,7 +20,7 @@ function FlyerCard({flyer, currentUser}) {
     const [userId] = useState(initialState)
     const history = useHistory()
 
-    // console.log(userId.id);
+    console.log(flyer.attributes.dog.user_id);
 
 //     if (currentUser){
 //         const id = localStorage.getItem("user")

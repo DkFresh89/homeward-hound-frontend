@@ -48,7 +48,7 @@ function Signup({setCurrentUser}) {
     }
 
     return (
-        <Flex justifyContent='center' marginTop='100px'>
+        <Flex justifyContent='center' marginTop='100px' h='50em'>
             <form onSubmit={handleSignup}>
                 <Stack textAlign='center'>
                     <Text>Signup</Text>

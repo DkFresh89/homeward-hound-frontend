@@ -8,7 +8,7 @@ function SightingContainer({sightings, currentUser}){
 
     const history = useHistory()
 
-    console.log(sightings);
+    // console.log(sightings);
 
     const sightingsArray = sightings.map(sighting => {
         console.log(sighting);
@@ -19,7 +19,7 @@ function SightingContainer({sightings, currentUser}){
         )
     })
 
-    console.log(sightingsArray);
+    // console.log(sightingsArray);
 
     return(
         <Flex direction='column'>
