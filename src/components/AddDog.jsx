@@ -24,7 +24,11 @@ function AddDog({currentUser, userDogs, setUserDogs}) {
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
-        console.log(formData);
+        // console.log(formData);
+    }
+    const handleImage = (e) => {
+        setFormData({ ...formData, image: e.target.value })
+        // console.log(formData);
     }
 
     const handleDog = (e) => {
@@ -56,6 +60,7 @@ function AddDog({currentUser, userDogs, setUserDogs}) {
                 <Input placeholder='Size' name='size'  onChange={handleChange}/>
                 <Input type='number' placeholder='Age' name='age'  onChange={handleChange}/>
                 <Input placeholder='Temperament' name='temperament'  onChange={handleChange}/>
+                <Input placeholder='Images' name='image' onChange={handleImage} />
                 <ButtonGroup>
                     <Button onClick={handleSkip} colorScheme="gray">Skip</Button>
                     <Button onClick={handleDog} type="submit" colorScheme="green">Add Pooch</Button>
