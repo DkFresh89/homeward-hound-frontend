@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom"
 
 
 
-function CreateFlyer({currentUser, updateFlyers, userDogs}) {
+function CreateFlyer({updateFlyers, userDogs}) {
     
     const [map, setMap] = useState(null)
     // console.log(currentUser.dogs);

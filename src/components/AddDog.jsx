@@ -27,7 +27,7 @@ function AddDog({currentUser, userDogs, setUserDogs}) {
         // console.log(formData);
     }
     const handleImage = (e) => {
-        setFormData({ ...formData, image: e.target.value })
+        setFormData({ ...formData, image: ',' + e.target.value })
         // console.log(formData);
     }
 

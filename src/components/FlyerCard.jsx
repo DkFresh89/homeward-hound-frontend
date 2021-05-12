@@ -131,7 +131,7 @@ const flyerUserId = flyer.attributes.dog.user_id
                     <ModalOverlay />
                     <ModalContent>
                         <ModalHeader>Last Seen:</ModalHeader>
-                        <ModalCloseButton />
+                        {/* <ModalCloseButton /> */}
                         <ModalBody>
                         { isLoaded ? <GoogleMap
                 bottom='0'

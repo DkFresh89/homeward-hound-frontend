@@ -62,12 +62,8 @@ function NewSighting({currentUser, setSightings, sightings, flyers}) {
         setFormData({...formData, latitude: markers[0].lat, longitude: markers[0].lng})
         console.log(markers[0].lat);
         console.log(markers[0].lng);
-       
+    
     }
-    
-
-       
-    
     
     const history = useHistory()
 
@@ -75,9 +71,7 @@ function NewSighting({currentUser, setSightings, sightings, flyers}) {
     const onMapLoad = useCallback((map) => {
         mapRef.current = map
     }, [])
-
     
-
     
     // {currentUser ? console.log(currentUser.id) : null}
     useEffect(() => {
@@ -110,6 +104,10 @@ function NewSighting({currentUser, setSightings, sightings, flyers}) {
         // console.log(e.target.value);
         const newAddress = e.target.value
         setAddress({newAddress})
+    }
+    const handleImage = (e) => {
+        setFormData({ ...formData, image: ',' + e.target.value })
+        // console.log(formData);
     }
 
     const getLocation = () => {
@@ -166,7 +164,7 @@ function NewSighting({currentUser, setSightings, sightings, flyers}) {
 
     
     return(
-        <Flex justifyContent='center' marginTop='100px' textAlign='center'>
+        <Flex justifyContent='center' marginTop='100px' textAlign='center' h='72vh'>
             <Stack>
                 <Text margin='2'>Sighting</Text>
                 <Select name='missing_flyer_id' onChange={handleDogs} placeholder="Select Missing Dog">
@@ -179,6 +177,7 @@ function NewSighting({currentUser, setSightings, sightings, flyers}) {
             <Flex justifyContent='center'><Button onClick={getLocation} colorScheme="blue">
                 Set Location
             </Button></Flex>
+            <Input placeholder='Images' name='image' onChange={handleImage} />
             <Textarea 
                 name='description'
                 onChange={handleChange}
@@ -187,14 +186,14 @@ function NewSighting({currentUser, setSightings, sightings, flyers}) {
             />
 
 {/* <form > */}
-
+{/* 
 { isLoaded ? <GoogleMap
                 bottom='0'
                 mapContainerStyle={mapContainerStyle}
                 zoom={8}
                 center={center}
                 options={options}
-                onClick={onMapClick}
+                // onClick={onMapClick}
                 onLoad={onMapLoad}
             >
                 {markers.map(marker => 
@@ -206,12 +205,9 @@ function NewSighting({currentUser, setSightings, sightings, flyers}) {
                     scaledSize: new window.google.maps.Size(30,30),
                     origin: new window.google.maps.Point(0,0),
                     anchor: new window.google.maps.Point(15,15)
-                }}
-                // onClick={() => {
-                //     setSelected(marker)
-                // }}
-                />
-                )}
+                }} */}
+                {/* // onClick={() => { */}
+            
             {/* { <Marker icon={logo} position={{ lat: sighting.attributes.latitude, lng: sighting.attributes.longitude }} />} */}
 
             {/* {selected ? (<InfoWindow position={{ lat: selected.lat, lng :selected.lng}} onCloseClick={() => {setSelected(null)}}>
@@ -220,7 +216,7 @@ function NewSighting({currentUser, setSightings, sightings, flyers}) {
                 </Box>
             </InfoWindow>) : null} */}
 
-            </GoogleMap> : null}
+            {/* </GoogleMap> : null} */}
 
 
             <Flex justifyContent='center'><Button onClick={handleCreateSighting} colorScheme="blue">

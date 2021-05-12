@@ -1,10 +1,10 @@
-import { Flex, Button, Stack, Box, Heading } from "@chakra-ui/react";
+import { Flex, Button, Stack, Box, Heading, Wrap, WrapItem } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom"
 import DogCard from './DogCard'
 import {useState} from 'react'
 
 
-function Dogs({currentUser, userDogs, setUserDogs}) {
+function Dogs({userDogs, setUserDogs}) {
 
     const history = useHistory()
     const [filterDogs, setFilterDogs] = useState({})
@@ -38,9 +38,9 @@ function Dogs({currentUser, userDogs, setUserDogs}) {
 
     const dog = userDogs.map (dog => {
         return(
-            <Box  boxShadow="dark-lg" margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'> 
+            <WrapItem  boxShadow="dark-lg" margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'> 
             <DogCard key={dog.name} dog={dog} userDogs={userDogs} handleConfirm={handleConfirm} />
-            </Box>
+            </WrapItem>
         )
     })
 
@@ -52,7 +52,7 @@ function Dogs({currentUser, userDogs, setUserDogs}) {
                         Your Dogs
                     </Heading>
             <Flex  justifyContent='center'><Button letterSpacing='1px' fontFamily='Fjalla One' fontWeight='light' colorScheme='green' boxShadow="dark-lg" onClick={() => history.push('/add_dog')}>Add Dog</Button></Flex>
-            <Flex >{dog}</Flex>
+            <Wrap justify='center' spacing='30px' >{dog}</Wrap>
             </Stack>
         </Flex>
 

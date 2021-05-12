@@ -22,7 +22,7 @@ function SightingContainer({sightings, currentUser}){
     // console.log(sightingsArray);
 
     return(
-        <Flex direction='column'>
+        <Flex direction='column' h='fit-content'>
             <Box padding='2' textAlign='center'>
                 <Heading size='4xl' fontFamily='Fjalla One'>
                     Sightings
