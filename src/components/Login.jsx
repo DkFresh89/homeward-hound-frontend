@@ -50,7 +50,7 @@ function Login({setCurrentUser, setUserDogs}) {
                 <Stack textAlign='center'>
                 <Text>Login</Text>
                 <Input name='name' onChange={handleLoginChange} placeholder='Name' />
-                <Input name='password_digest' onChange={handleLoginChange} placeholder='Password' />
+                <Input type='password' name='password_digest' onChange={handleLoginChange} placeholder='Password' />
                 <Button onClick={handleLogin} type="submit" colorScheme="blue">Login</Button>
                 </Stack>
             </form>

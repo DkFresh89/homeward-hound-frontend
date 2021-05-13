@@ -4,7 +4,11 @@ import { Flex, Text, Box, Image, Button,Badge, ButtonGroup, Radio, FormLabel, St
     ModalHeader,
     ModalFooter,
     ModalBody,
-    ModalCloseButton, useDisclosure } from "@chakra-ui/react"
+    ModalCloseButton, useDisclosure, Tag,
+    TagLabel,
+    TagLeftIcon,
+    TagRightIcon,
+    TagCloseButton, } from "@chakra-ui/react"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,6 +16,7 @@ import {useState, useCallback, useRef} from "react"
 import { useHistory } from "react-router-dom"
 import { GoogleMap, Marker, useLoadScript, InfoWindow } from '@react-google-maps/api';
 import logo from './paw.svg'
+import { GiDogHouse } from "react-icons/gi";
 const libraries = ['places']
 
 const mapContainerStyle = {
@@ -36,6 +41,7 @@ function FlyerCard({flyer, currentUser}) {
     const initialState = currentUser ? currentUser.id : null
     const [updateToggle, setUpdateToggle] = useState(false)
     const [toggleReward, setToggleReward] = useState(flyer.attributes.reward)
+    const [toggleFound, setToggleFound] = useState(flyer.attributes.found)
     const [userId] = useState(initialState)
     const history = useHistory()
 
@@ -116,6 +122,7 @@ const flyerUserId = flyer.attributes.dog.user_id
             
             // console.log(flyer.data.attributes.reward)
             setToggleReward(flyer.data.attributes.reward)
+            setToggleFound(flyer.data.attributes.found)
         })
         
     }
@@ -191,9 +198,18 @@ const flyerUserId = flyer.attributes.dog.user_id
                     {toggleReward === true ? (
                         <>
                         <Divider/>
-                        <Badge marginTop='2' borderRadius="full" px="2" colorScheme="red">
+                        <Badge size='lg' marginTop='2' borderRadius="full" px="2" colorScheme="red">
                             Reward
                         </Badge>
+                        </>
+                    ) : null}
+                    {toggleFound === true ? (
+                        <>
+                        <Divider/>
+                        <Tag marginTop='2' borderRadius="full" px="2" colorScheme="blue">
+                        <TagLabel>Found!</TagLabel>
+                        <TagRightIcon as={GiDogHouse} />
+                        </Tag>
                         </>
                     ) : null}
                     <Box margin="3">

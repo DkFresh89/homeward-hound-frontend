@@ -177,7 +177,7 @@ function NewSighting({currentUser, setSightings, sightings, flyers}) {
             <Flex justifyContent='center'><Button onClick={getLocation} colorScheme="blue">
                 Set Location
             </Button></Flex>
-            <Input placeholder='Images' name='image' onChange={handleImage} />
+            {/* <Input placeholder='Images' name='image' onChange={handleImage} /> */}
             <Textarea 
                 name='description'
                 onChange={handleChange}
