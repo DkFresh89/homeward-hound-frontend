@@ -53,7 +53,7 @@ function FlyerCard({flyer, currentUser}) {
         mapRef.current = map
     }, [])
 
-    console.log(flyer.attributes.dog.user_id);
+    // console.log(flyer.attributes.dog.user_id);
 
 const flyerUserId = flyer.attributes.dog.user_id
 

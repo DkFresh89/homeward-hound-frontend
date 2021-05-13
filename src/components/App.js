@@ -99,7 +99,7 @@ function App() {
                 position='fixed'
                 zIndex='overlay'
                 justifyContent='center'
-                left='715px'
+                left='500px'
                 ><Alert   
                     
                     borderRadius="lg"       
@@ -140,7 +140,7 @@ function App() {
           <NewSighting flyers={flyers} sightings={sightings} setSightings={setSightings} currentUser={currentUser}/>
         </Route>
         <Route path="/new_flyer">
-          <CreateFlyer userDogs={userDogs} currentUser={currentUser} updateFlyers={updateFlyers}/>
+          <CreateFlyer flyers={flyers} userDogs={userDogs} currentUser={currentUser} updateFlyers={updateFlyers}/>
         </Route>
         <Route path='/dogs'>
           <Dogs currentUser={currentUser} userDogs={userDogs} setUserDogs={setUserDogs} />

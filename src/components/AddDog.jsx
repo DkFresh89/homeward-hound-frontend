@@ -44,12 +44,13 @@ function AddDog({currentUser, userDogs, setUserDogs}) {
         })
         .then(resp => resp.json())
         .then(data => {
-         console.log(data.data.attributes)
+         console.log(data.data)
          console.log(currentUser);
         setUserDogs([...userDogs, data.data.attributes])
          history.push('/dogs')
         })
     }
+    console.log(userDogs);
 
     return(
         <Flex justifyContent='center' marginTop='100px'>

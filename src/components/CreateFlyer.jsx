@@ -6,7 +6,7 @@ import { useHistory } from "react-router-dom"
 
 
 
-function CreateFlyer({updateFlyers, userDogs}) {
+function CreateFlyer({flyers, updateFlyers, userDogs}) {
     
     const [map, setMap] = useState(null)
     // console.log(currentUser.dogs);
@@ -75,12 +75,12 @@ Geocode.setLocationType("ROOFTOP")
     })
     // console.log(currentUser.id);
     const dogList = userDogs.map(dog => {
-        // console.log(dog.id);
+        console.log(dog);
         return(<option key={dog.id} value={dog.id}>{dog.name}</option>) 
     })
 
     const handleChange = (e) => {
-        console.log(e.target.name);
+        console.log(e.target.value);
         setFormData({ ...formData, [e.target.name]: e.target.value})
     }
 
@@ -130,7 +130,7 @@ Geocode.setLocationType("ROOFTOP")
         })
         .then(resp => resp.json())
         .then(data => {
-            // console.log(data);
+            console.log(data.data);
             updateFlyers(data.data)
             history.push("/flyers") 
         })
