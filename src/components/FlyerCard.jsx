@@ -198,7 +198,7 @@ const flyerUserId = flyer.attributes.dog.user_id
                     {toggleReward === true ? (
                         <>
                         <Divider/>
-                        <Badge size='lg' marginTop='2' borderRadius="full" px="2" colorScheme="red">
+                        <Badge size='lg' margin='2' borderRadius="full" px="2" colorScheme="red">
                             Reward
                         </Badge>
                         </>

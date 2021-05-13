@@ -99,7 +99,7 @@ function App() {
                 position='fixed'
                 zIndex='overlay'
                 justifyContent='center'
-                left='725px'
+                left='485px'
                 ><Alert   
                     
                     borderRadius="lg"       
