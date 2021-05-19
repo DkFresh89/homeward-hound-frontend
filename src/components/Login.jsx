@@ -1,15 +1,18 @@
-import { Flex, Input, Button, Stack, Text } from "@chakra-ui/react"
+import { Flex, Input, Button, Stack, Text, InputGroup, InputRightElement } from "@chakra-ui/react"
 import {useState} from "react"
 import { useHistory } from "react-router-dom"
 
 function Login({setCurrentUser, setUserDogs}) {
 
     const history = useHistory()
+    const [show, setShow] = useState(false)
 
     const [loginData, setLoginData] = useState({
         name: "",
         password_digest: "",
     })
+
+    const handleClick = () => setShow(!show)
 
     const handleLoginChange = (e) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value })
@@ -50,7 +53,22 @@ function Login({setCurrentUser, setUserDogs}) {
                 <Stack textAlign='center'>
                 <Text>Login</Text>
                 <Input name='name' onChange={handleLoginChange} placeholder='Name' />
-                <Input type='password' name='password_digest' onChange={handleLoginChange} placeholder='Password' />
+                <InputGroup size="md">
+                        <Input
+                        onChange={handleLoginChange}
+                        // type="text"
+                        name="password_digest"
+                        pr="4.5rem"
+                        type={show ? "text" : "password"}
+                        placeholder="Enter password"
+                        />
+                        <InputRightElement width="4.5rem">
+                        <Button variant='solid' h="1.75rem" size="sm" onClick={handleClick}>
+                            {" "}
+                            {show ? "Hide" : "Show"}{" "}
+                        </Button>
+                        </InputRightElement>
+                    </InputGroup>
                 <Button onClick={handleLogin} type="submit" colorScheme="blue">Login</Button>
                 </Stack>
             </form>
