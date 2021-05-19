@@ -1,4 +1,4 @@
-import { Flex, Box, Wrap, WrapItem, Button, Stack } from "@chakra-ui/react"
+import { Flex, Box, Wrap, WrapItem, Button, Stack, Heading, Container } from "@chakra-ui/react"
 import FlyerCard from './FlyerCard'
 import { useHistory } from "react-router-dom"
 
@@ -14,10 +14,10 @@ function FlyersContainer({flyers, handleUpdate, currentUser, setFlyers}) {
         // console.log(flyer);
     return ( 
         
-        <Box margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'> 
-            <FlyerCard flyers={flyers} setFlyers={setFlyers} handleUpdate={handleUpdate} key={flyer.id} flyer={flyer} />
+        <WrapItem boxShadow="dark-lg" margin='10px' borderWidth="1px" borderRadius="lg" justifyContent='center'> 
+            <FlyerCard currentUser={currentUser} flyers={flyers} setFlyers={setFlyers} handleUpdate={handleUpdate} key={flyer.id} flyer={flyer} />
             
-        </Box> 
+        </WrapItem> 
     )
     })
 
@@ -26,16 +26,17 @@ function FlyersContainer({flyers, handleUpdate, currentUser, setFlyers}) {
     // console.log(flyerCards);
 
     return(
-        <Flex justifyContent='center' marginTop='100px'>
-            <Stack>
-            {currentUser ? <Flex justifyContent='center'><Button colorScheme='red' onClick={() => history.push("/new_flyer")}>Create New Flyer</Button></Flex> : null}
-        <Wrap spacing='30px'  marginTop='100px'>
-            
-                <WrapItem >
-                {flyerCards}
-                </WrapItem>
-        </Wrap>
-                </Stack>
+        <Flex direction='column'>
+                <Box >
+                    <Heading textAlign='center'  size='4xl' fontFamily='Fjalla One' padding='5'>
+                        Missing Flyers
+                    </Heading>
+            {currentUser ? <Flex justifyContent='center'><Button margin='3' colorScheme='red' onClick={() => history.push("/new_flyer")}>Create New Flyer</Button></Flex> : null}
+                </Box>
+
+            <Wrap spacing='30px' justify='center' >
+            {flyerCards}
+            </Wrap>
         </Flex>
     )
 }

@@ -1,4 +1,4 @@
-import { Flex, Textarea, Text, Button, VStack, Spacer, Box, Input, Select } from "@chakra-ui/react"
+import { Flex, Textarea, Button, VStack, Spacer, Box, Input, Select } from "@chakra-ui/react"
 import {useState, useCallback} from "react"
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import Geocode from "react-geocode";
@@ -6,11 +6,12 @@ import { useHistory } from "react-router-dom"
 
 
 
-function CreateFlyer({currentUser, updateFlyers}) {
-
+function CreateFlyer({flyers, updateFlyers, userDogs}) {
+    
+    const [map, setMap] = useState(null)
     // console.log(currentUser.dogs);
     const history = useHistory()
-   
+
 
 
 //**************Geocode****************************************/
@@ -29,8 +30,16 @@ Geocode.setLocationType("ROOFTOP")
         };
 
         const center = {
-            lat: 40.713, lng: -74.015
+            lat: 40.713468006091794, 
+            lng: -74.0150387326917
         };
+
+        const options = {
+            streetViewControl: false,
+            mapTypeControl: false
+        }
+
+        // console.log(center);
 
 
         const { isLoaded } = useJsApiLoader({
@@ -38,12 +47,11 @@ Geocode.setLocationType("ROOFTOP")
             googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
         })
         
-        const [map, setMap] = useState(null)
         
         const onLoad = useCallback(function callback(map) {
             const bounds = new window.google.maps.LatLngBounds();
             map.fitBounds(bounds);
-            console.log(map);
+            // console.log(map);
             setMap(map)
         }, [])
 
@@ -66,17 +74,17 @@ Geocode.setLocationType("ROOFTOP")
         dog_id: null
     })
     // console.log(currentUser.id);
-    const dogList = currentUser.dogs.map(dog => {
-        // console.log(dog.id);
-        return(<option value={dog.id}>{dog.name}</option>) 
+    const dogList = userDogs.map(dog => {
+        console.log(dog);
+        return(<option key={dog.id} value={dog.id}>{dog.name}</option>) 
     })
 
     const handleChange = (e) => {
-        console.log(e.target.name);
+        console.log(e.target.value);
         setFormData({ ...formData, [e.target.name]: e.target.value})
     }
 
-    console.log(formData.dog_id);
+    // console.log(formData.dog_id);
 
     const handleRadio = (e) => {
         setFormData({...formData, good_sam: e})
@@ -122,7 +130,7 @@ Geocode.setLocationType("ROOFTOP")
         })
         .then(resp => resp.json())
         .then(data => {
-            // console.log(data);
+            console.log(data.data);
             updateFlyers(data.data)
             history.push("/flyers") 
         })
@@ -150,11 +158,15 @@ Geocode.setLocationType("ROOFTOP")
                 <Flex justifyContent='center' >
             <GoogleMap
                 mapContainerStyle={containerStyle}
-                center={center}
-                // panTo={{ lat: 40.713, lng: -74.015}}
-                zoom={4}
+                // center= {{lat: 40.713468006091794, lng: -74.0150387326917}}
+                center={{
+                    lat: 40.713468006091794,
+                    lng: -74.0150387326917
+                }}
+                zoom={1}
                 onLoad={onLoad}
                 onUnmount={onUnmount}
+                options= {options}
             >
                 <Marker position={{ lat: 40.713468006091794, lng: -74.0150387326917}} />
                 
@@ -171,6 +183,11 @@ Geocode.setLocationType("ROOFTOP")
         </form>
         </VStack>
     </Flex>
+
+
+
+
+
     );
 }
 

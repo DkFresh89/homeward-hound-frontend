@@ -1,23 +1,67 @@
-import { Flex, Text, Box, Image, Button,Badge, ButtonGroup, Radio, FormLabel, Stack, RadioGroup, Textarea, Input, Divider } from "@chakra-ui/react"
+import { Flex, Text, Box, Image, Button,Badge, ButtonGroup, Radio, FormLabel, Stack, RadioGroup, Textarea, Input, Divider,  Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton, useDisclosure, Tag,
+    TagLabel,
+    TagLeftIcon,
+    TagRightIcon,
+    TagCloseButton, } from "@chakra-ui/react"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {useState} from "react"
+import {useState, useCallback, useRef} from "react"
 import { useHistory } from "react-router-dom"
+import { GoogleMap, Marker, useLoadScript, InfoWindow } from '@react-google-maps/api';
+import logo from './paw.svg'
+import { GiDogHouse } from "react-icons/gi";
+const libraries = ['places']
+
+const mapContainerStyle = {
+    width: '400px',
+    height: '200px'
+};
+
+
+const options = {
+    disableDefaultUI: true,
+    zoomControl: true
+}
 
 
 
-function FlyerCard({flyer, setFlyers, flyers}) {
+function FlyerCard({flyer, currentUser}) {
 
-    // console.log(flyer.attributes.dog.user_id);
-    const id = localStorage.getItem("user")
-    const userId = (JSON.parse(id).id)
-    const flyerUserId = flyer.attributes.dog.user_id
-    // console.log(flyerUserId);
 
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const [selected, setSelected] = useState(null)
+    
+    const initialState = currentUser ? currentUser.id : null
     const [updateToggle, setUpdateToggle] = useState(false)
     const [toggleReward, setToggleReward] = useState(flyer.attributes.reward)
+    const [toggleFound, setToggleFound] = useState(flyer.attributes.found)
+    const [userId] = useState(initialState)
     const history = useHistory()
+
+    const center = {
+        lat: flyer.attributes.latitude !== null ? flyer.attributes.latitude : 40.712776,
+        lng: flyer.attributes.longitude !== null ? flyer.attributes.longitude : -74.005974
+    }
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY,
+        libraries
+    })
+
+    const mapRef = useRef()
+    const onMapLoad = useCallback((map) => {
+        mapRef.current = map
+    }, [])
+
+    // console.log(flyer.attributes.dog.user_id);
+
+const flyerUserId = flyer.attributes.dog.user_id
 
     const settings = {
         dots: true,
@@ -28,7 +72,7 @@ function FlyerCard({flyer, setFlyers, flyers}) {
         variableWidth: false,
         adaptiveHeight: true
     }
-    // console.log(id);
+  
 
     const [formData, setFormData] = useState({
         description: flyer.attributes.description,
@@ -41,7 +85,7 @@ function FlyerCard({flyer, setFlyers, flyers}) {
     const stock = 'https://st2.depositphotos.com/thumbs/32032774/vector/46237/462377004/api_thumb_450.jpg'
 
     const carouselPics = pics.map(pic => {
-        return(<Box><Image src={pic}/></Box>)
+        return(<Box><Image key={pic} src={pic}/></Box>)
     })
     
     const handleUpdate = () => {
@@ -78,62 +122,145 @@ function FlyerCard({flyer, setFlyers, flyers}) {
             
             // console.log(flyer.data.attributes.reward)
             setToggleReward(flyer.data.attributes.reward)
+            setToggleFound(flyer.data.attributes.found)
         })
         
     }
-    
-    // console.log(flyer);
-    // console.log(pics);
 
-    return(
-        <Flex padding='2'>
-            <Box textAlign='center'>
-            <form onSubmit={handleSubmit}>
-                <Box padding='1'>Name: {dog.name}</Box>
-                <Divider />
-                <Box padding='1'>Breed: {dog.breed}</Box>
-                <Divider />
-                <Box padding='1'>Age: {dog.age}</Box>
-                <Divider />
-                <Box padding='1'>Temperament: {dog.temperament}</Box>
-                <Divider />
-                {toggleReward == true ? <Badge borderRadius="full" px="2" colorScheme="red">
-                    Reward
-                </Badge> : null }
-                <Box padding='2' margin='3' w='300px'> {pics[0] == null ? <Image src={stock}/> : <Slider {...settings}>{carouselPics}</Slider> } </Box>
-
-
-                
-                {updateToggle && 
+    function LastSeen() {
+        const { isOpen, onOpen, onClose } = useDisclosure()
+        return (
                 <>
-                <RadioGroup onChange={handleReward} padding='1' >
-                <FormLabel>Reward Offered?</FormLabel>
-                <Stack direction="row">
-                    <Radio value={`${true}`}>Yes</Radio>
-                    <Radio value={`${false}`}>No</Radio>
-                </Stack>
-                </RadioGroup>
-                <RadioGroup onChange={handleFound} padding='1'>
-                <FormLabel>Has the dog been found?</FormLabel>
-                <Stack direction="row">
-                    <Radio value={`${true}`}>Yes</Radio>
-                    <Radio value={`${false}`}>No</Radio>
-                </Stack>
-                </RadioGroup>
-                <Textarea
-                    name='description'
-                    onChange={handleChange}
-                    placeholder={flyer.attributes.description}
-                    size="md"
-                />
-                <Button type='submit' colorScheme='red' margin='2'>Submit</Button>
-                </>}
-            </form>
+                    <Divider/>
+                    <Button margin='3' onClick={onOpen}>Map</Button>
             
-            {!updateToggle && flyerUserId === userId ? <Button onClick={handleUpdate} colorScheme='red' margin='2'>Update</Button> : null }
+                    <Modal isOpen={isOpen} onClose={onClose}>
+                    <ModalOverlay />
+                    <ModalContent>
+                        <ModalHeader>Last Seen:</ModalHeader>
+                        {/* <ModalCloseButton /> */}
+                        <ModalBody>
+                        { isLoaded ? <GoogleMap
+                bottom='0'
+                mapContainerStyle={mapContainerStyle}
+                zoom={10}
+                center={center}
+                options={options}
+                // onClick={onMapClick}
+                onLoad={onMapLoad}
+            >
+
+            { <Marker  icon={{
+                    url: logo,
+                    scaledSize: new window.google.maps.Size(30,30),
+                    origin: new window.google.maps.Point(0,0),
+                    anchor: new window.google.maps.Point(15,15)
+                }} position={{ lat: flyer.attributes.latitude, lng: flyer.attributes.longitude }} />}
+
+            {selected ? (<InfoWindow position={{ lat: selected.lat, lng :selected.lng}} onCloseClick={() => {setSelected(null)}}>
+                <Box>
+                    <Text color='black'>Spotted!</Text>
+                </Box>
+            </InfoWindow>) : null}
+
+            </GoogleMap> : null}
+                        </ModalBody>
+            
+                        <ModalFooter justifyContent='center'>
+                        <Button colorScheme="blue" mr={3} onClick={onClose}>
+                            Close
+                        </Button>
+                        </ModalFooter>
+                    </ModalContent>
+                    </Modal>
+                <Divider/>
+                </>
+            )
+        }
+    
+ 
+
+    return (
+        <Flex padding="2" w="100%">
+            <Box textAlign="center">
+                <form onSubmit={handleSubmit}>
+                    <Box padding="1">Name: {dog.name}</Box>
+                    <Divider />
+                    <Box padding="1">Breed: {dog.breed}</Box>
+                    <Divider />
+                    <Box padding="1">Age: {dog.age}</Box>
+                    <Divider />
+                    <Box padding="1">Temperament: {dog.temperament}</Box>
+                    <Divider />
+                    <Box w="300px" padding="1">
+                        Description: {flyer.attributes.description}
+                    </Box>
+                    {toggleReward === true ? (
+                        <>
+                        <Divider/>
+                        <Badge size='lg' margin='2' borderRadius="full" px="2" colorScheme="red">
+                            Reward
+                        </Badge>
+                        </>
+                    ) : null}
+                    {toggleFound === true ? (
+                        <>
+                        <Divider/>
+                        <Tag marginTop='2' borderRadius="full" px="2" colorScheme="blue">
+                        <TagLabel>Found!</TagLabel>
+                        <TagRightIcon as={GiDogHouse} />
+                        </Tag>
+                        </>
+                    ) : null}
+                    <Box margin="3">
+                        <LastSeen />
+                    </Box>
+                    <Box padding="2" margin="3" w="300px">
+                        {" "}
+                        {pics[0] == null ? (
+                            <Image src={stock} />
+                        ) : (
+                            <Slider {...settings}>{carouselPics}</Slider>
+                        )}{" "}
+                    </Box>
+
+                    {updateToggle && ( 
+                        <Box bg="gray.500" borderRadius="md" justifyContent="center">
+                            <RadioGroup onChange={handleReward} padding="1">
+                                <FormLabel>Reward Offered?</FormLabel>
+                                <Stack direction="row">
+                                    <Radio value={`${true}`}>Yes</Radio>
+                                    <Radio value={`${false}`}>No</Radio>
+                                </Stack>
+                            </RadioGroup>
+                            <RadioGroup onChange={handleFound} padding="1">
+                                <FormLabel>Has the dog been found?</FormLabel>
+                                <Stack direction="row">
+                                    <Radio value={`${true}`}>Yes</Radio>
+                                    <Radio value={`${false}`}>No</Radio>
+                                </Stack>
+                            </RadioGroup>
+                            <Textarea
+                                name="description"
+                                onChange={handleChange}
+                                placeholder={flyer.attributes.description}
+                                size="md"
+                            />
+                            <Button type="submit" colorScheme="red" margin="2">
+                                Submit
+                </Button>
+                        </Box>
+                    )}
+                </form>
+
+                {!updateToggle && flyerUserId === userId ? (
+                    <Button onClick={handleUpdate} colorScheme="red" margin="2">
+                        Update Your Flyer
+                    </Button>
+                ) : null}
             </Box>
         </Flex>
-    )
+    );
 }
 
 export default FlyerCard

@@ -1,11 +1,11 @@
-import { Flex, Stack, Box } from "@chakra-ui/layout";
+import { Flex, Stack} from "@chakra-ui/layout";
 import {useState} from "react"
 import { useHistory } from "react-router-dom"
 import { Button, Input, ButtonGroup } from '@chakra-ui/react'
-import stock from './missing.png'
 
 
-function AddDog() {
+
+function AddDog({currentUser, userDogs, setUserDogs}) {
 
     const history = useHistory()
     const [formData, setFormData] = useState({
@@ -15,7 +15,7 @@ function AddDog() {
         age: null,
         temperament: "",
         image: 'https://images.assetsdelivery.com/compings_v2/newdesignillustrations/newdesignillustrations1902/newdesignillustrations190208953.jpg',
-        user_id: 1
+        user_id: currentUser.id
     })
 
     const handleSkip = () => {
@@ -24,7 +24,11 @@ function AddDog() {
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
-        console.log(formData);
+        // console.log(formData);
+    }
+    const handleImage = (e) => {
+        setFormData({ ...formData, image: ',' + e.target.value })
+        // console.log(formData);
     }
 
     const handleDog = (e) => {
@@ -40,9 +44,13 @@ function AddDog() {
         })
         .then(resp => resp.json())
         .then(data => {
-         console.log(data)
+         console.log(data.data)
+         console.log(currentUser);
+        setUserDogs([...userDogs, data.data.attributes])
+         history.push('/dogs')
         })
     }
+    console.log(userDogs);
 
     return(
         <Flex justifyContent='center' marginTop='100px'>
@@ -53,6 +61,7 @@ function AddDog() {
                 <Input placeholder='Size' name='size'  onChange={handleChange}/>
                 <Input type='number' placeholder='Age' name='age'  onChange={handleChange}/>
                 <Input placeholder='Temperament' name='temperament'  onChange={handleChange}/>
+                <Input placeholder='Images' name='image' onChange={handleImage} />
                 <ButtonGroup>
                     <Button onClick={handleSkip} colorScheme="gray">Skip</Button>
                     <Button onClick={handleDog} type="submit" colorScheme="green">Add Pooch</Button>
