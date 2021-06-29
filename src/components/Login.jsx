@@ -30,19 +30,28 @@ function Login({setCurrentUser, setUserDogs}) {
             body: JSON.stringify(loginData)
         })
         .then(resp => {
+            // console.log(resp);
             if (resp.ok) {
                 return resp.json();
-            } else {
-                return resp.json().then((data) => {
-                throw data;
-                });
-            }
+            } 
+            // else {
+            //     return resp.json().then((data) => {
+            //         console.log(data);
+            //     throw data;
+            //     });
+            // }
         })
         .then(data => {
+            if (data === undefined){
+                console.log("Pesh says NO");
+                throw new Error("Pesh says no")
+                console.log(data);
+            } else 
+           { console.log(data);
             setCurrentUser(data.data.attributes)
             setUserDogs(data.data.attributes.dogs)
             localStorage.setItem("user", JSON.stringify(data.data.attributes))
-            history.push("/flyers")
+            history.push("/flyers")}
         })
     }
     
